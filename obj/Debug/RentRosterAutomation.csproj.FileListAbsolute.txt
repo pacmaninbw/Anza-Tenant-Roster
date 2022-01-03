@@ -1,0 +1,9 @@
+C:\Users\PaulC\Documents\ProjectsNfwsi\AnzaVictoria\TenantRosterClone\obj\Debug\RentRosterAutomation.csproj.AssemblyReference.cache
+C:\Users\PaulC\Documents\ProjectsNfwsi\AnzaVictoria\TenantRosterClone\obj\Debug\RentRosterAutomation.Form_AddOrEditResident.resources
+C:\Users\PaulC\Documents\ProjectsNfwsi\AnzaVictoria\TenantRosterClone\obj\Debug\RentRosterAutomation.Form_ApartmentNumberVerifier.resources
+C:\Users\PaulC\Documents\ProjectsNfwsi\AnzaVictoria\TenantRosterClone\obj\Debug\RentRosterAutomation.Form_CurrentProgressStatus.resources
+C:\Users\PaulC\Documents\ProjectsNfwsi\AnzaVictoria\TenantRosterClone\obj\Debug\RentRosterAutomation.Form_DeleteRenter.resources
+C:\Users\PaulC\Documents\ProjectsNfwsi\AnzaVictoria\TenantRosterClone\obj\Debug\RentRosterAutomation.Form_EditPreferences.resources
+C:\Users\PaulC\Documents\ProjectsNfwsi\AnzaVictoria\TenantRosterClone\obj\Debug\RentRosterAutomation.Form_PrintMailboxLists.resources
+C:\Users\PaulC\Documents\ProjectsNfwsi\AnzaVictoria\TenantRosterClone\obj\Debug\RentRosterAutomation.Form_RentRosterApp.resources
+C:\Users\PaulC\Documents\ProjectsNfwsi\AnzaVictoria\TenantRosterClone\obj\Debug\RentRosterAutomation.csproj.GenerateResource.cache
