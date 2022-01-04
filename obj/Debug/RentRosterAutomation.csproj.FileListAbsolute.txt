@@ -7,3 +7,10 @@ C:\Users\PaulC\Documents\ProjectsNfwsi\AnzaVictoria\TenantRosterClone\obj\Debug\
 C:\Users\PaulC\Documents\ProjectsNfwsi\AnzaVictoria\TenantRosterClone\obj\Debug\RentRosterAutomation.Form_PrintMailboxLists.resources
 C:\Users\PaulC\Documents\ProjectsNfwsi\AnzaVictoria\TenantRosterClone\obj\Debug\RentRosterAutomation.Form_RentRosterApp.resources
 C:\Users\PaulC\Documents\ProjectsNfwsi\AnzaVictoria\TenantRosterClone\obj\Debug\RentRosterAutomation.csproj.GenerateResource.cache
+C:\Users\PaulC\Documents\ProjectsNfwsi\AnzaVictoria\TenantRosterClone\bin\Debug\RentRosterAutomation.exe.config
+C:\Users\PaulC\Documents\ProjectsNfwsi\AnzaVictoria\TenantRosterClone\bin\Debug\RentRosterAutomation.exe
+C:\Users\PaulC\Documents\ProjectsNfwsi\AnzaVictoria\TenantRosterClone\bin\Debug\RentRosterAutomation.pdb
+C:\Users\PaulC\Documents\ProjectsNfwsi\AnzaVictoria\TenantRosterClone\obj\Debug\RentRosterAutomation.Properties.Resources.resources
+C:\Users\PaulC\Documents\ProjectsNfwsi\AnzaVictoria\TenantRosterClone\obj\Debug\RentRosterAutomation.csproj.CoreCompileInputs.cache
+C:\Users\PaulC\Documents\ProjectsNfwsi\AnzaVictoria\TenantRosterClone\obj\Debug\RentRosterAutomation.exe
+C:\Users\PaulC\Documents\ProjectsNfwsi\AnzaVictoria\TenantRosterClone\obj\Debug\RentRosterAutomation.pdb
