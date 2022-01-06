@@ -4,12 +4,12 @@ using System.Windows.Forms;
 
 namespace RentRosterAutomation
 {
-    public partial class Form_DeleteRenter : Form
+    public partial class DeleteRenterDlg : Form
     {
         public int ApartmentNumber { get; set; }
         public Tenant CurrentTenant { get; set; }
 
-        public Form_DeleteRenter()
+        public DeleteRenterDlg()
         {
             ApartmentNumber = 0;
             CurrentTenant = null;

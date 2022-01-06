@@ -164,7 +164,7 @@ namespace RentRosterAutomation
                 return;
             }
             List<BuildingAndApartment> buildingAndApartments;
-            Form_CurrentProgressStatus statusReport = new Form_CurrentProgressStatus();
+            ReportCurrentStatusWindow statusReport = new ReportCurrentStatusWindow();
             statusReport.MessageText = "Constructing Apartment Complex Data.";
             statusReport.Show();
             buildingAndApartments = CreateBuildingAndApartmentsList();
@@ -174,7 +174,7 @@ namespace RentRosterAutomation
 
         private void GetExcelDataAndReportProgress()
         {
-            Form_CurrentProgressStatus statusReport = new Form_CurrentProgressStatus();
+            ReportCurrentStatusWindow statusReport = new ReportCurrentStatusWindow();
             statusReport.MessageText =
                 "Starting Excel and Loading Tenant Data From Excel.";
             statusReport.Show();
@@ -396,7 +396,7 @@ namespace RentRosterAutomation
             string eSaveMsg = "Can't save edits to " + WorkbookName;
             try
             {
-                Form_CurrentProgressStatus SaveStatus = new Form_CurrentProgressStatus();
+                ReportCurrentStatusWindow SaveStatus = new ReportCurrentStatusWindow();
                 SaveStatus.MessageText = "Saving updated tenants and apartments to Excel.";
                 SaveStatus.Show();
                 StartExcelOpenWorkbook(false);

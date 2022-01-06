@@ -1,7 +1,7 @@
 ﻿
 namespace RentRosterAutomation
 {
-    partial class Form_CurrentProgressStatus
+    partial class ReportCurrentStatusWindow
     {
         /// <summary>
         /// Required designer variable.

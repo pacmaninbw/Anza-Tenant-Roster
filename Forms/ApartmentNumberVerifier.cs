@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace RentRosterAutomation
 {
-    public partial class Form_ApartmentNumberVerifier : Form
+    public partial class ApartmentNumberVerifier : Form
     {
         private PropertyComplex complex;
 
@@ -19,7 +19,7 @@ namespace RentRosterAutomation
         public Tenant TenantData { get; private set; }
         public NextActionEnum NextAction { get; set; }
 
-        public Form_ApartmentNumberVerifier()
+        public ApartmentNumberVerifier()
         {
             complex = Program.excelInterface.Complex;
             TenantData = null;
@@ -96,14 +96,14 @@ namespace RentRosterAutomation
             {
                 case NextActionEnum.EDIT:
                 case NextActionEnum.ADD:
-                    Form_AddOrEditResident addNewResident = new Form_AddOrEditResident();
-                    addNewResident.currentTenant = TenantData;
+                    AddOrEditResidentDlg addNewResident = new AddOrEditResidentDlg();
+                    addNewResident.CurrentTenant = TenantData;
                     addNewResident.ApartmentNumber = aptNumber;
                     addNewResident.Show();
                     break;
 
                 case NextActionEnum.DELETE:
-                    Form_DeleteRenter deleteRenter_dlg = new Form_DeleteRenter();
+                    DeleteRenterDlg deleteRenter_dlg = new DeleteRenterDlg();
                     deleteRenter_dlg.CurrentTenant = TenantData;
                     deleteRenter_dlg.ApartmentNumber = aptNumber;
                     deleteRenter_dlg.Show();

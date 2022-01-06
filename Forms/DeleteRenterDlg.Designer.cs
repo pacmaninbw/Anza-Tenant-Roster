@@ -1,7 +1,7 @@
 ﻿
 namespace RentRosterAutomation
 {
-    partial class Form_DeleteRenter
+    partial class DeleteRenterDlg
     {
         /// <summary>
         /// Required designer variable.

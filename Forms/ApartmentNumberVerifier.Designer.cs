@@ -1,7 +1,7 @@
 ﻿
 namespace RentRosterAutomation
 {
-    partial class Form_ApartmentNumberVerifier
+    partial class ApartmentNumberVerifier
     {
         /// <summary>
         /// Required designer variable.

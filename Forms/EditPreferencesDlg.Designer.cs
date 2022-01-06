@@ -1,7 +1,7 @@
 ﻿
 namespace RentRosterAutomation
 {
-    partial class Form_EditPreferences
+    partial class EditPreferencesDlg
     {
         /// <summary>
         /// Required designer variable.

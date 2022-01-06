@@ -1,7 +1,7 @@
 ﻿
 namespace RentRosterAutomation
 {
-    partial class Form_RentRosterApp
+    partial class RentRosterApp
     {
         /// <summary>
         /// Required designer variable.

@@ -1,7 +1,7 @@
 ﻿
 namespace RentRosterAutomation
 {
-    partial class Form_AddOrEditResident
+    partial class AddOrEditResidentDlg
     {
         /// <summary>
         /// Required designer variable.

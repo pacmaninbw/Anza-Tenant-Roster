@@ -70,75 +70,75 @@
   <ItemGroup>
     <Compile Include="Classes\BuildingAndApartment.cs" />
     <Compile Include="Classes\PrintSavePreference.cs" />
-    <Compile Include="Forms\Form_AddOrEditResident.cs">
+    <Compile Include="Forms\AddOrEditResidentDlg.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Form_AddOrEditResident.Designer.cs">
-      <DependentUpon>Form_AddOrEditResident.cs</DependentUpon>
+    <Compile Include="Forms\AddOrEditResidentDlg.Designer.cs">
+      <DependentUpon>AddOrEditResidentDlg.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\Apartment.cs" />
-    <Compile Include="Forms\Form_ApartmentNumberVerifier.cs">
+    <Compile Include="Forms\ApartmentNumberVerifier.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Form_ApartmentNumberVerifier.Designer.cs">
-      <DependentUpon>Form_ApartmentNumberVerifier.cs</DependentUpon>
+    <Compile Include="Forms\ApartmentNumberVerifier.Designer.cs">
+      <DependentUpon>ApartmentNumberVerifier.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\Building.cs" />
     <Compile Include="Classes\ExcelInterface.cs" />
     <Compile Include="Classes\MailboxData.cs" />
     <Compile Include="Classes\PropertyComplex.cs" />
     <Compile Include="Classes\MSWordInterface.cs" />
-    <Compile Include="Forms\Form_CurrentProgressStatus.cs">
+    <Compile Include="Forms\ReportCurrentStatusWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Form_CurrentProgressStatus.Designer.cs">
-      <DependentUpon>Form_CurrentProgressStatus.cs</DependentUpon>
+    <Compile Include="Forms\ReportCurrentStatusWindow.Designer.cs">
+      <DependentUpon>ReportCurrentStatusWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Form_DeleteRenter.cs">
+    <Compile Include="Forms\DeleteRenterDlg.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Form_DeleteRenter.Designer.cs">
-      <DependentUpon>Form_DeleteRenter.cs</DependentUpon>
+    <Compile Include="Forms\DeleteRenterDlg.Designer.cs">
+      <DependentUpon>DeleteRenterDlg.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Form_EditPreferences.cs">
+    <Compile Include="Forms\EditPreferencesDlg.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Form_EditPreferences.Designer.cs">
-      <DependentUpon>Form_EditPreferences.cs</DependentUpon>
+    <Compile Include="Forms\EditPreferencesDlg.Designer.cs">
+      <DependentUpon>EditPreferencesDlg.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\UserPreferences.cs" />
-    <Compile Include="Forms\Form_PrintMailboxLists.cs">
+    <Compile Include="Forms\PrintMailboxListsDlg.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Form_PrintMailboxLists.Designer.cs">
-      <DependentUpon>Form_PrintMailboxLists.cs</DependentUpon>
+    <Compile Include="Forms\PrintMailboxListsDlg.Designer.cs">
+      <DependentUpon>PrintMailboxListsDlg.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\Tenant.cs" />
-    <Compile Include="Forms\Form_RentRosterApp.cs">
+    <Compile Include="Forms\RentRosterApp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Form_RentRosterApp.Designer.cs">
-      <DependentUpon>Form_RentRosterApp.cs</DependentUpon>
+    <Compile Include="Forms\RentRosterApp.Designer.cs">
+      <DependentUpon>RentRosterApp.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Forms\Form_AddOrEditResident.resx">
-      <DependentUpon>Form_AddOrEditResident.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\AddOrEditResidentDlg.resx">
+      <DependentUpon>AddOrEditResidentDlg.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Form_ApartmentNumberVerifier.resx">
-      <DependentUpon>Form_ApartmentNumberVerifier.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\ApartmentNumberVerifier.resx">
+      <DependentUpon>ApartmentNumberVerifier.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Form_CurrentProgressStatus.resx">
-      <DependentUpon>Form_CurrentProgressStatus.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\ReportCurrentStatusWindow.resx">
+      <DependentUpon>ReportCurrentStatusWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Form_DeleteRenter.resx">
-      <DependentUpon>Form_DeleteRenter.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\DeleteRenterDlg.resx">
+      <DependentUpon>DeleteRenterDlg.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Form_EditPreferences.resx">
-      <DependentUpon>Form_EditPreferences.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\EditPreferencesDlg.resx">
+      <DependentUpon>EditPreferencesDlg.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Form_PrintMailboxLists.resx">
-      <DependentUpon>Form_PrintMailboxLists.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\PrintMailboxListsDlg.resx">
+      <DependentUpon>PrintMailboxListsDlg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -149,8 +149,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Forms\Form_RentRosterApp.resx">
-      <DependentUpon>Form_RentRosterApp.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\RentRosterApp.resx">
+      <DependentUpon>RentRosterApp.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

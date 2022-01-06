@@ -25,14 +25,14 @@ namespace RentRosterAutomation
                 // If we don't have the workbook name force the user to enter it.
                 if (!userPreferences.HavePreferenceData)
                 {
-                    Application.Run(new Form_EditPreferences());
+                    Application.Run(new EditPreferencesDlg());
                 }
 
                 excelInterface = new ExcelInterface(userPreferences.RentRosterFile,
                     userPreferences.RentRosterSheet);
                 if (!excelInterface.AlreadyOpenOtherApp)
                 {
-                    Application.Run(new Form_RentRosterApp());
+                    Application.Run(new RentRosterApp());
                 }
                 else
                 {
@@ -62,7 +62,6 @@ namespace RentRosterAutomation
                     " workbook and then restart this application.";
 
             MessageBox.Show(alreadyOpen);
-
         }
     }
 }

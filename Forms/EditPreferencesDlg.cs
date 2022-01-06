@@ -5,12 +5,12 @@ using System.Windows.Forms;
 
 namespace RentRosterAutomation
 {
-    public partial class Form_EditPreferences : Form
+    public partial class EditPreferencesDlg : Form
     {
         private UserPreferences preferences;
         private ExcelInterface excelInterface;
 
-        public Form_EditPreferences()
+        public EditPreferencesDlg()
         {
             preferences = Program.userPreferences;
             excelInterface = Program.excelInterface;

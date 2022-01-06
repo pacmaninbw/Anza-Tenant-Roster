@@ -4,13 +4,13 @@ using System.Windows.Forms;
 
 namespace RentRosterAutomation
 {
-    public partial class Form_AddOrEditResident : Form
+    public partial class AddOrEditResidentDlg : Form
     {
         private ExcelInterface interopMethods;
         public int ApartmentNumber { get; set; }
-        public Tenant currentTenant { get; set; }
+        public Tenant CurrentTenant { get; set; }
 
-        public Form_AddOrEditResident()
+        public AddOrEditResidentDlg()
         {
             interopMethods = Program.excelInterface;
             InitializeComponent();
@@ -18,16 +18,16 @@ namespace RentRosterAutomation
 
         private void ANR_SaveNewTenant_BTN_Click(object sender, EventArgs e)
         {
-            currentTenant.LastName = ANR_TenantLastName_TB.Text;
-            currentTenant.FirstName = ANR_TenantFirstName_TB.Text;
-            currentTenant.LeaseStart = ANR_MoveInDate_TB.Text;
-            currentTenant.LeaseEnd = ANR_LeaseEnd_TB.Text;
-            currentTenant.HomePhone = ANR_HomePhone_TB.Text;
-            currentTenant.CoTenantLastName = ANR_CoTenantLastName_TB.Text;
-            currentTenant.CoTenantFirstName = ANR_AdditionalOccupantFirstName_TB.Text;
-            currentTenant.RentersInsurancePolicy = ANR_RenterInsurance_TB.Text;
-            currentTenant.Email = ANR_AlternateContact_TB.Text;
-            interopMethods.AddEditTenant(ApartmentNumber, currentTenant);
+            CurrentTenant.LastName = ANR_TenantLastName_TB.Text;
+            CurrentTenant.FirstName = ANR_TenantFirstName_TB.Text;
+            CurrentTenant.LeaseStart = ANR_MoveInDate_TB.Text;
+            CurrentTenant.LeaseEnd = ANR_LeaseEnd_TB.Text;
+            CurrentTenant.HomePhone = ANR_HomePhone_TB.Text;
+            CurrentTenant.CoTenantLastName = ANR_CoTenantLastName_TB.Text;
+            CurrentTenant.CoTenantFirstName = ANR_AdditionalOccupantFirstName_TB.Text;
+            CurrentTenant.RentersInsurancePolicy = ANR_RenterInsurance_TB.Text;
+            CurrentTenant.Email = ANR_AlternateContact_TB.Text;
+            interopMethods.AddEditTenant(ApartmentNumber, CurrentTenant);
             Close();
         }
 
@@ -36,17 +36,17 @@ namespace RentRosterAutomation
             SetUpApartmentAddressLabel();
             ANR_SaveNewTenant_BTN.BackColor = Color.Green;
             ANR_Cancel_BTN.BackColor = Color.Red;
-            if (currentTenant != null)
+            if (CurrentTenant != null)
             {
-                ANR_TenantLastName_TB.Text = currentTenant.LastName;
-                ANR_TenantFirstName_TB.Text = currentTenant.FirstName;
-                ANR_HomePhone_TB.Text = currentTenant.HomePhone;
-                ANR_MoveInDate_TB.Text = currentTenant.LeaseStart;
-                ANR_LeaseEnd_TB.Text = currentTenant.LeaseEnd;
-                ANR_CoTenantLastName_TB.Text = currentTenant.CoTenantLastName;
-                ANR_AdditionalOccupantFirstName_TB.Text = currentTenant.CoTenantFirstName;
-                ANR_AlternateContact_TB.Text = currentTenant.Email;
-                ANR_RenterInsurance_TB.Text = currentTenant.RentersInsurancePolicy;
+                ANR_TenantLastName_TB.Text = CurrentTenant.LastName;
+                ANR_TenantFirstName_TB.Text = CurrentTenant.FirstName;
+                ANR_HomePhone_TB.Text = CurrentTenant.HomePhone;
+                ANR_MoveInDate_TB.Text = CurrentTenant.LeaseStart;
+                ANR_LeaseEnd_TB.Text = CurrentTenant.LeaseEnd;
+                ANR_CoTenantLastName_TB.Text = CurrentTenant.CoTenantLastName;
+                ANR_AdditionalOccupantFirstName_TB.Text = CurrentTenant.CoTenantFirstName;
+                ANR_AlternateContact_TB.Text = CurrentTenant.Email;
+                ANR_RenterInsurance_TB.Text = CurrentTenant.RentersInsurancePolicy;
             }
         }
 

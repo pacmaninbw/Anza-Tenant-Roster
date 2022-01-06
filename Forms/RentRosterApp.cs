@@ -4,13 +4,13 @@ using System.Windows.Forms;
 
 namespace RentRosterAutomation
 {
-    public partial class Form_RentRosterApp : Form
+    public partial class RentRosterApp : Form
     {
         private ExcelInterface excelInteropMethods;
 
         public UserPreferences MyPersonalPreferences { get; set; }
 
-        public Form_RentRosterApp()
+        public RentRosterApp()
         {
             excelInteropMethods = Program.excelInterface;
             MyPersonalPreferences = Program.userPreferences;
@@ -30,27 +30,27 @@ namespace RentRosterAutomation
 
         private void PrintMailboxLists_Button_Click(object sender, EventArgs e)
         {
-            Form_PrintMailboxLists printMailboxLists_dialog = new Form_PrintMailboxLists();
+            PrintMailboxListsDlg printMailboxLists_dialog = new PrintMailboxListsDlg();
             printMailboxLists_dialog.Show();
         }
 
         private void AddNewResident_Button_Click(object sender, EventArgs e)
         {
-            Form_ApartmentNumberVerifier verifier_Form = new Form_ApartmentNumberVerifier();
-            verifier_Form.NextAction = Form_ApartmentNumberVerifier.NextActionEnum.ADD;
+            ApartmentNumberVerifier verifier_Form = new ApartmentNumberVerifier();
+            verifier_Form.NextAction = ApartmentNumberVerifier.NextActionEnum.ADD;
             verifier_Form.Show();
         }
 
         private void DeleteRenter_Button_Click(object sender, EventArgs e)
         {
-            Form_ApartmentNumberVerifier verifier_Form = new Form_ApartmentNumberVerifier();
-            verifier_Form.NextAction = Form_ApartmentNumberVerifier.NextActionEnum.DELETE;
+            ApartmentNumberVerifier verifier_Form = new ApartmentNumberVerifier();
+            verifier_Form.NextAction = ApartmentNumberVerifier.NextActionEnum.DELETE;
             verifier_Form.Show();
         }
 
         private void EditPreferences_BTN_Click(object sender, EventArgs e)
         {
-            Form_EditPreferences preferences_dlg = new Form_EditPreferences();
+            EditPreferencesDlg preferences_dlg = new EditPreferencesDlg();
             preferences_dlg.Show();
         }
 

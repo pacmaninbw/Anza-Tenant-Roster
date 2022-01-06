@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace RentRosterAutomation
 {
-    public partial class Form_PrintMailboxLists : Form
+    public partial class PrintMailboxListsDlg : Form
     {
         private readonly UserPreferences preferences;
         private PrintSavePreference.PrintSave printSave;
@@ -14,7 +14,7 @@ namespace RentRosterAutomation
         private PropertyComplex propertyComplex;
         private MSWordInterface wordInteropMethods;
 
-        public Form_PrintMailboxLists()
+        public PrintMailboxListsDlg()
         {
             InitializeComponent();
             preferences = Program.userPreferences;
@@ -141,7 +141,7 @@ namespace RentRosterAutomation
                 (print) ? "Printing " : "Saving ";
             statusMessage += "the mailbox list for " + streetAddress;
 
-            Form_CurrentProgressStatus psStatus = new Form_CurrentProgressStatus();
+            ReportCurrentStatusWindow psStatus = new ReportCurrentStatusWindow();
             psStatus.MessageText = statusMessage;
             psStatus.Show();
 

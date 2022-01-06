@@ -1,7 +1,7 @@
 ﻿
 namespace RentRosterAutomation
 {
-    partial class Form_PrintMailboxLists
+    partial class PrintMailboxListsDlg
     {
         /// <summary>
         /// Required designer variable.
