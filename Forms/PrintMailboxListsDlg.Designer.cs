@@ -1,5 +1,5 @@
 ﻿
-namespace RentRosterAutomation
+namespace TenantRosterAutomation
 {
     partial class PrintMailboxListsDlg
     {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace RentRosterAutomation
+namespace TenantRosterAutomation
 {
     // Represents one building in the apartment Complex
     class Building

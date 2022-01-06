@@ -4,7 +4,7 @@ using System.IO;
 using System.Windows.Forms;
 
 
-namespace RentRosterAutomation
+namespace TenantRosterAutomation
 {
 
     // Reads and writes the user preferences file.

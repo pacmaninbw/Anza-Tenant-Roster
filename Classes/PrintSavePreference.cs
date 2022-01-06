@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace RentRosterAutomation
+namespace TenantRosterAutomation
 {
     public class PrintSavePreference
     {

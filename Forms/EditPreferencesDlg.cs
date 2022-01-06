@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 
 
-namespace RentRosterAutomation
+namespace TenantRosterAutomation
 {
     public partial class EditPreferencesDlg : Form
     {

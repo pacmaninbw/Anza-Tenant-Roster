@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows;
 
-namespace RentRosterAutomation
+namespace TenantRosterAutomation
 {
     // Contains all the information about the apartment complex (5 buildings)
     class PropertyComplex

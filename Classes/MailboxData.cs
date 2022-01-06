@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace RentRosterAutomation
+namespace TenantRosterAutomation
 {
     // This class contains the data necessary to print a mailbox tenant list,
     // Each building in the complex contains 3 floors of apartments. The documnets

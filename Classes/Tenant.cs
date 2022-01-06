@@ -1,4 +1,4 @@
-﻿namespace RentRosterAutomation
+﻿namespace TenantRosterAutomation
 {
     public class Tenant
     {

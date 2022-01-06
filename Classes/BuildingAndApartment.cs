@@ -1,4 +1,4 @@
-﻿namespace RentRosterAutomation
+﻿namespace TenantRosterAutomation
 {
     // One of these is contructed for each apartment in the complex (5 buildings, 177 apartments).
     // The list is used during the construction of the apartment complex object

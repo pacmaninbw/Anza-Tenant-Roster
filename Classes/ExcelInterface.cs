@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Windows;
 using Excel = Microsoft.Office.Interop.Excel;
 
-namespace RentRosterAutomation
+namespace TenantRosterAutomation
 {
     // Provides the interface between the rest of the program and Microsoft excel
     class ExcelInterface
@@ -373,18 +373,18 @@ namespace RentRosterAutomation
         {
             int columnCount = TenantDataRange.Columns.Count;
             int rowcount = TenantDataRange.Rows.Count;
-            // This loop needs to be optimized, it takes almost 8 seconds
+
+            var values = TenantDataRange.Value2;
             for (int row = headerLine + 1; row <= rowcount; row++)
             {
                 DataRow tenantData = tenantTable.NewRow();
                 for (int column = firstColumn; column <= columnCount; column++)
                 {
                     tenantData[column - firstColumn] =
-                        Convert.ToString(TenantDataRange.Cells[row, column].Value2);
+                        Convert.ToString(values[row, column]);
                 }
                 tenantTable.Rows.Add(tenantData);
             }
-
         }
 
         private void SaveWorkBookEdits()
