@@ -6,13 +6,13 @@ namespace RentRosterAutomation
 {
     public partial class Form_AddOrEditResident : Form
     {
-        private CExcelInteropMethods interopMethods;
+        private ExcelInterface interopMethods;
         public int ApartmentNumber { get; set; }
-        public CRenter currentTenant { get; set; }
+        public Tenant currentTenant { get; set; }
 
         public Form_AddOrEditResident()
         {
-            interopMethods = Program.excelInteropMethods;
+            interopMethods = Program.excelInterface;
             InitializeComponent();
         }
 

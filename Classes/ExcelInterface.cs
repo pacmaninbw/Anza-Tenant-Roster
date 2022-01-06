@@ -9,7 +9,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 namespace RentRosterAutomation
 {
     // Provides the interface between the rest of the program and Microsoft excel
-    class CExcelInteropMethods
+    class ExcelInterface
     {
         // Excel objects
         private Excel.Application xlApp;
@@ -17,8 +17,8 @@ namespace RentRosterAutomation
         private Excel.Worksheet tenantRoster;
 
         // Classes written for this project
-        private CPropertyComplex complex;
-        private List<CApartment> TenantUpdates;     // Stored updates to be written
+        private PropertyComplex complex;
+        private List<Apartment> TenantUpdates;     // Stored updates to be written
                                                     // by save button or program exit
         private bool worksheetChanged;
         private string tenantRosterName;
@@ -27,17 +27,17 @@ namespace RentRosterAutomation
         private const int TenantLastNameColumn = 3;
         private const int CoTenantLastNameColumn = 5;
 
-        public CPropertyComplex Complex { get { return complex; } }
+        public PropertyComplex Complex { get { return complex; } }
         public bool AlreadyOpenOtherApp { get; private set; }
         public bool HaveEditsToSave { get { return (TenantUpdates.Count > 0); } }
         public string WorkbookName { get; set; }
 
-        public CExcelInteropMethods(string workBookName, string workSheetName)
+        public ExcelInterface(string workBookName, string workSheetName)
         {
             worksheetChanged = false;
             WorkbookName = workBookName;
             tenantRosterName = workSheetName;
-            TenantUpdates = new List<CApartment>();
+            TenantUpdates = new List<Apartment>();
 
             try
             {
@@ -55,7 +55,7 @@ namespace RentRosterAutomation
             }
             catch (Exception e)
             {
-                string emsg = "CExcelInteropMethods Constructor failed while building Complex:" + e.Message;
+                string emsg = "ExcelInterface Constructor failed while building Complex:" + e.Message;
                 MessageBox.Show(emsg);
             }
         }
@@ -104,20 +104,20 @@ namespace RentRosterAutomation
             return sheetNames;
         }
 
-        public void PreferencesUpdated(CUserPreferences preferences)
+        public void PreferencesUpdated(UserPreferences preferences)
         {
             WorkbookName = preferences.RentRosterFile;
             tenantRosterName = preferences.RentRosterSheet;
             StartExcelOpenWorkbook(true);
         }
 
-        public CMailboxListData GetMailboxData(CBuilding building)
+        public MailboxData GetMailboxData(Building building)
         {
-            CMailboxListData mailboxData = new CMailboxListData(building);
+            MailboxData mailboxData = new MailboxData(building);
             List<int> apartmentNumbers = building.ApartmentNumbers;
             foreach (int aptNo in apartmentNumbers)
             {
-                mailboxData.addApartmentData(new CApartment(aptNo));
+                mailboxData.addApartmentData(new Apartment(aptNo));
             }
 
             return mailboxData;
@@ -125,20 +125,20 @@ namespace RentRosterAutomation
 
         public void DeleteTenant(int apartmentNumber)
         {
-            CRenter tenant = new CRenter();
-            TenantUpdates.Add(new CApartment(apartmentNumber, tenant));
+            Tenant tenant = new Tenant();
+            TenantUpdates.Add(new Apartment(apartmentNumber, tenant));
             worksheetChanged = UdateTenantDataTable(apartmentNumber, tenant);
         }
 
-        public void AddEditTenant(int apartmentNumber, CRenter tenant)
+        public void AddEditTenant(int apartmentNumber, Tenant tenant)
         {
-            TenantUpdates.Add(new CApartment(apartmentNumber, tenant));
+            TenantUpdates.Add(new Apartment(apartmentNumber, tenant));
             worksheetChanged = UdateTenantDataTable(apartmentNumber, tenant);
         }
 
-        public CRenter GetTenant(int apartmentNumber)
+        public Tenant GetTenant(int apartmentNumber)
         {
-            CRenter tenant = null;
+            Tenant tenant = null;
             try
             {
                 DataTable lTenantRoster = GetLocalTenantRoster();
@@ -151,7 +151,7 @@ namespace RentRosterAutomation
             }
             catch (Exception e)
             {
-                MessageBox.Show("Exception in CExcelInteropMethods::GetTenant(): " + e.Message);
+                MessageBox.Show("Exception in ExcelInterface::GetTenant(): " + e.Message);
             }
 
             return tenant;
@@ -163,12 +163,12 @@ namespace RentRosterAutomation
             {
                 return;
             }
-            List<CBuildingAndApartment> buildingAndApartments;
+            List<BuildingAndApartment> buildingAndApartments;
             Form_CurrentProgressStatus statusReport = new Form_CurrentProgressStatus();
             statusReport.MessageText = "Constructing Apartment Complex Data.";
             statusReport.Show();
             buildingAndApartments = CreateBuildingAndApartmentsList();
-            complex = new CPropertyComplex("Anza Victoria Apartments, LLC", buildingAndApartments);
+            complex = new PropertyComplex("Anza Victoria Apartments, LLC", buildingAndApartments);
             statusReport.Close();
         }
 
@@ -186,9 +186,9 @@ namespace RentRosterAutomation
 
         // Creates data for a single tenant that can be edited from
         // the local data table.
-        private CRenter FillTenantFromDataRow(DataRow[] aptTenantData)
+        private Tenant FillTenantFromDataRow(DataRow[] aptTenantData)
         {
-            CRenter tenant = new CRenter();
+            Tenant tenant = new Tenant();
 
             tenant.LastName = aptTenantData[0].Field<string>("Last");
             tenant.FirstName = aptTenantData[0].Field<string>("First");
@@ -204,7 +204,7 @@ namespace RentRosterAutomation
         }
 
         // Updates the local version of the data in the application.
-        private bool UdateTenantDataTable(int apartmentNumber, CRenter tenant)
+        private bool UdateTenantDataTable(int apartmentNumber, Tenant tenant)
         {
             bool updated = false;
             try
@@ -228,16 +228,16 @@ namespace RentRosterAutomation
             }
             catch (Exception e)
             {
-                MessageBox.Show("Exception in CExcelInteropMethods::updateDataTable(): " + e.Message);
+                MessageBox.Show("Exception in ExcelInterface::updateDataTable(): " + e.Message);
             }
 
             return updated;
         }
 
         // Updates a row of data in the excel file
-        private void UpdateColumnData(CApartment rowEdit, List<string> columnNames)
+        private void UpdateColumnData(Apartment rowEdit, List<string> columnNames)
         {
-            CRenter tenant = rowEdit.renter;
+            Tenant tenant = rowEdit.Tenant;
             Excel.Range currentRow = FindRowInWorkSheetForUpdate(rowEdit.ApartmentNumber);
             UpdateColumn(currentRow, "Last", tenant.LastName, columnNames);
             UpdateColumn(currentRow, "First", tenant.FirstName, columnNames);
@@ -315,7 +315,7 @@ namespace RentRosterAutomation
             catch (Exception e)
             {
                 localTenantRoster = null;
-                string eMsg = "Function CExcelInteropMethods.openTenantRosterWorkSheet() failed: " + e.Message;
+                string eMsg = "Function ExcelInterface.openTenantRosterWorkSheet() failed: " + e.Message;
                 MessageBox.Show(eMsg);
             }
         }
@@ -410,7 +410,7 @@ namespace RentRosterAutomation
                     return;
                 }
                 List<string> columnNames = GetColumnNames();
-                foreach (CApartment edit in TenantUpdates)
+                foreach (Apartment edit in TenantUpdates)
                 {
                     UpdateColumnData(edit, columnNames);
                 }
@@ -443,7 +443,7 @@ namespace RentRosterAutomation
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Exception in CExcelInteropMethods::getRowNumberForSave(): " +
+                MessageBox.Show("Exception in ExcelInterface::getRowNumberForSave(): " +
                     ex.Message);
             }
 
@@ -478,7 +478,7 @@ namespace RentRosterAutomation
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Exception in CExcelInteropMethods::GetUnitColumn(): " +
+                MessageBox.Show("Exception in ExcelInterface::GetUnitColumn(): " +
                     ex.Message);
             }
 
@@ -515,20 +515,20 @@ namespace RentRosterAutomation
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Exception in CExcelInteropMethods::GetColumnNames(): " +
+                MessageBox.Show("Exception in ExcelInterface::GetColumnNames(): " +
                     ex.Message);
             }
 
             return columnNames;
         }
 
-        private List<CBuildingAndApartment> CreateBuildingAndApartmentsList()
+        private List<BuildingAndApartment> CreateBuildingAndApartmentsList()
         {
             if (localTenantRoster == null)
             {
                 return null;
             }
-            List<CBuildingAndApartment> buildingAndApartments = new List<CBuildingAndApartment>();
+            List<BuildingAndApartment> buildingAndApartments = new List<BuildingAndApartment>();
             int LastDataRow = localTenantRoster.Rows.Count;
 
             for (int row = 0; row < LastDataRow; row++)
@@ -539,7 +539,7 @@ namespace RentRosterAutomation
             return buildingAndApartments;
         }
 
-        private CBuildingAndApartment CreateBuildAndApartmentFromDataRow(int row)
+        private BuildingAndApartment CreateBuildAndApartmentFromDataRow(int row)
         {
             DataRow dataRow = localTenantRoster.Rows[row];
             string streetAddress = dataRow.Field<string>("Street 1").ToString();
@@ -553,7 +553,7 @@ namespace RentRosterAutomation
             int buildingNumber;
             Int32.TryParse(streetNumber, out buildingNumber);
 
-            CBuildingAndApartment currentApt = new CBuildingAndApartment(buildingNumber,
+            BuildingAndApartment currentApt = new BuildingAndApartment(buildingNumber,
                 apartmentNumber, streetAddress);
             return currentApt;
         }

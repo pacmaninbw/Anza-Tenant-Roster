@@ -1,6 +1,6 @@
 ﻿namespace RentRosterAutomation
 {
-    public class CRenter
+    public class Tenant
     {
         public string LastName { get; set; }
         public string FirstName { get; set; }
@@ -12,7 +12,7 @@
         public string LeaseStart { get; set; }
         public string LeaseEnd { get; set; }
 
-        public CRenter()
+        public Tenant()
         {
             FirstName = "";
             LastName = "";
@@ -24,7 +24,7 @@
             LeaseStart = "";
         }
 
-        public CRenter(string lastName, string homePhone)
+        public Tenant(string lastName, string homePhone)
         {
             LastName = lastName;
             HomePhone = homePhone;

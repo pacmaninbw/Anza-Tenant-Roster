@@ -6,14 +6,14 @@ namespace RentRosterAutomation
 {
     public partial class Form_RentRosterApp : Form
     {
-        private CExcelInteropMethods excelInteropMethods;
+        private ExcelInterface excelInteropMethods;
 
-        public CUserPreferences MyPersonalPreferences { get; set; }
+        public UserPreferences MyPersonalPreferences { get; set; }
 
         public Form_RentRosterApp()
         {
-            excelInteropMethods = Program.excelInteropMethods;
-            MyPersonalPreferences = Program.preferences;
+            excelInteropMethods = Program.excelInterface;
+            MyPersonalPreferences = Program.userPreferences;
             InitializeComponent();
         }
 
@@ -61,7 +61,7 @@ namespace RentRosterAutomation
 
         private void RR_SAVEEDITS_BTN_Click(object sender, EventArgs e)
         {
-            CExcelInteropMethods excelInteropMethods = Program.excelInteropMethods;
+            ExcelInterface excelInteropMethods = Program.excelInterface;
             if (excelInteropMethods.HaveEditsToSave)
             {
                 excelInteropMethods.SaveEditsCloseWorkbookExitExcel();

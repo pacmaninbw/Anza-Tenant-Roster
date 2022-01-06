@@ -8,10 +8,10 @@ namespace RentRosterAutomation
 {
 
     // Reads and writes the user preferences file.
-    public class CUserPreferences
+    public class UserPreferences
     {
-        private CPrintSavePreference.PrintSave printSaveValue;
-        private CPrintSavePreference printSavePreference;
+        private PrintSavePreference.PrintSave printSaveValue;
+        private PrintSavePreference printSavePreference;
         private Dictionary<int, string> FieldNameByIndex;
         private Dictionary<string, int> IndexFromFieldName;
         private const int fileVersion = 1;
@@ -19,21 +19,21 @@ namespace RentRosterAutomation
         private bool preferenceFileRead = false;
 
         public bool HavePreferenceData { get { return preferenceFileRead; } }
-        public CPrintSavePreference.PrintSave PrintSaveOptions { get { return printSaveValue; } set { printSaveValue = value; } }
+        public PrintSavePreference.PrintSave PrintSaveOptions { get { return printSaveValue; } set { printSaveValue = value; } }
         public string RentRosterFile { get; set; }
         public string RentRosterSheet { get; set; }
         public string DefaultSaveDirectory { get; set; }
 
-        public CUserPreferences()
+        public UserPreferences()
         {
-            printSavePreference = new CPrintSavePreference();
+            printSavePreference = new PrintSavePreference();
             InitDictionaries();
             SetValuesToUndefinedState();
         }
 
-        public CUserPreferences(string PreferencesFileName)
+        public UserPreferences(string PreferencesFileName)
         {
-            printSavePreference = new CPrintSavePreference();
+            printSavePreference = new PrintSavePreference();
             InitDictionaries();
             preferenceFileExists = File.Exists(PreferencesFileName);
             if (preferenceFileExists)
@@ -88,7 +88,7 @@ namespace RentRosterAutomation
 
         private void SetValuesToUndefinedState()
         {
-            PrintSaveOptions = CPrintSavePreference.PrintSave.PrintOnly;
+            PrintSaveOptions = PrintSavePreference.PrintSave.PrintOnly;
         }
 
         // These constants and variables are used when reading and writing

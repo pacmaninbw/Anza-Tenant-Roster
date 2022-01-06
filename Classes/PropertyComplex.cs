@@ -5,21 +5,21 @@ using System.Windows;
 namespace RentRosterAutomation
 {
     // Contains all the information about the apartment complex (5 buildings)
-    class CPropertyComplex
+    class PropertyComplex
     {
         private string propertyName;
         private List<int> allApartmentNumbers;
-        private List<CBuilding> buildingList = new List<CBuilding>();
+        private List<Building> buildingList = new List<Building>();
 
         public string PropertyName { get { return propertyName; } }
-        public List<CBuilding> Buildings { get; private set; }
+        public List<Building> Buildings { get; private set; }
         public List<string> BuildingAddressList { get; private set; }
         public List<int> StreetNumbers { get; private set; }
         public List<int> AllApartmentNumbers { get { return allApartmentNumbers; } }
         public int MinApartmentNumber { get; private set; }
         public int MaxApartmentNumber { get; private set; }
 
-        public CPropertyComplex(string PropertyName, List<CBuildingAndApartment> bldsAntApts)
+        public PropertyComplex(string PropertyName, List<BuildingAndApartment> bldsAntApts)
         {
             propertyName = PropertyName;
             BuildingAddressList = new List<string>();
@@ -27,7 +27,7 @@ namespace RentRosterAutomation
             StreetNumbers = new List<int>();
             CreateBuildingList(bldsAntApts);
 
-            foreach (CBuilding building in Buildings)
+            foreach (Building building in Buildings)
             {
                 BuildingAddressList.Add(building.FullStreetAddress);
                 allApartmentNumbers.AddRange(building.ApartmentNumbers);
@@ -39,16 +39,16 @@ namespace RentRosterAutomation
             MaxApartmentNumber = allApartmentNumbers[allApartmentNumbers.Count - 1];
         }
 
-        public CBuilding GetBuilding(int streetNumber)
+        public Building GetBuilding(int streetNumber)
         {
-            CBuilding building;
+            Building building;
 
             building = buildingList.Find(x => x.AddressStreetNumber == streetNumber);
 
             return building;
         }
 
-        public CBuilding GetBuilding(string streetNumber)
+        public Building GetBuilding(string streetNumber)
         {
             int iStreetNumber = 0;
 
@@ -60,7 +60,7 @@ namespace RentRosterAutomation
                 }
                 else
                 {
-                    MessageBox.Show("Non Numeric string passed into CBuilding::GetBuilding().");
+                    MessageBox.Show("Non Numeric string passed into Building::GetBuilding().");
                     return null;
                 }
             }
@@ -74,7 +74,7 @@ namespace RentRosterAutomation
         {
             string buildingAddress = null;
 
-            foreach (CBuilding building in Buildings)
+            foreach (Building building in Buildings)
             {
                 buildingAddress = building.BuildingFromApartment(apartmentNumber);
                 if (!string.IsNullOrEmpty(buildingAddress))
@@ -86,32 +86,32 @@ namespace RentRosterAutomation
             return buildingAddress;
         }
 
-        private void CreateBuildingList(List<CBuildingAndApartment> buildingAptList)
+        private void CreateBuildingList(List<BuildingAndApartment> buildingAptList)
         {
-            buildingList = new List<CBuilding>();
+            buildingList = new List<Building>();
             string streetName = "Anza Avenue";
 
-            foreach (CBuildingAndApartment entry in buildingAptList)
+            foreach (BuildingAndApartment entry in buildingAptList)
             {
-                CBuilding found = buildingList.Find(x => x.AddressStreetNumber == entry.building);
+                Building found = buildingList.Find(x => x.AddressStreetNumber == entry.building);
                 if (found != null)
                 {
                     found.AddApartmentNumber(entry.apartment);
                 }
                 else
                 {
-                    CBuilding newBuilding = new CBuilding(entry.building, streetName);
+                    Building newBuilding = new Building(entry.building, streetName);
                     newBuilding.AddApartmentNumber(entry.apartment);
                     buildingList.Add(newBuilding);
                 }
             }
 
-            foreach (CBuilding building in buildingList)
+            foreach (Building building in buildingList)
             {
                 building.SortApartMentNumbers();
             }
 
-            foreach (CBuilding building in buildingList)
+            foreach (Building building in buildingList)
             {
                 StreetNumbers.Add(building.AddressStreetNumber);
             }

@@ -68,26 +68,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\CBuildingAndApartment.cs" />
-    <Compile Include="Classes\CPrintSavePreference.cs" />
+    <Compile Include="Classes\BuildingAndApartment.cs" />
+    <Compile Include="Classes\PrintSavePreference.cs" />
     <Compile Include="Forms\Form_AddOrEditResident.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Form_AddOrEditResident.Designer.cs">
       <DependentUpon>Form_AddOrEditResident.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\CApartment.cs" />
+    <Compile Include="Classes\Apartment.cs" />
     <Compile Include="Forms\Form_ApartmentNumberVerifier.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Form_ApartmentNumberVerifier.Designer.cs">
       <DependentUpon>Form_ApartmentNumberVerifier.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\CBuilding.cs" />
-    <Compile Include="Classes\CExcelInteropMethods.cs" />
-    <Compile Include="Classes\CMailboxListData.cs" />
-    <Compile Include="Classes\CPropertyComplex.cs" />
-    <Compile Include="Classes\CWordInteropMethods.cs" />
+    <Compile Include="Classes\Building.cs" />
+    <Compile Include="Classes\ExcelInterface.cs" />
+    <Compile Include="Classes\MailboxData.cs" />
+    <Compile Include="Classes\PropertyComplex.cs" />
+    <Compile Include="Classes\MSWordInterface.cs" />
     <Compile Include="Forms\Form_CurrentProgressStatus.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,14 +106,14 @@
     <Compile Include="Forms\Form_EditPreferences.Designer.cs">
       <DependentUpon>Form_EditPreferences.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\CUserPreferences.cs" />
+    <Compile Include="Classes\UserPreferences.cs" />
     <Compile Include="Forms\Form_PrintMailboxLists.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Form_PrintMailboxLists.Designer.cs">
       <DependentUpon>Form_PrintMailboxLists.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\CRenter.cs" />
+    <Compile Include="Classes\Tenant.cs" />
     <Compile Include="Forms\Form_RentRosterApp.cs">
       <SubType>Form</SubType>
     </Compile>

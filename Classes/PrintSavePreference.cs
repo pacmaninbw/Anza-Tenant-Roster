@@ -2,7 +2,7 @@
 
 namespace RentRosterAutomation
 {
-    public class CPrintSavePreference
+    public class PrintSavePreference
     {
         private Dictionary<PrintSave, string> PrintSaveToStringDic;
         private Dictionary<string, PrintSave> StringToPrintSaveDic;
@@ -14,7 +14,7 @@ namespace RentRosterAutomation
             SaveOnly
         }
 
-        public CPrintSavePreference()
+        public PrintSavePreference()
         {
             InitDictionaries();
         }

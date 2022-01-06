@@ -7,18 +7,18 @@ namespace RentRosterAutomation
 {
     public partial class Form_EditPreferences : Form
     {
-        private CUserPreferences preferences;
-        private CExcelInteropMethods interopMethods;
+        private UserPreferences preferences;
+        private ExcelInterface excelInterface;
 
         public Form_EditPreferences()
         {
-            preferences = Program.preferences;
-            interopMethods = Program.excelInteropMethods;
-            if (interopMethods == null)
+            preferences = Program.userPreferences;
+            excelInterface = Program.excelInterface;
+            if (excelInterface == null)
             {
-                interopMethods = new CExcelInteropMethods(preferences.RentRosterFile,
+                excelInterface = new ExcelInterface(preferences.RentRosterFile,
                     preferences.RentRosterSheet);
-                Program.excelInteropMethods = interopMethods;
+                Program.excelInterface = excelInterface;
             }
             InitializeComponent();
         }
@@ -32,10 +32,10 @@ namespace RentRosterAutomation
                 EP_SheetName_TB.Text = preferences.RentRosterSheet;
                 switch (preferences.PrintSaveOptions)
                 {
-                    case CPrintSavePreference.PrintSave.PrintAndSave:
+                    case PrintSavePreference.PrintSave.PrintAndSave:
                         EP_PrintAndSave_RB.Checked = true;
                         break;
-                    case CPrintSavePreference.PrintSave.SaveOnly:
+                    case PrintSavePreference.PrintSave.SaveOnly:
                         EP_SavelOnly_RB.Checked = true;
                         break;
                     default:
@@ -57,17 +57,17 @@ namespace RentRosterAutomation
 
         private void EP_PrintAndSave_RB_CheckedChanged(object sender, EventArgs e)
         {
-            preferences.PrintSaveOptions = CPrintSavePreference.PrintSave.PrintAndSave;
+            preferences.PrintSaveOptions = PrintSavePreference.PrintSave.PrintAndSave;
         }
 
         private void EP_SavelOnly_RB_CheckedChanged(object sender, EventArgs e)
         {
-            preferences.PrintSaveOptions = CPrintSavePreference.PrintSave.SaveOnly;
+            preferences.PrintSaveOptions = PrintSavePreference.PrintSave.SaveOnly;
         }
 
         private void EP_PrintOnly_RB_CheckedChanged(object sender, EventArgs e)
         {
-            preferences.PrintSaveOptions = CPrintSavePreference.PrintSave.PrintOnly;
+            preferences.PrintSaveOptions = PrintSavePreference.PrintSave.PrintOnly;
         }
 
         private void EP_DefaultFileFolder_TB_TextChanged(object sender, EventArgs e)
@@ -102,7 +102,7 @@ namespace RentRosterAutomation
         private void EP_RentRosterLocation_TB_TextChanged(object sender, EventArgs e)
         {
             preferences.RentRosterFile = EP_RentRosterLocation_TB.Text;
-            interopMethods.WorkbookName = preferences.RentRosterFile;
+            excelInterface.WorkbookName = preferences.RentRosterFile;
         }
 
         private void findTenantRosterExcelFile(object sender, EventArgs e)
@@ -121,7 +121,7 @@ namespace RentRosterAutomation
 
         private void fillSheetSelectorListBox()
         {
-            List<string> sheetNames = interopMethods.GetSheetNames();
+            List<string> sheetNames = excelInterface.GetSheetNames();
             if (sheetNames == null)
             {
                 return;
@@ -144,7 +144,7 @@ namespace RentRosterAutomation
         private void EP_SavePreferences_BTN_Click(object sender, EventArgs e)
         {
             preferences.SavePreferencesToFile("./MyPersonalRentRosterPreferences.txt");
-            Program.excelInteropMethods.PreferencesUpdated(preferences);
+            Program.excelInterface.PreferencesUpdated(preferences);
             Close();
         }
 

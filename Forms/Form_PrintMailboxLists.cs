@@ -6,20 +6,20 @@ namespace RentRosterAutomation
 {
     public partial class Form_PrintMailboxLists : Form
     {
-        private readonly CUserPreferences preferences;
-        private CPrintSavePreference.PrintSave printSave;
+        private readonly UserPreferences preferences;
+        private PrintSavePreference.PrintSave printSave;
         private bool addDateToFileName = false;
         private bool addDateToTitle = false;
         private string selectedBuildings;
-        private CPropertyComplex propertyComplex;
-        private CWordInteropMethods wordInteropMethods;
+        private PropertyComplex propertyComplex;
+        private MSWordInterface wordInteropMethods;
 
         public Form_PrintMailboxLists()
         {
             InitializeComponent();
-            preferences = Program.preferences;
-            propertyComplex = Program.excelInteropMethods.Complex;
-            wordInteropMethods = new CWordInteropMethods(preferences);
+            preferences = Program.userPreferences;
+            propertyComplex = Program.excelInterface.Complex;
+            wordInteropMethods = new MSWordInterface(preferences);
         }
 
         private void PrintMailboxLists_Form_Load(object sender, EventArgs e)
@@ -88,28 +88,28 @@ namespace RentRosterAutomation
 
         private void PML_PrintOnly_RB_CheckedChanged(object sender, EventArgs e)
         {
-            printSave = CPrintSavePreference.PrintSave.PrintOnly;
+            printSave = PrintSavePreference.PrintSave.PrintOnly;
         }
 
         private void PML_SavelOnly_RB_CheckedChanged(object sender, EventArgs e)
         {
-            printSave = CPrintSavePreference.PrintSave.SaveOnly;
+            printSave = PrintSavePreference.PrintSave.SaveOnly;
         }
 
         private void PML_PrintAndSave_RB_CheckedChanged(object sender, EventArgs e)
         {
-            printSave = CPrintSavePreference.PrintSave.PrintAndSave;
+            printSave = PrintSavePreference.PrintSave.PrintAndSave;
         }
 
         private void PrintSaveChange()
         {
             switch (printSave)
             {
-                case CPrintSavePreference.PrintSave.PrintAndSave:
+                case PrintSavePreference.PrintSave.PrintAndSave:
                     PML_PrintAndSave_RB.Checked = true;
                     break;
 
-                case CPrintSavePreference.PrintSave.SaveOnly:
+                case PrintSavePreference.PrintSave.SaveOnly:
                     PML_SavelOnly_RB.Checked = true;
                     break;
 
@@ -130,10 +130,10 @@ namespace RentRosterAutomation
 
         private void printAndOrSaveMailList(int streetAddress)
         {
-            bool save = ((printSave == CPrintSavePreference.PrintSave.PrintAndSave) ? true :
-                (printSave == CPrintSavePreference.PrintSave.SaveOnly) ? true : false);
-            bool print = ((printSave == CPrintSavePreference.PrintSave.PrintAndSave) ? true :
-                (printSave == CPrintSavePreference.PrintSave.PrintOnly) ? true : false);
+            bool save = ((printSave == PrintSavePreference.PrintSave.PrintAndSave) ? true :
+                (printSave == PrintSavePreference.PrintSave.SaveOnly) ? true : false);
+            bool print = ((printSave == PrintSavePreference.PrintSave.PrintAndSave) ? true :
+                (printSave == PrintSavePreference.PrintSave.PrintOnly) ? true : false);
 
             string documentName = "MailboxList_" + streetAddress;
 
@@ -145,10 +145,10 @@ namespace RentRosterAutomation
             psStatus.MessageText = statusMessage;
             psStatus.Show();
 
-            CBuilding building = propertyComplex.GetBuilding(streetAddress);
+            Building building = propertyComplex.GetBuilding(streetAddress);
             if (building != null)
             {
-                CMailboxListData mailboxList = Program.excelInteropMethods.GetMailboxData(building);
+                MailboxData mailboxList = Program.excelInterface.GetMailboxData(building);
                 if (mailboxList != null)
                 {
                     wordInteropMethods.CreateMailistPrintAndOrSave(documentName,

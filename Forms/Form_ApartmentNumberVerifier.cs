@@ -6,7 +6,7 @@ namespace RentRosterAutomation
 {
     public partial class Form_ApartmentNumberVerifier : Form
     {
-        private CPropertyComplex complex;
+        private PropertyComplex complex;
 
         public enum NextActionEnum
         {
@@ -16,12 +16,12 @@ namespace RentRosterAutomation
         }
 
         public int ApartmentNumber;
-        public CRenter TenantData { get; private set; }
+        public Tenant TenantData { get; private set; }
         public NextActionEnum NextAction { get; set; }
 
         public Form_ApartmentNumberVerifier()
         {
-            complex = Program.excelInteropMethods.Complex;
+            complex = Program.excelInterface.Complex;
             TenantData = null;
             InitializeComponent();
         }
@@ -90,7 +90,7 @@ namespace RentRosterAutomation
                 return;
             }
 
-            TenantData = Program.excelInteropMethods.GetTenant(aptNumber);
+            TenantData = Program.excelInterface.GetTenant(aptNumber);
 
             switch (NextAction)
             {

@@ -3,7 +3,7 @@
 namespace RentRosterAutomation
 {
     // Represents one building in the apartment Complex
-    class CBuilding
+    class Building
     {
         private List<int> aptNumbers;
 
@@ -11,7 +11,7 @@ namespace RentRosterAutomation
         public string FullStreetAddress { get; private set; }
         public List<int> ApartmentNumbers { get { return aptNumbers; } }
 
-        public CBuilding(int addressStreetNumber, string StreetName, List<int> apartmentNumbers)
+        public Building(int addressStreetNumber, string StreetName, List<int> apartmentNumbers)
         {
             AddressStreetNumber = addressStreetNumber;
             FullStreetAddress = addressStreetNumber.ToString() + " " + StreetName;
@@ -19,7 +19,7 @@ namespace RentRosterAutomation
             aptNumbers.Sort();
         }
 
-        public CBuilding(int addressStreetNumber, string StreetName)
+        public Building(int addressStreetNumber, string StreetName)
         {
             AddressStreetNumber = addressStreetNumber;
             FullStreetAddress = addressStreetNumber.ToString() + " " + StreetName;
