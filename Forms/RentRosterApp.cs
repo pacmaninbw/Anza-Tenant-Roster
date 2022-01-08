@@ -6,24 +6,22 @@ namespace TenantRosterAutomation
 {
     public partial class RentRosterApp : Form
     {
-        private ExcelInterface excelInteropMethods;
-
-        public UserPreferences MyPersonalPreferences { get; set; }
-
+        bool globalsInitialized;
         public RentRosterApp()
         {
-            excelInteropMethods = Program.excelInterface;
-            MyPersonalPreferences = Program.userPreferences;
+            globalsInitialized = Globals.InitializeAll();
             InitializeComponent();
         }
 
-        private void Form_RentRosterApp_Load(object sender, EventArgs e)
+        private void RentRosterApp_Load(object sender, EventArgs e)
         {
-            if (excelInteropMethods.Complex == null)
+            if (!globalsInitialized)
             {
                 PrintMailboxLists_Button.Enabled = false;
                 AddNewResident_Button.Enabled = false;
                 DeleteRenter_Button.Enabled = false;
+                EditPreferencesDlg preferences_dlg = new EditPreferencesDlg();
+                preferences_dlg.Show();
             }
             RR_Quit_BTN.BackColor = Color.Red;
         }
@@ -56,15 +54,15 @@ namespace TenantRosterAutomation
 
         private void RR_Quit_BTN_Click(object sender, EventArgs e)
         {
+            Globals.ReleaseAllObjects();
             Close();
         }
 
         private void RR_SAVEEDITS_BTN_Click(object sender, EventArgs e)
         {
-            ExcelInterface excelInteropMethods = Program.excelInterface;
-            if (excelInteropMethods.HaveEditsToSave)
+            if (Globals.TenantRoster.DataChanged)
             {
-                excelInteropMethods.SaveEditsCloseWorkbookExitExcel();
+                Globals.TenantRoster.SaveChanges();
             }
         }
     }

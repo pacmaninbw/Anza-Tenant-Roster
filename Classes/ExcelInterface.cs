@@ -9,79 +9,62 @@ using Excel = Microsoft.Office.Interop.Excel;
 namespace TenantRosterAutomation
 {
     // Provides the interface between the rest of the program and Microsoft excel
-    class ExcelInterface
+    class ExcelInterface : IDisposable 
     {
-        // Excel objects
         private Excel.Application xlApp;
         private Excel.Workbook xlWorkbook;
         private Excel.Worksheet tenantRoster;
 
-        // Classes written for this project
-        private PropertyComplex complex;
-        private List<Apartment> TenantUpdates;     // Stored updates to be written
-                                                    // by save button or program exit
-        private bool worksheetChanged;
+        private bool disposed;
         private string tenantRosterName;
-        private DataTable localTenantRoster;        // Local copy of excel worksheet
-        private const int ApartmentColumn = 0;
-        private const int TenantLastNameColumn = 3;
-        private const int CoTenantLastNameColumn = 5;
-
-        public PropertyComplex Complex { get { return complex; } }
-        public bool AlreadyOpenOtherApp { get; private set; }
-        public bool HaveEditsToSave { get { return (TenantUpdates.Count > 0); } }
-        public string WorkbookName { get; set; }
+        private string WorkbookName;
 
         public ExcelInterface(string workBookName, string workSheetName)
         {
-            worksheetChanged = false;
             WorkbookName = workBookName;
             tenantRosterName = workSheetName;
-            TenantUpdates = new List<Apartment>();
+        }
 
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        public void SaveEdits(List<Apartment> tenantUpdates)
+        {
+            string eSaveMsg = "Can't save edits to " + WorkbookName;
             try
             {
-                AlreadyOpenOtherApp = false;
-                if (!string.IsNullOrEmpty(WorkbookName))
+                ReportCurrentStatusWindow SaveStatus = new ReportCurrentStatusWindow();
+                SaveStatus.MessageText = "Saving updated tenants and apartments to Excel.";
+                SaveStatus.Show();
+                StartExcelOpenWorkbook(false);
+                OpenTenantRosterWorkSheet();
+                xlApp.Visible = false;
+                xlApp.DisplayAlerts = false;
+
+                if (tenantRoster == null)
                 {
-                    AlreadyOpenOtherApp = WorkSheetIsOpenInOtherApp(WorkbookName);
-                    if (!AlreadyOpenOtherApp)
-                    {
-                        GetExcelDataAndReportProgress();
-                        ConstructComplexAndReport();
-                        CloseWorkbookExitExcel();
-                    }
+                    MessageBox.Show(eSaveMsg + " can't open the sheet " + tenantRosterName);
+                    return;
                 }
+                List<string> columnNames = GetColumnNames();
+                foreach (Apartment edit in tenantUpdates)
+                {
+                    UpdateColumnData(edit, columnNames);
+                }
+                xlWorkbook.Save();
+                SaveStatus.Close();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                string emsg = "ExcelInterface Constructor failed while building Complex:" + e.Message;
-                MessageBox.Show(emsg);
+#if DEBUG
+                string exSaveMsg = eSaveMsg + " : " + ex.Message;
+                MessageBox.Show(eSaveMsg);
+#endif
+                throw;
             }
-        }
-
-        public void SaveEditsCloseWorkbookExitExcel()
-        {
-            if (worksheetChanged)
-            {
-                SaveWorkBookEdits();
-            }
-
-            CloseWorkbookExitExcel();
-        }
-
-        public void CloseWorkbookExitExcel()
-        {
-            if (xlWorkbook == null || xlApp == null)
-            {
-                return;
-            }
-
-            xlWorkbook.Close();
-            xlWorkbook = null;
-
-            xlApp.Quit();
-            xlApp = null;
         }
 
         public List<string> GetSheetNames()
@@ -104,134 +87,35 @@ namespace TenantRosterAutomation
             return sheetNames;
         }
 
-        public void PreferencesUpdated(UserPreferences preferences)
+        public DataTable GetWorkSheetContents()
         {
-            WorkbookName = preferences.RentRosterFile;
-            tenantRosterName = preferences.RentRosterSheet;
-            StartExcelOpenWorkbook(true);
+            int headerRow = 1;
+            int firstColumn = 1;
+            DataTable workSheetContents = ReadExcelIntoDatatble(headerRow, firstColumn);
+
+            return workSheetContents;
         }
 
-        public MailboxData GetMailboxData(Building building)
+        protected virtual void Dispose(bool disposing)
         {
-            MailboxData mailboxData = new MailboxData(building);
-            List<int> apartmentNumbers = building.ApartmentNumbers;
-            foreach (int aptNo in apartmentNumbers)
+            if (!disposed)
             {
-                mailboxData.addApartmentData(new Apartment(aptNo));
-            }
-
-            return mailboxData;
-        }
-
-        public void DeleteTenant(int apartmentNumber)
-        {
-            Tenant tenant = new Tenant();
-            TenantUpdates.Add(new Apartment(apartmentNumber, tenant));
-            worksheetChanged = UdateTenantDataTable(apartmentNumber, tenant);
-        }
-
-        public void AddEditTenant(int apartmentNumber, Tenant tenant)
-        {
-            TenantUpdates.Add(new Apartment(apartmentNumber, tenant));
-            worksheetChanged = UdateTenantDataTable(apartmentNumber, tenant);
-        }
-
-        public Tenant GetTenant(int apartmentNumber)
-        {
-            Tenant tenant = null;
-            try
-            {
-                DataTable lTenantRoster = GetLocalTenantRoster();
-                if (localTenantRoster != null)
+                if (disposing)
                 {
-                    string searchString = "UnitNo = '" + apartmentNumber.ToString() + "'";
-                    DataRow[] aptTenantData = lTenantRoster.Select(searchString);
-                    tenant = FillTenantFromDataRow(aptTenantData);
+                    if (xlWorkbook != null)
+                    {
+                        xlWorkbook.Close();
+                        xlWorkbook = null;
+                    }
+
+                    if (xlApp != null)
+                    {
+                        xlApp.Quit();
+                        xlApp = null;
+                    }
                 }
+                disposed = true;
             }
-            catch (Exception e)
-            {
-                MessageBox.Show("Exception in ExcelInterface::GetTenant(): " + e.Message);
-            }
-
-            return tenant;
-        }
-
-        private void ConstructComplexAndReport()
-        {
-            if (localTenantRoster == null)
-            {
-                return;
-            }
-            List<BuildingAndApartment> buildingAndApartments;
-            ReportCurrentStatusWindow statusReport = new ReportCurrentStatusWindow();
-            statusReport.MessageText = "Constructing Apartment Complex Data.";
-            statusReport.Show();
-            buildingAndApartments = CreateBuildingAndApartmentsList();
-            complex = new PropertyComplex("Anza Victoria Apartments, LLC", buildingAndApartments);
-            statusReport.Close();
-        }
-
-        private void GetExcelDataAndReportProgress()
-        {
-            ReportCurrentStatusWindow statusReport = new ReportCurrentStatusWindow();
-            statusReport.MessageText =
-                "Starting Excel and Loading Tenant Data From Excel.";
-            statusReport.Show();
-            StartExcelOpenWorkbook(false);
-            localTenantRoster = GetLocalTenantRoster();
-            statusReport.Close();
-
-        }
-
-        // Creates data for a single tenant that can be edited from
-        // the local data table.
-        private Tenant FillTenantFromDataRow(DataRow[] aptTenantData)
-        {
-            Tenant tenant = new Tenant();
-
-            tenant.LastName = aptTenantData[0].Field<string>("Last");
-            tenant.FirstName = aptTenantData[0].Field<string>("First");
-            tenant.CoTenantLastName = aptTenantData[0].Field<string>("Add OCC Last");
-            tenant.HomePhone = aptTenantData[0].Field<string>("Ph #");
-            tenant.CoTenantFirstName = aptTenantData[0].Field<string>("Add OCC First");
-            tenant.RentersInsurancePolicy = aptTenantData[0].Field<string>("Renters Ins");
-            tenant.LeaseStart = aptTenantData[0].Field<string>("Lease Start");
-            tenant.LeaseEnd = aptTenantData[0].Field<string>("Lease End");
-            tenant.Email = aptTenantData[0].Field<string>("Email");
-
-            return tenant;
-        }
-
-        // Updates the local version of the data in the application.
-        private bool UdateTenantDataTable(int apartmentNumber, Tenant tenant)
-        {
-            bool updated = false;
-            try
-            {
-                DataTable lTenantRoster = GetLocalTenantRoster();
-                string searchString = "UnitNo = '" + apartmentNumber.ToString() + "'";
-                DataRow[] aptTenantData = lTenantRoster.Select(searchString);
-                DataRow currentApartment = aptTenantData[0];
-                currentApartment.BeginEdit();
-                currentApartment["First"] = tenant.FirstName;
-                currentApartment["Last"] = tenant.LastName;
-                currentApartment["Add OCC Last"] = tenant.CoTenantLastName;
-                currentApartment["Add OCC First"] = tenant.CoTenantFirstName;
-                currentApartment["Ph #"] = tenant.HomePhone;
-                currentApartment["Renters Ins"] = tenant.RentersInsurancePolicy;
-                currentApartment["Lease Start"] = tenant.LeaseStart;
-                currentApartment["Lease End"] = tenant.LeaseEnd;
-                currentApartment["Email"] = tenant.Email;
-                currentApartment.EndEdit();
-                updated = true;
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Exception in ExcelInterface::updateDataTable(): " + e.Message);
-            }
-
-            return updated;
         }
 
         // Updates a row of data in the excel file
@@ -248,19 +132,6 @@ namespace TenantRosterAutomation
             UpdateColumn(currentRow, "Lease Start", tenant.LeaseStart, columnNames);
             UpdateColumn(currentRow, "Lease End", tenant.LeaseEnd, columnNames);
             UpdateColumn(currentRow, "Email", tenant.Email, columnNames);
-        }
-
-        private DataTable GetLocalTenantRoster()
-        {
-            DataTable tenantRosterDt = localTenantRoster;
-            if (tenantRosterDt == null)
-            {
-                int headerRow = 1;
-                int firstColumn = 1;
-                tenantRosterDt = ReadExcelIntoDatatble(headerRow, firstColumn);
-            }
-
-            return tenantRosterDt;
         }
 
         private void StartExcelOpenWorkbook(bool showErrorMessage)
@@ -314,9 +185,11 @@ namespace TenantRosterAutomation
             }
             catch (Exception e)
             {
-                localTenantRoster = null;
+#if DEBUG
                 string eMsg = "Function ExcelInterface.openTenantRosterWorkSheet() failed: " + e.Message;
                 MessageBox.Show(eMsg);
+#endif
+                throw;
             }
         }
 
@@ -338,10 +211,6 @@ namespace TenantRosterAutomation
                     HeaderLine, ColumnStart);
                 AddTenantDataToTenantTable(TenantDataRange, ref tenantTable,
                     HeaderLine, ColumnStart);
-
-                // We don't need access to the data in excel while the edits
-                // are being made or the word documents are generated.
-                CloseWorkbookExitExcel();
 
                 return tenantTable;
             }
@@ -387,44 +256,6 @@ namespace TenantRosterAutomation
             }
         }
 
-        private void SaveWorkBookEdits()
-        {
-            if (!HaveEditsToSave)
-            {
-                return;
-            }
-            string eSaveMsg = "Can't save edits to " + WorkbookName;
-            try
-            {
-                ReportCurrentStatusWindow SaveStatus = new ReportCurrentStatusWindow();
-                SaveStatus.MessageText = "Saving updated tenants and apartments to Excel.";
-                SaveStatus.Show();
-                StartExcelOpenWorkbook(false);
-                OpenTenantRosterWorkSheet();
-                xlApp.Visible = false;
-                xlApp.DisplayAlerts = false;
-
-                if (tenantRoster == null)
-                {
-                    MessageBox.Show(eSaveMsg + " can't open the sheet " + tenantRosterName);
-                    return;
-                }
-                List<string> columnNames = GetColumnNames();
-                foreach (Apartment edit in TenantUpdates)
-                {
-                    UpdateColumnData(edit, columnNames);
-                }
-                xlWorkbook.Save();
-                SaveStatus.Close();
-                TenantUpdates.Clear();
-            }
-            catch (Exception ex)
-            {
-                string exSaveMsg = eSaveMsg + " : " + ex.Message;
-                MessageBox.Show(eSaveMsg);
-            }
-        }
-
         private Excel.Range FindRowInWorkSheetForUpdate(int apartmentNumber)
         {
             Excel.Range currentRow = null;
@@ -443,8 +274,11 @@ namespace TenantRosterAutomation
             }
             catch (Exception ex)
             {
+#if DEBUG
                 MessageBox.Show("Exception in ExcelInterface::getRowNumberForSave(): " +
                     ex.Message);
+#endif
+                throw;
             }
 
             return currentRow;
@@ -478,8 +312,11 @@ namespace TenantRosterAutomation
             }
             catch (Exception ex)
             {
+#if DEBUG
                 MessageBox.Show("Exception in ExcelInterface::GetUnitColumn(): " +
                     ex.Message);
+#endif
+                throw;
             }
 
             return UnitColumn;
@@ -515,75 +352,15 @@ namespace TenantRosterAutomation
             }
             catch (Exception ex)
             {
+#if DEBUG
                 MessageBox.Show("Exception in ExcelInterface::GetColumnNames(): " +
                     ex.Message);
+#endif
+                throw;
             }
 
             return columnNames;
         }
 
-        private List<BuildingAndApartment> CreateBuildingAndApartmentsList()
-        {
-            if (localTenantRoster == null)
-            {
-                return null;
-            }
-            List<BuildingAndApartment> buildingAndApartments = new List<BuildingAndApartment>();
-            int LastDataRow = localTenantRoster.Rows.Count;
-
-            for (int row = 0; row < LastDataRow; row++)
-            {
-                buildingAndApartments.Add(CreateBuildAndApartmentFromDataRow(row));
-            }
-
-            return buildingAndApartments;
-        }
-
-        private BuildingAndApartment CreateBuildAndApartmentFromDataRow(int row)
-        {
-            DataRow dataRow = localTenantRoster.Rows[row];
-            string streetAddress = dataRow.Field<string>("Street 1").ToString();
-            string apartmentNumString = dataRow.Field<string>("UnitNo").ToString();
-
-            int apartmentNumber;
-            Int32.TryParse(apartmentNumString, out apartmentNumber);
-
-            int firstSpace = streetAddress.IndexOf(' ');
-            string streetNumber = streetAddress.Substring(0, firstSpace);
-            int buildingNumber;
-            Int32.TryParse(streetNumber, out buildingNumber);
-
-            BuildingAndApartment currentApt = new BuildingAndApartment(buildingNumber,
-                apartmentNumber, streetAddress);
-            return currentApt;
-        }
-
-        // Check if there is any instance of excel open using the workbook.
-        private bool WorkSheetIsOpenInOtherApp(string workBook)
-        {
-            Excel.Application TestOnly = null;
-            bool isOpened = true;
-            // There are 2 possible exceptions here, GetActiveObject will throw
-            // an exception if no instance of excel is running, and
-            // workbooks.get_Item throws an exception if the sheetname isn't found.
-            // Both of these exceptions indicate that the workbook isn't open.
-            try
-            {
-                TestOnly = (Excel.Application)System.Runtime.InteropServices.Marshal.GetActiveObject("Excel.Application");
-                int lastSlash = WorkbookName.LastIndexOf('\\');
-                string fileNameOnly = WorkbookName.Substring((lastSlash + 1));
-                TestOnly.Workbooks.get_Item(fileNameOnly);
-                TestOnly = null;
-            }
-            catch (Exception)
-            {
-                isOpened = false;
-                if (TestOnly != null)
-                {
-                    TestOnly = null;
-                }
-            }
-            return isOpened;
-        }
     }
 }

@@ -7,41 +7,30 @@ namespace TenantRosterAutomation
 {
     public partial class EditPreferencesDlg : Form
     {
-        private UserPreferences preferences;
-        private ExcelInterface excelInterface;
-
         public EditPreferencesDlg()
         {
-            preferences = Program.userPreferences;
-            excelInterface = Program.excelInterface;
-            if (excelInterface == null)
-            {
-                excelInterface = new ExcelInterface(preferences.RentRosterFile,
-                    preferences.RentRosterSheet);
-                Program.excelInterface = excelInterface;
-            }
             InitializeComponent();
         }
 
-        private void Form_EditPreferences_Load(object sender, EventArgs e)
+        private void EditPreferencesDlg_Load(object sender, EventArgs e)
         {
-            if (preferences.HavePreferenceData)
+            EP_DefaultFileFolder_TB.Text = Globals.DefaultSaveDirectory;
+            EP_RentRosterLocation_TB.Text = Globals.ExcelWorkBookFullFileSpec;
+            EP_SheetName_TB.Text = Globals.ExcelWorkSheetName;
+            switch (Globals.PrintSave)
             {
-                EP_DefaultFileFolder_TB.Text = preferences.DefaultSaveDirectory;
-                EP_RentRosterLocation_TB.Text = preferences.RentRosterFile;
-                EP_SheetName_TB.Text = preferences.RentRosterSheet;
-                switch (preferences.PrintSaveOptions)
-                {
-                    case PrintSavePreference.PrintSave.PrintAndSave:
-                        EP_PrintAndSave_RB.Checked = true;
-                        break;
-                    case PrintSavePreference.PrintSave.SaveOnly:
-                        EP_SavelOnly_RB.Checked = true;
-                        break;
-                    default:
-                        EP_PrintOnly_RB.Checked = true;
-                        break;
-                }
+                case PrintSavePreference.PrintSave.PrintAndSave:
+                    EP_PrintAndSave_RB.Checked = true;
+                    break;
+                case PrintSavePreference.PrintSave.SaveOnly:
+                    EP_SavelOnly_RB.Checked = true;
+                    break;
+                default:
+                    EP_PrintOnly_RB.Checked = true;
+                    break;
+            }
+            if (Globals.Preferences != null)
+            {
             }
             else
             {
@@ -51,28 +40,24 @@ namespace TenantRosterAutomation
             EP_RentRosterSheetName_LISTBOX.Visible = false;
         }
 
-        private void EditPreferences_Form_Activated(object sender, EventArgs e)
-        {
-        }
-
         private void EP_PrintAndSave_RB_CheckedChanged(object sender, EventArgs e)
         {
-            preferences.PrintSaveOptions = PrintSavePreference.PrintSave.PrintAndSave;
+            Globals.PrintSave = PrintSavePreference.PrintSave.PrintAndSave;
         }
 
         private void EP_SavelOnly_RB_CheckedChanged(object sender, EventArgs e)
         {
-            preferences.PrintSaveOptions = PrintSavePreference.PrintSave.SaveOnly;
+            Globals.PrintSave = PrintSavePreference.PrintSave.SaveOnly;
         }
 
         private void EP_PrintOnly_RB_CheckedChanged(object sender, EventArgs e)
         {
-            preferences.PrintSaveOptions = PrintSavePreference.PrintSave.PrintOnly;
+            Globals.PrintSave = PrintSavePreference.PrintSave.PrintOnly;
         }
 
         private void EP_DefaultFileFolder_TB_TextChanged(object sender, EventArgs e)
         {
-            preferences.DefaultSaveDirectory = EP_DefaultFileFolder_TB.Text;
+            Globals.DefaultSaveDirectory = EP_DefaultFileFolder_TB.Text;
         }
 
         private void findDefaultFolderLocationExecute(object sender, EventArgs e)
@@ -84,9 +69,10 @@ namespace TenantRosterAutomation
                 if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                 {
                     EP_DefaultFileFolder_TB.Text = fbd.SelectedPath;
-                    preferences.DefaultSaveDirectory = fbd.SelectedPath;
+                    Globals.DefaultSaveDirectory = fbd.SelectedPath;
                 }
             }
+            Globals.SavePreferences();
         }
 
         private void EP_DefaultFileFolder_TB_Click(object sender, EventArgs e)
@@ -101,8 +87,7 @@ namespace TenantRosterAutomation
 
         private void EP_RentRosterLocation_TB_TextChanged(object sender, EventArgs e)
         {
-            preferences.RentRosterFile = EP_RentRosterLocation_TB.Text;
-            excelInterface.WorkbookName = preferences.RentRosterFile;
+            Globals.ExcelWorkBookFullFileSpec = EP_RentRosterLocation_TB.Text;
         }
 
         private void findTenantRosterExcelFile(object sender, EventArgs e)
@@ -115,17 +100,24 @@ namespace TenantRosterAutomation
             {
                 rentRosterFile = FindTenantRoster.FileName;
                 EP_RentRosterLocation_TB.Text = rentRosterFile;
-                preferences.RentRosterFile = rentRosterFile;
+                Globals.ExcelWorkBookFullFileSpec = rentRosterFile;
+                Globals.SavePreferences();
             }
         }
 
         private void fillSheetSelectorListBox()
         {
-            List<string> sheetNames = excelInterface.GetSheetNames();
+            List<string> sheetNames = null;
+            if (Globals.ExcelFile != null)
+            {
+                sheetNames = Globals.ExcelFile.GetWorkSheetCollection();
+            }
+
             if (sheetNames == null)
             {
                 return;
             }
+
             EP_RentRosterSheetName_LISTBOX.DataSource = sheetNames;
             EP_RentRosterSheetName_LISTBOX.Visible = true;
         }
@@ -143,15 +135,14 @@ namespace TenantRosterAutomation
 
         private void EP_SavePreferences_BTN_Click(object sender, EventArgs e)
         {
-            preferences.SavePreferencesToFile("./MyPersonalRentRosterPreferences.txt");
-            Program.excelInterface.PreferencesUpdated(preferences);
+            Globals.SavePreferences();
             Close();
         }
 
         private void EP_RentRosterSheetName_LISTBOX_SelectedIndexChanged(object sender, EventArgs e)
         {
-            preferences.RentRosterSheet = EP_RentRosterSheetName_LISTBOX.SelectedItem.ToString();
-            EP_SheetName_TB.Text = preferences.RentRosterSheet;
+            Globals.ExcelWorkSheetName = EP_RentRosterSheetName_LISTBOX.SelectedItem.ToString();
+            EP_SheetName_TB.Text = Globals.Preferences.RentRosterSheet;
         }
 
         private void EP_SheetName_TB_Click(object sender, EventArgs e)

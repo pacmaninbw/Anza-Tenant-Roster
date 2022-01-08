@@ -18,7 +18,7 @@ namespace TenantRosterAutomation
 
         private void DR_DeleteRenter_BTN_Click(object sender, EventArgs e)
         {
-            Program.excelInterface.DeleteTenant(ApartmentNumber);
+            Globals.TenantRoster.DeleteTenant(ApartmentNumber);
             Close();
         }
 
@@ -40,7 +40,7 @@ namespace TenantRosterAutomation
         {
             string apartmentFullAddress = ApartmentNumber.ToString();
             string buildingAddress =
-                Program.excelInterface.Complex.FindBuildingByApartment(ApartmentNumber);
+                Globals.Complex.FindBuildingByApartment(ApartmentNumber);
             if (!string.IsNullOrEmpty(buildingAddress))
             {
                 apartmentFullAddress = buildingAddress + " Apartment " + ApartmentNumber.ToString();

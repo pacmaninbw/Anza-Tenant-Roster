@@ -110,7 +110,7 @@ namespace TenantRosterAutomation
             this.Controls.Add(this.PrintMailboxLists_Button);
             this.Name = "Form_RentRosterApp";
             this.Text = "Anza Victoria Rent Roster Control Panel";
-            this.Load += new System.EventHandler(this.Form_RentRosterApp_Load);
+            this.Load += new System.EventHandler(this.RentRosterApp_Load);
             this.ResumeLayout(false);
 
         }

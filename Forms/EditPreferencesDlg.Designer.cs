@@ -205,7 +205,7 @@ namespace TenantRosterAutomation
             this.EP_DefaultFileFolder_TB.Click += new System.EventHandler(this.EP_DefaultFileFolder_TB_Click);
             this.EP_DefaultFileFolder_TB.TextChanged += new System.EventHandler(this.EP_DefaultFileFolder_TB_TextChanged);
             // 
-            // Form_EditPreferences
+            // EditPreferencesDlg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -214,10 +214,9 @@ namespace TenantRosterAutomation
             this.Controls.Add(this.EP_RentRosterFile_GB);
             this.Controls.Add(this.EP_SavePreferences_BTN);
             this.Controls.Add(this.EP_PrintSave_GB);
-            this.Name = "Form_EditPreferences";
+            this.Name = "EditPreferencesDlg";
             this.Text = "Edit Preferences";
-            this.Activated += new System.EventHandler(this.EditPreferences_Form_Activated);
-            this.Load += new System.EventHandler(this.Form_EditPreferences_Load);
+            this.Load += new System.EventHandler(this.EditPreferencesDlg_Load);
             this.EP_PrintSave_GB.ResumeLayout(false);
             this.EP_PrintSave_GB.PerformLayout();
             this.EP_RentRosterFile_GB.ResumeLayout(false);

@@ -6,8 +6,6 @@ namespace TenantRosterAutomation
 {
     public partial class ApartmentNumberVerifier : Form
     {
-        private PropertyComplex complex;
-
         public enum NextActionEnum
         {
             ADD,
@@ -21,7 +19,6 @@ namespace TenantRosterAutomation
 
         public ApartmentNumberVerifier()
         {
-            complex = Program.excelInterface.Complex;
             TenantData = null;
             InitializeComponent();
         }
@@ -52,45 +49,37 @@ namespace TenantRosterAutomation
 
         private void VerifyApartmentNumber()
         {
-            string aptNumberString = ANV_ApartmentNumber_TB.Text;
             int aptNumber = 0;
-            int minAptNo = complex.MinApartmentNumber;
-            int maxAptNo = complex.MaxApartmentNumber;
-            bool IsNumeric;
-            if (!string.IsNullOrEmpty(aptNumberString))
+            PropertyComplex.ApartmentNumberValid validApartmentId =
+                Globals.Complex.VerifyApartmentNumber(ANV_ApartmentNumber_TB.Text, out aptNumber);
+
+            switch (validApartmentId)
             {
-                IsNumeric = int.TryParse(aptNumberString, out aptNumber);
-            }
-            else
-            {
-                MessageBox.Show("Please enter a number in the box.");
-                ANV_ApartmentNumber_TB.BackColor = Color.Yellow;
-                ActiveControl = ANV_ApartmentNumber_TB;
-                return;
+                case PropertyComplex.ApartmentNumberValid.APARTMENT_NUMBER_NONNUMERIC:
+                    MessageBox.Show("Please enter a number in the box.");
+                    ANV_ApartmentNumber_TB.BackColor = Color.Yellow;
+                    ActiveControl = ANV_ApartmentNumber_TB;
+                    return;
+
+                case PropertyComplex.ApartmentNumberValid.APARTMENT_NUMBER_OUT_OF_RANGE:
+                    int minAptNo = Globals.Complex.MinApartmentNumber;
+                    int maxAptNo = Globals.Complex.MaxApartmentNumber;
+                    string msg = "The apartment is out of range[" + minAptNo.ToString() +
+                        ", " + maxAptNo.ToString() + "] please enter a valid apartment number.";
+                    MessageBox.Show(msg);
+                    ANV_ApartmentNumber_TB.BackColor = Color.Yellow;
+                    ActiveControl = ANV_ApartmentNumber_TB;
+                    return;
+
+                case PropertyComplex.ApartmentNumberValid.APARTMENT_NUMBER_NOT_FOUND:
+                    MessageBox.Show("The number entered: " + aptNumber +
+                        " was not found in the list of apartments.");
+                    ANV_ApartmentNumber_TB.BackColor = Color.Yellow;
+                    ActiveControl = ANV_ApartmentNumber_TB;
+                    return;
             }
 
-            if (aptNumber < complex.MinApartmentNumber || aptNumber > complex.MaxApartmentNumber)
-            {
-                string msg = "The apartment is out of range[" + minAptNo.ToString() +
-                    ", " + maxAptNo.ToString() + "] please enter a valid apartment number.";
-                MessageBox.Show(msg);
-                ANV_ApartmentNumber_TB.BackColor = Color.Yellow;
-                ActiveControl = ANV_ApartmentNumber_TB;
-                return;
-            }
-
-            int found = 0;
-            found = complex.AllApartmentNumbers.Find(x => x == aptNumber);
-            if (found == 0)
-            {
-                MessageBox.Show("The number entered: " + aptNumber +
-                    " was not found in the list of apartments.");
-                ANV_ApartmentNumber_TB.BackColor = Color.Yellow;
-                ActiveControl = ANV_ApartmentNumber_TB;
-                return;
-            }
-
-            TenantData = Program.excelInterface.GetTenant(aptNumber);
+            TenantData = Globals.TenantRoster.GetTenant(aptNumber);
 
             switch (NextAction)
             {

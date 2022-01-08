@@ -6,7 +6,6 @@ using System.Windows.Forms;
 
 namespace TenantRosterAutomation
 {
-
     // Reads and writes the user preferences file.
     public class UserPreferences
     {
@@ -17,6 +16,7 @@ namespace TenantRosterAutomation
         private const int fileVersion = 1;
         private bool preferenceFileExists = false;
         private bool preferenceFileRead = false;
+        private string preferencesFileName;
 
         public bool HavePreferenceData { get { return preferenceFileRead; } }
         public PrintSavePreference.PrintSave PrintSaveOptions { get { return printSaveValue; } set { printSaveValue = value; } }
@@ -26,29 +26,28 @@ namespace TenantRosterAutomation
 
         public UserPreferences()
         {
-            printSavePreference = new PrintSavePreference();
-            InitDictionaries();
-            SetValuesToUndefinedState();
+            CommonInitialization();
         }
 
         public UserPreferences(string PreferencesFileName)
         {
-            printSavePreference = new PrintSavePreference();
-            InitDictionaries();
-            preferenceFileExists = File.Exists(PreferencesFileName);
+            preferencesFileName = PreferencesFileName;
+            CommonInitialization();
+
+            preferenceFileExists = File.Exists(preferencesFileName);
             if (preferenceFileExists)
             {
-                preferenceFileRead = ReadPreferenceFile(PreferencesFileName);
+                preferenceFileRead = ReadPreferenceFile(preferencesFileName);
             }
-            else
-            {
-                SetValuesToUndefinedState();
-            }
-
         }
 
-        public bool SavePreferencesToFile(string preferencesFileName)
+        public bool SavePreferencesToFile(string PreferencesFileName = null)
         {
+            if (!string.IsNullOrEmpty(PreferencesFileName))
+            {
+                preferencesFileName = PreferencesFileName;
+            }
+
             StreamWriter rentRosterPreferencesfile = new StreamWriter(preferencesFileName);
             try
             {
@@ -66,6 +65,13 @@ namespace TenantRosterAutomation
                 MessageBox.Show("Unable to write to preferences file: " + preferencesFileName);
                 return false;
             }
+        }
+
+        private void CommonInitialization()
+        {
+            printSavePreference = new PrintSavePreference();
+            InitDictionaries();
+            SetValuesToUndefinedState();
         }
 
         private void InitDictionaries()
@@ -209,6 +215,10 @@ namespace TenantRosterAutomation
             if (requiredFieldCount == fileValueIds.Length)
             {
                 hasAllFields = true;
+                if (string.IsNullOrEmpty(RentRosterSheet))
+                {
+                    hasAllFields = false;
+                }
             }
 
             return hasAllFields;

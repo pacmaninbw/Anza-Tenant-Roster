@@ -6,13 +6,11 @@ namespace TenantRosterAutomation
 {
     public partial class AddOrEditResidentDlg : Form
     {
-        private ExcelInterface interopMethods;
         public int ApartmentNumber { get; set; }
         public Tenant CurrentTenant { get; set; }
 
         public AddOrEditResidentDlg()
         {
-            interopMethods = Program.excelInterface;
             InitializeComponent();
         }
 
@@ -27,7 +25,7 @@ namespace TenantRosterAutomation
             CurrentTenant.CoTenantFirstName = ANR_AdditionalOccupantFirstName_TB.Text;
             CurrentTenant.RentersInsurancePolicy = ANR_RenterInsurance_TB.Text;
             CurrentTenant.Email = ANR_AlternateContact_TB.Text;
-            interopMethods.AddEditTenant(ApartmentNumber, CurrentTenant);
+            Globals.TenantRoster.AddEditTenant(ApartmentNumber, CurrentTenant);
             Close();
         }
 
@@ -54,7 +52,7 @@ namespace TenantRosterAutomation
         {
             string apartmentFullAddress = ApartmentNumber.ToString();
             string buildingAddress =
-                interopMethods.Complex.FindBuildingByApartment(ApartmentNumber);
+                Globals.Complex.FindBuildingByApartment(ApartmentNumber);
             if (!string.IsNullOrEmpty(buildingAddress))
             {
                 apartmentFullAddress = buildingAddress + " Apartment " + ApartmentNumber.ToString();

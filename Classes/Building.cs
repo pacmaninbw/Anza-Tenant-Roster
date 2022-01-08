@@ -3,7 +3,7 @@
 namespace TenantRosterAutomation
 {
     // Represents one building in the apartment Complex
-    class Building
+    public class Building
     {
         private List<int> aptNumbers;
 

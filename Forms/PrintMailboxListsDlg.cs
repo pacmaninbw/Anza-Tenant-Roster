@@ -6,25 +6,21 @@ namespace TenantRosterAutomation
 {
     public partial class PrintMailboxListsDlg : Form
     {
-        private readonly UserPreferences preferences;
         private PrintSavePreference.PrintSave printSave;
         private bool addDateToFileName = false;
         private bool addDateToTitle = false;
         private string selectedBuildings;
-        private PropertyComplex propertyComplex;
         private MSWordInterface wordInteropMethods;
 
         public PrintMailboxListsDlg()
         {
             InitializeComponent();
-            preferences = Program.userPreferences;
-            propertyComplex = Program.excelInterface.Complex;
-            wordInteropMethods = new MSWordInterface(preferences);
+            wordInteropMethods = new MSWordInterface(Globals.Preferences);
         }
 
         private void PrintMailboxLists_Form_Load(object sender, EventArgs e)
         {
-            List<string> buildings = propertyComplex.BuildingAddressList;
+            List<string> buildings = Globals.Complex.BuildingAddressList;
 
             foreach (string building in buildings)
             {
@@ -32,9 +28,9 @@ namespace TenantRosterAutomation
             }
             SelectBuilding2Print_listBox.Items.Add("All Buildings");
 
-            if (preferences.HavePreferenceData)
+            if (Globals.HavePreferenceData)
             {
-                printSave = preferences.PrintSaveOptions;
+                printSave = Globals.PrintSave;
                 PrintSaveChange();
             }
 
@@ -57,7 +53,7 @@ namespace TenantRosterAutomation
         {
             if (String.Compare(selectedBuildings, "All Buildings") == 0)
             {
-                List<int> StreetNumbers = propertyComplex.StreetNumbers;
+                List<int> StreetNumbers = Globals.Complex.StreetNumbers;
 
                 foreach (int streetNumber in StreetNumbers)
                 {
@@ -145,10 +141,10 @@ namespace TenantRosterAutomation
             psStatus.MessageText = statusMessage;
             psStatus.Show();
 
-            Building building = propertyComplex.GetBuilding(streetAddress);
+            Building building = Globals.Complex.GetBuilding(streetAddress);
             if (building != null)
             {
-                MailboxData mailboxList = Program.excelInterface.GetMailboxData(building);
+                MailboxData mailboxList = Globals.Complex.GetMailBoxList(building);
                 if (mailboxList != null)
                 {
                     wordInteropMethods.CreateMailistPrintAndOrSave(documentName,
