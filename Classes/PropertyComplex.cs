@@ -102,6 +102,7 @@ namespace TenantRosterAutomation
             ApartmentNumberValid exitStatus = ApartmentNumberValid.APARTMENT_NUMBER_VALID;
 
             int aptNumber = 0;
+            apartmentNumber = aptNumber;
             bool IsNumeric;
             if (!string.IsNullOrEmpty(aptNumberString))
             {
@@ -109,19 +110,19 @@ namespace TenantRosterAutomation
             }
             else
             {
-                exitStatus = ApartmentNumberValid.APARTMENT_NUMBER_NONNUMERIC;
+                return ApartmentNumberValid.APARTMENT_NUMBER_NONNUMERIC;
             }
 
             if (aptNumber < MinApartmentNumber || aptNumber > MaxApartmentNumber)
             {
-                exitStatus = ApartmentNumberValid.APARTMENT_NUMBER_OUT_OF_RANGE;
+                return ApartmentNumberValid.APARTMENT_NUMBER_OUT_OF_RANGE;
             }
 
             int found = 0;
             found = AllApartmentNumbers.Find(x => x == aptNumber);
             if (found == 0)
             {
-                exitStatus = ApartmentNumberValid.APARTMENT_NUMBER_NOT_FOUND;
+                return ApartmentNumberValid.APARTMENT_NUMBER_NOT_FOUND;
             }
 
             apartmentNumber = aptNumber;
