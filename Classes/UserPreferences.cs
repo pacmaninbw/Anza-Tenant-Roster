@@ -14,14 +14,14 @@ namespace TenantRosterAutomation
         private Dictionary<int, string> FieldNameByIndex;
         private Dictionary<string, int> IndexFromFieldName;
         private const int fileVersion = 1;
-        private bool preferenceFileExists = false;
-        private bool preferenceFileRead = false;
+        private bool preferenceFileExists;
+        private bool preferenceFileRead;
         private string preferencesFileName;
 
         public bool HavePreferenceData { get { return preferenceFileRead; } }
         public PrintSavePreference.PrintSave PrintSaveOptions { get { return printSaveValue; } set { printSaveValue = value; } }
-        public string RentRosterFile { get; set; }
-        public string RentRosterSheet { get; set; }
+        public string ExcelWorkBookFullFileSpec { get; set; }
+        public string ExcelWorkSheetName { get; set; }
         public string DefaultSaveDirectory { get; set; }
 
         public UserPreferences()
@@ -31,13 +31,16 @@ namespace TenantRosterAutomation
 
         public UserPreferences(string PreferencesFileName)
         {
-            preferencesFileName = PreferencesFileName;
             CommonInitialization();
+            preferencesFileName = PreferencesFileName;
 
-            preferenceFileExists = File.Exists(preferencesFileName);
-            if (preferenceFileExists)
+            if (!string.IsNullOrEmpty(preferencesFileName))
             {
-                preferenceFileRead = ReadPreferenceFile(preferencesFileName);
+                preferenceFileExists = File.Exists(preferencesFileName);
+                if (preferenceFileExists)
+                {
+                    preferenceFileRead = ReadPreferenceFile(preferencesFileName);
+                }
             }
         }
 
@@ -48,12 +51,12 @@ namespace TenantRosterAutomation
                 preferencesFileName = PreferencesFileName;
             }
 
-            StreamWriter rentRosterPreferencesfile = new StreamWriter(preferencesFileName);
+            StreamWriter Preferencesfile = new StreamWriter(preferencesFileName);
             try
             {
-                WritePreferencesToDisc(rentRosterPreferencesfile);
-                rentRosterPreferencesfile.Flush();
-                rentRosterPreferencesfile.Close();
+                WritePreferencesToDisc(Preferencesfile);
+                Preferencesfile.Flush();
+                Preferencesfile.Close();
 
                 preferenceFileExists = true;
                 preferenceFileRead = true;
@@ -67,8 +70,23 @@ namespace TenantRosterAutomation
             }
         }
 
+        public void CopyValues(UserPreferences newPreferences, bool copyPreferenceFileName = false)
+        {
+            PrintSaveOptions = newPreferences.PrintSaveOptions;
+            ExcelWorkBookFullFileSpec = newPreferences.ExcelWorkBookFullFileSpec;
+            ExcelWorkSheetName = newPreferences.ExcelWorkSheetName;
+            DefaultSaveDirectory = newPreferences.DefaultSaveDirectory;
+            if (copyPreferenceFileName)
+            {
+                preferencesFileName = newPreferences.preferencesFileName;
+            }
+        }
+
         private void CommonInitialization()
         {
+            preferencesFileName = null;
+            preferenceFileExists = false;
+            preferenceFileRead = false;
             printSavePreference = new PrintSavePreference();
             InitDictionaries();
             SetValuesToUndefinedState();
@@ -119,8 +137,8 @@ namespace TenantRosterAutomation
             preferenceFile.WriteLine(fileValueIds[printSaveOptionId] + " " +
                 printSavePreference.ConvertPrintSaveToString(printSaveValue));
             preferenceFile.WriteLine(fileValueIds[defaultSaveDirId] + " " + DefaultSaveDirectory);
-            preferenceFile.WriteLine(fileValueIds[rentRosterFileId] + " " + RentRosterFile);
-            preferenceFile.WriteLine(fileValueIds[rentRosterSheetNameId] + " " + RentRosterSheet);
+            preferenceFile.WriteLine(fileValueIds[rentRosterFileId] + " " + ExcelWorkBookFullFileSpec);
+            preferenceFile.WriteLine(fileValueIds[rentRosterSheetNameId] + " " + ExcelWorkSheetName);
 
         }
 
@@ -197,12 +215,12 @@ namespace TenantRosterAutomation
                         break;
 
                     case rentRosterFileId:
-                        RentRosterFile = CorrectForMuliWordNames(nameAndValue);
+                        ExcelWorkBookFullFileSpec = CorrectForMuliWordNames(nameAndValue);
                         requiredFieldCount++;
                         break;
 
                     case rentRosterSheetNameId:
-                        RentRosterSheet = CorrectForMuliWordNames(nameAndValue);
+                        ExcelWorkSheetName = CorrectForMuliWordNames(nameAndValue);
                         requiredFieldCount++;
                         break;
 
@@ -215,7 +233,7 @@ namespace TenantRosterAutomation
             if (requiredFieldCount == fileValueIds.Length)
             {
                 hasAllFields = true;
-                if (string.IsNullOrEmpty(RentRosterSheet))
+                if (string.IsNullOrEmpty(ExcelWorkSheetName))
                 {
                     hasAllFields = false;
                 }

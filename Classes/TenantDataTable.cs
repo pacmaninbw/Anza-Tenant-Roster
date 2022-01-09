@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Windows;
 
@@ -8,14 +9,22 @@ namespace TenantRosterAutomation
     {
         private bool dataChanged;
         private DataTable tenantData;
+        private List<Apartment> tenantUpdates;
+        private ExcelFileData ExcelFile;
 
         public bool DataChanged { get { return dataChanged; } }
         public DataTable TenantRoster { get { return tenantData; } }
 
         public TenantDataTable(ExcelFileData excelFile)
         {
-            tenantData = Globals.ExcelFile.ActiveWorksheetContents;
+            ExcelFile = excelFile;
+            if (string.IsNullOrEmpty(ExcelFile.ActiveWorkSheet))
+            {
+
+            }
+            tenantData = excelFile.GetActiveWorkSheetContents(false);
             dataChanged = false;
+            tenantUpdates = new List<Apartment>();
         }
 
         public Tenant GetTenant(int apartmentNumber)
@@ -42,12 +51,11 @@ namespace TenantRosterAutomation
         }
 
         public bool SaveChanges()
-
         {
             bool successChange = true;
             if (dataChanged)
             {
-                Globals.ExcelFile.SaveChanges(Globals.TenantUpdates);
+                ExcelFile.SaveChanges(tenantUpdates);
             }
 
             return successChange;
@@ -56,13 +64,13 @@ namespace TenantRosterAutomation
         public void DeleteTenant(int apartmentNumber)
         {
             Tenant tenant = new Tenant();
-            Globals.TenantUpdates.Add(new Apartment(apartmentNumber, tenant));
+            tenantUpdates.Add(new Apartment(apartmentNumber, tenant));
             dataChanged = UdateTenantDataTable(apartmentNumber, tenant);
         }
 
         public void AddEditTenant(int apartmentNumber, Tenant tenant)
         {
-            Globals.TenantUpdates.Add(new Apartment(apartmentNumber, tenant));
+            tenantUpdates.Add(new Apartment(apartmentNumber, tenant));
             dataChanged = UdateTenantDataTable(apartmentNumber, tenant);
         }
 
@@ -109,7 +117,10 @@ namespace TenantRosterAutomation
             }
             catch (Exception e)
             {
+#if DEBUG
                 MessageBox.Show("Exception in TenantDataTable::updateDataTable(): " + e.Message);
+#endif
+                throw;
             }
 
             return updated;

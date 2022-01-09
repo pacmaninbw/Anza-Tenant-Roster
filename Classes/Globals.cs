@@ -10,82 +10,78 @@ namespace TenantRosterAutomation
     {
         private static string preferencesFileName = "./MyPersonalRentRosterPreferences.txt";
         public static TenantDataTable TenantRoster;
-        public static List<Apartment> TenantUpdates;
-        public static string ExcelWorkBookFullFileSpec;
-        public static string ExcelWorkSheetName;
-        public static PrintSavePreference.PrintSave PrintSave;
-        public static string DefaultSaveDirectory;
         public static PropertyComplex Complex;
-        public static bool HavePreferenceData;
         public static UserPreferences Preferences;
         public static ExcelFileData ExcelFile;
 
         public static bool InitializeAll()
         {
-            bool everthingInitialized = false;
             ReleaseAllObjects();
+            bool everthingInitialized = false;
+
             Preferences = new UserPreferences(preferencesFileName);
-            TransferPrefernces(Preferences);
-            if (!string.IsNullOrEmpty(ExcelWorkBookFullFileSpec))
+            if (!string.IsNullOrEmpty(Preferences.ExcelWorkBookFullFileSpec))
             {
-                ExcelFile = new ExcelFileData(ExcelWorkBookFullFileSpec, ExcelWorkSheetName);
+                ExcelFile = CreateExcelDataFile();
+                if (ExcelFile != null)
+                {
+                    TenantRoster = new TenantDataTable(ExcelFile);
+                    if (TenantRoster != null)
+                    {
+                        ConstructComplexAndReport(TenantRoster);
+                    }
+                    everthingInitialized = true;
+                }
             }
-            if (!string.IsNullOrEmpty(ExcelWorkSheetName))
-            {
-                TenantRoster = new TenantDataTable(ExcelFile);
-                ConstructComplexAndReport();
-                TenantUpdates = new List<Apartment>();
-                everthingInitialized = true;
-            }
+
             return everthingInitialized;
         }
 
         public static void ReleaseAllObjects()
         {
             Complex = null;
-            DefaultSaveDirectory = null;
             ExcelFile = null;
-            ExcelWorkBookFullFileSpec = null;
-            ExcelWorkSheetName = null;
             Preferences = null;
             TenantRoster = null;
-            TenantUpdates = null;
         }
 
         public static void SavePreferences()
         {
-            if (Preferences == null)
+            if (Preferences != null)
             {
-                Preferences = new UserPreferences(preferencesFileName);
+                Preferences.SavePreferencesToFile();
             }
-            Preferences.DefaultSaveDirectory = DefaultSaveDirectory;
-            Preferences.RentRosterFile = ExcelWorkBookFullFileSpec;
-            Preferences.RentRosterSheet = ExcelWorkSheetName;
-            Preferences.PrintSaveOptions = PrintSave;
-            Preferences.SavePreferencesToFile();
         }
 
-        private static void TransferPrefernces(UserPreferences preferences)
+        private static void ConstructComplexAndReport(TenantDataTable TenantRoster)
         {
-            HavePreferenceData = preferences.HavePreferenceData;
-            DefaultSaveDirectory = preferences.DefaultSaveDirectory;
-            ExcelWorkBookFullFileSpec = preferences.RentRosterFile;
-            ExcelWorkSheetName = preferences.RentRosterSheet;
-            PrintSave = preferences.PrintSaveOptions;
-        }
-
-        private static void ConstructComplexAndReport()
-        {
-            if (Globals.TenantRoster == null)
-            {
-                return;
-            }
             ReportCurrentStatusWindow statusReport = new ReportCurrentStatusWindow();
             statusReport.MessageText = "Constructing Apartment Complex Data.";
             statusReport.Show();
-            Complex = new PropertyComplex("Anza Victoria Apartments, LLC", TenantRoster.TenantRoster);
+            Complex = new PropertyComplex("Anza Victoria Apartments, LLC",
+                TenantRoster.TenantRoster);
             statusReport.Close();
         }
+
+        private static ExcelFileData CreateExcelDataFile()
+        {
+            ExcelFileData excelFile = null;
+            if (!string.IsNullOrEmpty(Preferences.ExcelWorkSheetName))
+            {
+                if (ExcelWorkBookAlreadyOpen.TestIfOpen(Preferences.ExcelWorkBookFullFileSpec))
+                {
+                    AlreadyOpenInExcelException e =
+                        new AlreadyOpenInExcelException(
+                            ExcelWorkBookAlreadyOpen.ReportOpen());
+                    throw e;
+                }
+                excelFile = new ExcelFileData(Preferences.ExcelWorkBookFullFileSpec,
+                    Preferences.ExcelWorkSheetName);
+            }
+
+            return excelFile;
+        }
+
 
     }
 }

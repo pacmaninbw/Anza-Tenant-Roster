@@ -97,7 +97,7 @@ namespace TenantRosterAutomation
             this.RR_SAVEEDITS_BTN.UseVisualStyleBackColor = true;
             this.RR_SAVEEDITS_BTN.Click += new System.EventHandler(this.RR_SAVEEDITS_BTN_Click);
             // 
-            // Form_RentRosterApp
+            // RentRosterApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -108,8 +108,9 @@ namespace TenantRosterAutomation
             this.Controls.Add(this.DeleteRenter_Button);
             this.Controls.Add(this.AddNewResident_Button);
             this.Controls.Add(this.PrintMailboxLists_Button);
-            this.Name = "Form_RentRosterApp";
+            this.Name = "RentRosterApp";
             this.Text = "Anza Victoria Rent Roster Control Panel";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RentRosterApp_FormClosing);
             this.Load += new System.EventHandler(this.RentRosterApp_Load);
             this.ResumeLayout(false);
 

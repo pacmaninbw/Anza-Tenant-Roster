@@ -28,9 +28,9 @@ namespace TenantRosterAutomation
             }
             SelectBuilding2Print_listBox.Items.Add("All Buildings");
 
-            if (Globals.HavePreferenceData)
+            if (Globals.Preferences.HavePreferenceData)
             {
-                printSave = Globals.PrintSave;
+                printSave = Globals.Preferences.PrintSaveOptions;
                 PrintSaveChange();
             }
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace TenantRosterAutomation
 {
@@ -54,16 +55,37 @@ namespace TenantRosterAutomation
 
         private void RR_Quit_BTN_Click(object sender, EventArgs e)
         {
-            Globals.ReleaseAllObjects();
             Close();
         }
 
         private void RR_SAVEEDITS_BTN_Click(object sender, EventArgs e)
         {
+            SaveEdits();
+        }
+
+        private void RentRosterApp_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            SaveEdits();
+            Globals.ReleaseAllObjects();
+        }
+
+        private void SaveEdits()
+        {
             if (Globals.TenantRoster.DataChanged)
             {
                 Globals.TenantRoster.SaveChanges();
             }
+        }
+
+        private void ReportOpen()
+        {
+            string alreadyOpen = "The excel workbook " +
+                Globals.Preferences.ExcelWorkBookFullFileSpec +
+                    " is alread open in another application. \n" +
+                    "Please save your changes in the other application and close the " +
+                    " workbook and then restart this application.";
+
+            MessageBox.Show(alreadyOpen);
         }
     }
 }
