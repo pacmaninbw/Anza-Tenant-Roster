@@ -1,11 +1,6 @@
 ﻿using System;
 using Excel = Microsoft.Office.Interop.Excel;
 
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace TenantRosterAutomation
 {
     public static class ExcelWorkBookAlreadyOpen
@@ -38,6 +33,7 @@ namespace TenantRosterAutomation
             return isOpened;
         }
 
+        // Common error message to use when the excel file is op in another app.
         public static string ReportOpen()
         {
             string alreadyOpen = "The excel workbook " +
