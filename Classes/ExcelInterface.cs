@@ -8,7 +8,11 @@ using Excel = Microsoft.Office.Interop.Excel;
 
 namespace TenantRosterAutomation
 {
-    // Provides the interface between the rest of the program and Microsoft excel
+    // Provides the interface between the rest of the program and Microsoft excel.
+    // This class is constructed on an as needed basis and should not persist
+    // during execution. The distruction of this class releases the excel process
+    // of this class creates and prevents orphan excel processes from being
+    // created.
     class ExcelInterface : IDisposable 
     {
         private Excel.Application xlApp;
@@ -75,7 +79,7 @@ namespace TenantRosterAutomation
             }
         }
 
-        public List<string> GetSheetNames()
+        public List<string> GetWorkSheetNames()
         {
             List<string> sheetNames = new List<string>();
 
@@ -169,7 +173,7 @@ namespace TenantRosterAutomation
                 if (!string.IsNullOrEmpty(tenantRosterName))
                 {
                     StartExcelOpenWorkbook();
-                    List<string> sheetNames = GetSheetNames();
+                    List<string> sheetNames = GetWorkSheetNames();
                     bool exists = sheetNames.Any(x => x.Contains(tenantRosterName));
                     if (!exists)
                     {
