@@ -10,7 +10,7 @@ namespace TenantRosterAutomation
         bool globalsInitialized;
         public RentRosterApp()
         {
-            globalsInitialized = Globals.InitializeAll();
+            globalsInitialized = Globals.InitializeAllModels();
             InitializeComponent();
         }
 
@@ -65,27 +65,14 @@ namespace TenantRosterAutomation
 
         private void RentRosterApp_FormClosing(object sender, FormClosingEventArgs e)
         {
-            SaveEdits();
-            Globals.ReleaseAllObjects();
+            // Save all changes before quiting.
+            Globals.Save();
+            Globals.ReleaseAllModels();
         }
 
         private void SaveEdits()
         {
-            if (Globals.TenantRoster.DataChanged)
-            {
-                Globals.TenantRoster.SaveChanges();
-            }
-        }
-
-        private void ReportOpen()
-        {
-            string alreadyOpen = "The excel workbook " +
-                Globals.Preferences.ExcelWorkBookFullFileSpec +
-                    " is alread open in another application. \n" +
-                    "Please save your changes in the other application and close the " +
-                    " workbook and then restart this application.";
-
-            MessageBox.Show(alreadyOpen);
+            Globals.SaveTenantData();
         }
     }
 }
