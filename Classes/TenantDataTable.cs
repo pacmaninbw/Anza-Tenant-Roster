@@ -9,6 +9,11 @@ namespace TenantRosterAutomation
     {
         private bool dataChanged;
         private DataTable tenantData;
+        // Updates are stored to a list to be written to back to the excel
+        // file when the user clicks the save button in the UI or when the
+        // user exits the program. Writing the entire DataTable back is
+        // undesirable for 2 reasons, one is performance and the other is
+        // to prevent corruption of the excel file.
         private List<Apartment> tenantUpdates;
         private ExcelFileData ExcelFile;
 
@@ -56,6 +61,8 @@ namespace TenantRosterAutomation
             if (dataChanged)
             {
                 ExcelFile.SaveChanges(tenantUpdates);
+                dataChanged = false;
+                tenantUpdates.Clear();
             }
 
             return successChange;
