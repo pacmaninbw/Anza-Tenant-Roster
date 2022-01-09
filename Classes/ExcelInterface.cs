@@ -21,6 +21,13 @@ namespace TenantRosterAutomation
 
         public ExcelInterface(string workBookName, string workSheetName)
         {
+            if (string.IsNullOrEmpty(workBookName))
+            {
+                ExcelFileException efe =
+                    new ExcelFileException("Attempted to create ExcelInterface " +
+                    "Object without Excel Data File Name.");
+                throw efe;
+            }
             WorkbookName = workBookName;
             tenantRosterName = workSheetName;
         }
@@ -39,14 +46,15 @@ namespace TenantRosterAutomation
                 ReportCurrentStatusWindow SaveStatus = new ReportCurrentStatusWindow();
                 SaveStatus.MessageText = "Saving updated tenants and apartments to Excel.";
                 SaveStatus.Show();
-                StartExcelOpenWorkbook(false);
+                StartExcelOpenWorkbook();
                 OpenTenantRosterWorkSheet();
                 xlApp.Visible = false;
                 xlApp.DisplayAlerts = false;
 
                 if (tenantRoster == null)
                 {
-                    MessageBox.Show(eSaveMsg + " can't open the sheet " + tenantRosterName);
+                    MessageBox.Show(eSaveMsg + " can't open the excel worksheet "
+                        + tenantRosterName + " to save changes");
                     return;
                 }
                 List<string> columnNames = GetColumnNames();
@@ -71,7 +79,7 @@ namespace TenantRosterAutomation
         {
             List<string> sheetNames = new List<string>();
 
-            StartExcelOpenWorkbook(false);
+            StartExcelOpenWorkbook();
             if (xlWorkbook == null)
             {
                 return null;
@@ -134,19 +142,10 @@ namespace TenantRosterAutomation
             UpdateColumn(currentRow, "Email", tenant.Email, columnNames);
         }
 
-        private void StartExcelOpenWorkbook(bool showErrorMessage)
+        private void StartExcelOpenWorkbook()
         {
             if (xlApp != null && xlWorkbook != null)
             {
-                return;
-            }
-
-            if (string.IsNullOrEmpty(WorkbookName))
-            {
-                if (showErrorMessage)
-                {
-                    MessageBox.Show("Please update your preferences by adding the excel file that contains the tenant roster");
-                }
                 return;
             }
 
@@ -169,7 +168,7 @@ namespace TenantRosterAutomation
             {
                 if (!string.IsNullOrEmpty(tenantRosterName))
                 {
-                    StartExcelOpenWorkbook(true);
+                    StartExcelOpenWorkbook();
                     List<string> sheetNames = GetSheetNames();
                     bool exists = sheetNames.Any(x => x.Contains(tenantRosterName));
                     if (!exists)
@@ -186,7 +185,8 @@ namespace TenantRosterAutomation
             catch (Exception e)
             {
 #if DEBUG
-                string eMsg = "Function ExcelInterface.openTenantRosterWorkSheet() failed: " + e.Message;
+                string eMsg = "Function ExcelInterface.OpenTenantRosterWorkSheet() failed: "
+                    + e.Message;
                 MessageBox.Show(eMsg);
 #endif
                 throw;
@@ -199,7 +199,7 @@ namespace TenantRosterAutomation
         {
             try
             {
-                StartExcelOpenWorkbook(true);
+                StartExcelOpenWorkbook();
                 OpenTenantRosterWorkSheet();
                 if (tenantRoster == null)
                 {
@@ -216,7 +216,7 @@ namespace TenantRosterAutomation
             }
             catch (Exception ex)
             {
-                string eMsg = "In ReadExcelToDatatble error: " + ex.Message;
+                string eMsg = "In ExcelInterface::ReadExcelToDatatble error: " + ex.Message;
                 MessageBox.Show(ex.Message);
                 return null;
             }

@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows;
 
 namespace TenantRosterAutomation
 {
@@ -16,10 +14,16 @@ namespace TenantRosterAutomation
         public string ActiveWorkSheet { get; private set; }
         public bool WorkbookRead { get; private set; }
         public bool WorkbookOpen { get; private set; }
-        public DataTable ActiveWorksheetContents { get { return GetActiveWorkSheetContents(); } }
 
         public ExcelFileData(string fullFileSpec, string activeWorkSheet)
         {
+            if (string.IsNullOrEmpty(fullFileSpec))
+            {
+                ExcelFileException efe =
+                    new ExcelFileException("Attempted to create ExcelFileData " +
+                    "Object without Excel Data File Name.");
+                throw efe;
+            }
             ActiveWorkbookFullFileSpec = fullFileSpec;
             ActiveWorkSheet = activeWorkSheet;
             WorkSheets = null;
@@ -51,9 +55,16 @@ namespace TenantRosterAutomation
 
         public List<string> GetWorkSheetCollection()
         {
+            if (CheckOpenApplicationsAndReport())
+            {
+                return WorkSheets;
+            }
+
             if (WorkSheets == null)
             {
-                using (ExcelInterface excelInterface = new ExcelInterface(ActiveWorkbookFullFileSpec, ActiveWorkSheet))
+
+                using (ExcelInterface excelInterface = new ExcelInterface(
+                    ActiveWorkbookFullFileSpec, ActiveWorkSheet))
                 {
                     try
                     {
@@ -73,7 +84,21 @@ namespace TenantRosterAutomation
         {
             if (tenantEdits.Count > 0)
             {
-                using (ExcelInterface excelInterface = new ExcelInterface(ActiveWorkbookFullFileSpec, ActiveWorkSheet))
+                if (string.IsNullOrEmpty(ActiveWorkSheet))
+                {
+                    ExcelFileException efe =
+                        new ExcelFileException("Attempted to Save Excel changes " +
+                        "without Excel worksheet name.");
+                    throw efe;
+                }
+
+                if (CheckOpenApplicationsAndReport())
+                {
+                    return;
+                }
+
+                using (ExcelInterface excelInterface = new ExcelInterface(
+                    ActiveWorkbookFullFileSpec, ActiveWorkSheet))
                 {
                     try
                     {
@@ -87,11 +112,27 @@ namespace TenantRosterAutomation
             }
         }
 
-        private DataTable GetActiveWorkSheetContents()
+        public DataTable GetActiveWorkSheetContents(bool checkIfOPen)
         {
+            if (checkIfOPen)
+            {
+                if (CheckOpenApplicationsAndReport())
+                {
+                    return worksheetContents;
+                }
+            }
+
             if (worksheetContents == null)
             {
-                using (ExcelInterface excelInterface = new ExcelInterface(ActiveWorkbookFullFileSpec, ActiveWorkSheet))
+                if (string.IsNullOrEmpty(ActiveWorkSheet))
+                {
+                    ExcelFileException efe =
+                        new ExcelFileException("Attempted to get Excel worksheet " +
+                        "data without Excel worksheet name.");
+                    throw efe;
+                }
+                using (ExcelInterface excelInterface = new ExcelInterface(
+                    ActiveWorkbookFullFileSpec, ActiveWorkSheet))
                 {
                     ReportCurrentStatusWindow statusReport = new ReportCurrentStatusWindow();
                     statusReport.MessageText =
@@ -111,6 +152,17 @@ namespace TenantRosterAutomation
             }
 
             return worksheetContents;
+        }
+
+        private bool CheckOpenApplicationsAndReport()
+        {
+            if (ExcelWorkBookAlreadyOpen.TestIfOpen(ActiveWorkbookFullFileSpec))
+            {
+                MessageBox.Show(ExcelWorkBookAlreadyOpen.ReportOpen());
+                return true;
+            }
+
+            return false;
         }
     }
 }
