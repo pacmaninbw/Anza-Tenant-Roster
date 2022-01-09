@@ -5,7 +5,7 @@ using System.Windows;
 
 namespace TenantRosterAutomation
 {
-    // Contains all the information about the apartment complex (5 buildings)
+    // Models the entire apartment complex (5 buildings 177 apartmens)
     public class PropertyComplex
     {
         private string propertyName;
