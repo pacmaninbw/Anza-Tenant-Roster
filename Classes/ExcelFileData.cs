@@ -68,7 +68,7 @@ namespace TenantRosterAutomation
                 {
                     try
                     {
-                        WorkSheets = excelInterface.GetSheetNames();
+                        WorkSheets = excelInterface.GetWorkSheetNames();
                     }
                     catch (Exception)
                     {
