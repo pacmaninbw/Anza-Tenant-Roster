@@ -6,7 +6,9 @@ using System.Windows.Forms;
 
 namespace TenantRosterAutomation
 {
-    // Reads and writes the user preferences file.
+    // Reads and writes the user preferences file. Stores the user
+    // preferences for access to the excel spreadsheet as well as
+    // storing print options.
     public class UserPreferences
     {
         private PrintSavePreference.PrintSave printSaveValue;
@@ -17,12 +19,32 @@ namespace TenantRosterAutomation
         private bool preferenceFileExists;
         private bool preferenceFileRead;
         private string preferencesFileName;
+        private string workBookFullFileSpec;
+        private string workSheetName;
+        private string defaultSaveFolder;
 
         public bool HavePreferenceData { get { return preferenceFileRead; } }
-        public PrintSavePreference.PrintSave PrintSaveOptions { get { return printSaveValue; } set { printSaveValue = value; } }
-        public string ExcelWorkBookFullFileSpec { get; set; }
-        public string ExcelWorkSheetName { get; set; }
-        public string DefaultSaveDirectory { get; set; }
+        public PrintSavePreference.PrintSave PrintSaveOptions
+        {
+            get => printSaveValue;
+            set { SetPrintSave(value); }
+        }
+        public string ExcelWorkBookFullFileSpec
+        {
+            get => workBookFullFileSpec; 
+            set { SetExcelWorkBookFullFileSpec(value); }
+        }
+        public string ExcelWorkSheetName
+        {
+            get => workSheetName;
+            set { SetExcelWorkSheetName(value); }
+        }
+        public string DefaultSaveDirectory
+        {
+            get => defaultSaveFolder;
+            set { SetDefaultSaveDirectory(value); }
+        }
+        public bool PreferenceValuesChanged { get; private set; }
 
         public UserPreferences()
         {
@@ -44,8 +66,19 @@ namespace TenantRosterAutomation
             }
         }
 
+        public UserPreferences(UserPreferences original)
+        {
+            CommonInitialization();
+            CopyValues(original, true);
+        }
+
         public bool SavePreferencesToFile(string PreferencesFileName = null)
         {
+            if (!PreferenceValuesChanged && !string.IsNullOrEmpty(PreferencesFileName))
+            {
+                return true;
+            }
+
             if (!string.IsNullOrEmpty(PreferencesFileName))
             {
                 preferencesFileName = PreferencesFileName;
@@ -80,6 +113,30 @@ namespace TenantRosterAutomation
             {
                 preferencesFileName = newPreferences.preferencesFileName;
             }
+        }
+
+        private void SetExcelWorkBookFullFileSpec(string newName)
+        {
+            workBookFullFileSpec = newName;
+            PreferenceValuesChanged = true;
+        }
+
+        private void SetExcelWorkSheetName(string newName)
+        {
+            workSheetName = newName;
+            PreferenceValuesChanged = true;
+        }
+
+        private void SetDefaultSaveDirectory(string newName)
+        {
+            defaultSaveFolder = newName;
+            PreferenceValuesChanged = true;
+        }
+
+        private void SetPrintSave(PrintSavePreference.PrintSave PrintSave)
+        {
+            printSaveValue = PrintSave;
+            PreferenceValuesChanged = true;
         }
 
         private void CommonInitialization()

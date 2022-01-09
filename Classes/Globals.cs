@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace TenantRosterAutomation
 {
+    // Perhaps this class and file should be renamed to GlobalModels
+    // or just Modles. For performance reasons the classes provided
+    // by this static class are created once at the beginning of the
+    // program execution and deleted at the end of program execution.
     public static class Globals
     {
         private static string preferencesFileName = "./MyPersonalRentRosterPreferences.txt";
@@ -14,12 +18,66 @@ namespace TenantRosterAutomation
         public static UserPreferences Preferences;
         public static ExcelFileData ExcelFile;
 
-        public static bool InitializeAll()
+        public static bool InitializeAllModels()
         {
-            ReleaseAllObjects();
             bool everthingInitialized = false;
+            ReleaseAllModels();
 
             Preferences = new UserPreferences(preferencesFileName);
+            everthingInitialized = AdvancedInitialization();
+
+            return everthingInitialized;
+        }
+
+        // Restart with new preferences
+        public static bool ReInitizeAllModels(UserPreferences preferences)
+        {
+            bool everthingInitialized = false;
+            ReleaseAllModels(false);
+
+            Preferences.CopyValues(preferences);
+            everthingInitialized = AdvancedInitialization();
+
+            return everthingInitialized;
+        }
+
+        public static void ReleaseAllModels(bool releasePrefernces = true)
+        {
+            Complex = null;
+            ExcelFile = null;
+            TenantRoster = null;
+            if (releasePrefernces)
+            {
+                Preferences = null;
+            }
+        }
+
+        public static void Save()
+        {
+            SavePreferences();
+            SaveTenantData();
+        }
+
+        public static void SavePreferences()
+        {
+            if (Preferences != null)
+            {
+                Preferences.SavePreferencesToFile();
+            }
+        }
+
+        public static void SaveTenantData()
+        {
+            if (TenantRoster != null && TenantRoster.DataChanged)
+            {
+                TenantRoster.SaveChanges();
+            }
+        }
+
+        private static bool AdvancedInitialization()
+        {
+            bool everthingInitialized = false;
+
             if (!string.IsNullOrEmpty(Preferences.ExcelWorkBookFullFileSpec))
             {
                 ExcelFile = CreateExcelDataFile();
@@ -35,22 +93,6 @@ namespace TenantRosterAutomation
             }
 
             return everthingInitialized;
-        }
-
-        public static void ReleaseAllObjects()
-        {
-            Complex = null;
-            ExcelFile = null;
-            Preferences = null;
-            TenantRoster = null;
-        }
-
-        public static void SavePreferences()
-        {
-            if (Preferences != null)
-            {
-                Preferences.SavePreferencesToFile();
-            }
         }
 
         private static void ConstructComplexAndReport(TenantDataTable TenantRoster)
@@ -81,7 +123,5 @@ namespace TenantRosterAutomation
 
             return excelFile;
         }
-
-
     }
 }

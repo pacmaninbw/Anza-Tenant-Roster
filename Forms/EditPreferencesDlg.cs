@@ -133,7 +133,10 @@ namespace TenantRosterAutomation
 
         private void EP_SavePreferences_BTN_Click(object sender, EventArgs e)
         {
-            Globals.Preferences.CopyValues(localPreferences);
+            // Make sure any previous edits to the tenant are saved
+            // then reset all the models.
+            Globals.Save();
+            Globals.ReInitizeAllModels(localPreferences);
             Globals.SavePreferences();
             Close();
         }
