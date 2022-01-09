@@ -1,5 +1,6 @@
 ﻿namespace TenantRosterAutomation
 {
+    // Models a tenant in an apartment.
     public class Tenant
     {
         public string LastName { get; set; }
@@ -14,26 +15,14 @@
 
         public Tenant()
         {
-            FirstName = "";
-            LastName = "";
-            CoTenantLastName = "";
-            CoTenantFirstName = "";
-            Email = "";
-            HomePhone = "";
-            RentersInsurancePolicy = "";
-            LeaseStart = "";
+            InitAllFields();
         }
 
         public Tenant(string lastName, string homePhone)
         {
+            InitAllFields();
             LastName = lastName;
             HomePhone = homePhone;
-            FirstName = "";
-            CoTenantLastName = "";
-            CoTenantFirstName = "";
-            Email = "";
-            RentersInsurancePolicy = "";
-            LeaseStart = "";
         }
 
         public string MailboxListOccupantEntry()
@@ -53,5 +42,17 @@
             return (!string.IsNullOrEmpty(FirstName)) ? FirstName + " " + LastName : LastName;
         }
 
+        private void InitAllFields()
+        {
+            FirstName = "";
+            LastName = "";
+            CoTenantLastName = "";
+            CoTenantFirstName = "";
+            Email = "";
+            HomePhone = "";
+            RentersInsurancePolicy = "";
+            LeaseStart = "";
+            LeaseEnd = "";
+        }
     }
 }
