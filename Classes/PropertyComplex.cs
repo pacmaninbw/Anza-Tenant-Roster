@@ -112,6 +112,9 @@ namespace TenantRosterAutomation
             {
                 return ApartmentNumberValid.APARTMENT_NUMBER_NONNUMERIC;
             }
+            // 1/9/2022 Bugfix, some error messages contained the wrong value
+            // for the apartment number.
+            apartmentNumber = aptNumber;
 
             if (aptNumber < MinApartmentNumber || aptNumber > MaxApartmentNumber)
             {

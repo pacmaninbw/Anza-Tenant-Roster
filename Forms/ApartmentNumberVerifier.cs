@@ -47,6 +47,13 @@ namespace TenantRosterAutomation
             }
         }
 
+        private void ErrorActions(string errorMessage)
+        {
+            ANV_ApartmentNumber_TB.BackColor = Color.Yellow;
+            MessageBox.Show(errorMessage);
+            ActiveControl = ANV_ApartmentNumber_TB;
+        }
+
         private void VerifyApartmentNumber()
         {
             int aptNumber = 0;
@@ -56,9 +63,7 @@ namespace TenantRosterAutomation
             switch (validApartmentId)
             {
                 case PropertyComplex.ApartmentNumberValid.APARTMENT_NUMBER_NONNUMERIC:
-                    MessageBox.Show("Please enter a number in the box.");
-                    ANV_ApartmentNumber_TB.BackColor = Color.Yellow;
-                    ActiveControl = ANV_ApartmentNumber_TB;
+                    ErrorActions("Please enter a number in the box.");
                     return;
 
                 case PropertyComplex.ApartmentNumberValid.APARTMENT_NUMBER_OUT_OF_RANGE:
@@ -66,16 +71,12 @@ namespace TenantRosterAutomation
                     int maxAptNo = Globals.Complex.MaxApartmentNumber;
                     string msg = "The apartment is out of range[" + minAptNo.ToString() +
                         ", " + maxAptNo.ToString() + "] please enter a valid apartment number.";
-                    MessageBox.Show(msg);
-                    ANV_ApartmentNumber_TB.BackColor = Color.Yellow;
-                    ActiveControl = ANV_ApartmentNumber_TB;
+                    ErrorActions(msg);
                     return;
 
                 case PropertyComplex.ApartmentNumberValid.APARTMENT_NUMBER_NOT_FOUND:
-                    MessageBox.Show("The number entered: " + aptNumber +
+                    ErrorActions("The number entered: " + aptNumber +
                         " was not found in the list of apartments.");
-                    ANV_ApartmentNumber_TB.BackColor = Color.Yellow;
-                    ActiveControl = ANV_ApartmentNumber_TB;
                     return;
             }
 
