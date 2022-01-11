@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 
@@ -18,6 +19,8 @@ namespace TenantRosterAutomation
 
         private void EditPreferencesDlg_Load(object sender, EventArgs e)
         {
+            EP_Cancel_BTN.BackColor = Color.Red;
+            EP_SavePreferences_BTN.BackColor = Color.Green;
             EP_DefaultFileFolder_TB.Text = localPreferences.DefaultSaveDirectory;
             EP_RentRosterLocation_TB.Text = localPreferences.ExcelWorkBookFullFileSpec;
             EP_SheetName_TB.Text = localPreferences.ExcelWorkSheetName;
@@ -130,17 +133,6 @@ namespace TenantRosterAutomation
             findTenantRosterExcelFile(sender, e);
             fillSheetSelectorListBox();
         }
-
-        private void EP_SavePreferences_BTN_Click(object sender, EventArgs e)
-        {
-            // Make sure any previous edits to the tenant are saved
-            // then reset all the models.
-            Globals.Save();
-            Globals.ReInitizeAllModels(localPreferences);
-            Globals.SavePreferences();
-            Close();
-        }
-
         private void EP_RentRosterSheetName_LISTBOX_SelectedIndexChanged(object sender, EventArgs e)
         {
             localPreferences.ExcelWorkSheetName = EP_RentRosterSheetName_LISTBOX.SelectedItem.ToString();
@@ -150,6 +142,23 @@ namespace TenantRosterAutomation
         private void EP_SheetName_TB_Click(object sender, EventArgs e)
         {
             fillSheetSelectorListBox();
+        }
+
+        private void EP_SavePreferences_BTN_Click(object sender, EventArgs e)
+        {
+            // Make sure any previous edits to the tenant are saved
+            // then reset all the models.
+            Globals.Save();
+            Globals.ReInitizeAllModels(localPreferences);
+            Globals.SavePreferences();
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+
+        private void EP_Cancel_Button_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
     }
 }

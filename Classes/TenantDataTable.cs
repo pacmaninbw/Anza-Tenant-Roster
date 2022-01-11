@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Windows;
 
 namespace TenantRosterAutomation
 {
@@ -46,10 +45,8 @@ namespace TenantRosterAutomation
             }
             catch (Exception e)
             {
-#if DEBUG
-                MessageBox.Show("Exception in TenantDataTable::GetTenant(): " + e.Message);
-#endif
-                throw;
+                Exception Tdt = new Exception("Exception in TenantDataTable::GetTenant(): ", e);
+                throw Tdt;
             }
 
             return tenant;
@@ -124,10 +121,9 @@ namespace TenantRosterAutomation
             }
             catch (Exception e)
             {
-#if DEBUG
-                MessageBox.Show("Exception in TenantDataTable::updateDataTable(): " + e.Message);
-#endif
-                throw;
+                Exception Tdt = new Exception(
+                    "Exception in TenantDataTable::updateDataTable(): ", e);
+                throw Tdt;
             }
 
             return updated;

@@ -44,6 +44,7 @@ namespace TenantRosterAutomation
             this.EP_OutputFolder_GB = new System.Windows.Forms.GroupBox();
             this.EP_BrowseFolderLocation_BTN = new System.Windows.Forms.Button();
             this.EP_DefaultFileFolder_TB = new System.Windows.Forms.TextBox();
+            this.EP_Cancel_BTN = new System.Windows.Forms.Button();
             this.EP_PrintSave_GB.SuspendLayout();
             this.EP_RentRosterFile_GB.SuspendLayout();
             this.EP_OutputFolder_GB.SuspendLayout();
@@ -205,11 +206,22 @@ namespace TenantRosterAutomation
             this.EP_DefaultFileFolder_TB.Click += new System.EventHandler(this.EP_DefaultFileFolder_TB_Click);
             this.EP_DefaultFileFolder_TB.TextChanged += new System.EventHandler(this.EP_DefaultFileFolder_TB_TextChanged);
             // 
+            // EP_Cancel_BTN
+            // 
+            this.EP_Cancel_BTN.Location = new System.Drawing.Point(238, 450);
+            this.EP_Cancel_BTN.Name = "EP_Cancel_BTN";
+            this.EP_Cancel_BTN.Size = new System.Drawing.Size(120, 23);
+            this.EP_Cancel_BTN.TabIndex = 20;
+            this.EP_Cancel_BTN.Text = "Cancel";
+            this.EP_Cancel_BTN.UseVisualStyleBackColor = true;
+            this.EP_Cancel_BTN.Click += new System.EventHandler(this.EP_Cancel_Button_Click);
+            // 
             // EditPreferencesDlg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(628, 530);
+            this.Controls.Add(this.EP_Cancel_BTN);
             this.Controls.Add(this.EP_OutputFolder_GB);
             this.Controls.Add(this.EP_RentRosterFile_GB);
             this.Controls.Add(this.EP_SavePreferences_BTN);
@@ -244,5 +256,6 @@ namespace TenantRosterAutomation
         private System.Windows.Forms.GroupBox EP_OutputFolder_GB;
         private System.Windows.Forms.Button EP_BrowseFolderLocation_BTN;
         private System.Windows.Forms.TextBox EP_DefaultFileFolder_TB;
+        private System.Windows.Forms.Button EP_Cancel_BTN;
     }
 }

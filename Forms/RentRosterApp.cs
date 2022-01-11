@@ -7,24 +7,40 @@ namespace TenantRosterAutomation
 {
     public partial class RentRosterApp : Form
     {
-        bool globalsInitialized;
+        private bool globalsInitialized;
         public RentRosterApp()
         {
             globalsInitialized = Globals.InitializeAllModels();
             InitializeComponent();
         }
 
+        public void InitializedNowResetButtons()
+        {
+            globalsInitialized = true;
+            PrintMailboxLists_Button.Enabled = false;
+            AddNewResident_Button.Enabled = false;
+            DeleteRenter_Button.Enabled = false;
+        }
+
         private void RentRosterApp_Load(object sender, EventArgs e)
         {
+            RR_Quit_BTN.BackColor = Color.Red;
             if (!globalsInitialized)
             {
                 PrintMailboxLists_Button.Enabled = false;
                 AddNewResident_Button.Enabled = false;
                 DeleteRenter_Button.Enabled = false;
-                EditPreferencesDlg preferences_dlg = new EditPreferencesDlg();
-                preferences_dlg.Show();
+
+                using (EditPreferencesDlg preferences_dlg = new EditPreferencesDlg())
+                {
+                    if (preferences_dlg.ShowDialog() == DialogResult.OK)
+                    {
+                        PrintMailboxLists_Button.Enabled = true;
+                        AddNewResident_Button.Enabled = true;
+                        DeleteRenter_Button.Enabled = true;
+                    }
+                }
             }
-            RR_Quit_BTN.BackColor = Color.Red;
         }
 
         private void PrintMailboxLists_Button_Click(object sender, EventArgs e)
@@ -55,12 +71,28 @@ namespace TenantRosterAutomation
 
         private void RR_Quit_BTN_Click(object sender, EventArgs e)
         {
-            Close();
+            try
+            {
+                Globals.Save();
+                Globals.ReleaseAllModels();
+                Close();
+            }
+            catch (AlreadyOpenInExcelException ao)
+            {
+                MessageBox.Show(ao.Message);
+            }
         }
 
         private void RR_SAVEEDITS_BTN_Click(object sender, EventArgs e)
         {
-            SaveEdits();
+            try
+            {
+                Globals.SaveTenantData();
+            }
+            catch (AlreadyOpenInExcelException ao)
+            {
+                MessageBox.Show(ao.Message);
+            }
         }
 
         private void RentRosterApp_FormClosing(object sender, FormClosingEventArgs e)
@@ -68,11 +100,6 @@ namespace TenantRosterAutomation
             // Save all changes before quiting.
             Globals.Save();
             Globals.ReleaseAllModels();
-        }
-
-        private void SaveEdits()
-        {
-            Globals.SaveTenantData();
         }
     }
 }

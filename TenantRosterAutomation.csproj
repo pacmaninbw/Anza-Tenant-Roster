@@ -72,7 +72,7 @@
     <Compile Include="Classes\BuildingAndApartment.cs" />
     <Compile Include="Classes\ExcelFileData.cs" />
     <Compile Include="Classes\ExcelFileException.cs" />
-    <Compile Include="Classes\ExcelWorkBookAlreadyOpen.cs" />
+    <Compile Include="Classes\CheckExcelWorkBookOpen.cs" />
     <Compile Include="Classes\Globals.cs" />
     <Compile Include="Classes\PrintSavePreference.cs" />
     <Compile Include="Classes\TenantDataTable.cs" />

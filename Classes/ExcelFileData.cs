@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Windows;
 
 namespace TenantRosterAutomation
 {
@@ -55,11 +54,6 @@ namespace TenantRosterAutomation
 
         public List<string> GetWorkSheetCollection()
         {
-            if (CheckOpenApplicationsAndReport())
-            {
-                return WorkSheets;
-            }
-
             if (WorkSheets == null)
             {
 
@@ -73,6 +67,7 @@ namespace TenantRosterAutomation
                     catch (Exception)
                     {
                         excelInterface.Dispose();
+                        throw;
                     }
                 }
             }
@@ -92,11 +87,6 @@ namespace TenantRosterAutomation
                     throw efe;
                 }
 
-                if (CheckOpenApplicationsAndReport())
-                {
-                    return;
-                }
-
                 using (ExcelInterface excelInterface = new ExcelInterface(
                     ActiveWorkbookFullFileSpec, ActiveWorkSheet))
                 {
@@ -107,6 +97,7 @@ namespace TenantRosterAutomation
                     catch (Exception)
                     {
                         excelInterface.Dispose();
+                        throw;
                     }
                 }
             }
@@ -114,14 +105,6 @@ namespace TenantRosterAutomation
 
         public DataTable GetActiveWorkSheetContents(bool checkIfOPen)
         {
-            if (checkIfOPen)
-            {
-                if (CheckOpenApplicationsAndReport())
-                {
-                    return worksheetContents;
-                }
-            }
-
             if (worksheetContents == null)
             {
                 if (string.IsNullOrEmpty(ActiveWorkSheet))
@@ -145,6 +128,7 @@ namespace TenantRosterAutomation
                     catch (Exception)
                     {
                         excelInterface.Dispose();
+                        throw;
                     }
 
                     statusReport.Close();
@@ -152,17 +136,6 @@ namespace TenantRosterAutomation
             }
 
             return worksheetContents;
-        }
-
-        private bool CheckOpenApplicationsAndReport()
-        {
-            if (ExcelWorkBookAlreadyOpen.TestIfOpen(ActiveWorkbookFullFileSpec))
-            {
-                MessageBox.Show(ExcelWorkBookAlreadyOpen.ReportOpen());
-                return true;
-            }
-
-            return false;
         }
     }
 }

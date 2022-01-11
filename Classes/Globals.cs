@@ -78,13 +78,14 @@ namespace TenantRosterAutomation
         {
             bool everthingInitialized = false;
 
-            if (!string.IsNullOrEmpty(Preferences.ExcelWorkBookFullFileSpec))
+            if (!string.IsNullOrEmpty(Preferences.ExcelWorkBookFullFileSpec) &&
+                !string.IsNullOrEmpty(Preferences.ExcelWorkSheetName))
             {
                 ExcelFile = CreateExcelDataFile();
                 if (ExcelFile != null)
                 {
                     TenantRoster = new TenantDataTable(ExcelFile);
-                    if (TenantRoster != null)
+                    if (TenantRoster != null && TenantRoster.TenantRoster != null)
                     {
                         ConstructComplexAndReport(TenantRoster);
                     }
@@ -108,15 +109,10 @@ namespace TenantRosterAutomation
         private static ExcelFileData CreateExcelDataFile()
         {
             ExcelFileData excelFile = null;
-            if (!string.IsNullOrEmpty(Preferences.ExcelWorkSheetName))
+            if (!string.IsNullOrEmpty(Preferences.ExcelWorkBookFullFileSpec))
             {
-                if (ExcelWorkBookAlreadyOpen.TestIfOpen(Preferences.ExcelWorkBookFullFileSpec))
-                {
-                    AlreadyOpenInExcelException e =
-                        new AlreadyOpenInExcelException(
-                            ExcelWorkBookAlreadyOpen.ReportOpen());
-                    throw e;
-                }
+                CheckExcelWorkBookOpen testOpen = new CheckExcelWorkBookOpen();
+                testOpen.TestAndThrowIfOpen(Preferences.ExcelWorkBookFullFileSpec);
                 excelFile = new ExcelFileData(Preferences.ExcelWorkBookFullFileSpec,
                     Preferences.ExcelWorkSheetName);
             }

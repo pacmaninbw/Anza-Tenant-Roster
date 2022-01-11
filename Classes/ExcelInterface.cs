@@ -71,29 +71,26 @@ namespace TenantRosterAutomation
             }
             catch (Exception ex)
             {
-#if DEBUG
-                string exSaveMsg = eSaveMsg + " : " + ex.Message;
-                MessageBox.Show(eSaveMsg);
-#endif
-                throw;
+                ExcelFileException efe = new ExcelFileException(eSaveMsg, ex);
+                throw efe;
             }
         }
 
         public List<string> GetWorkSheetNames()
         {
-            List<string> sheetNames = new List<string>();
+            List<string> sheetNames = null;
 
             StartExcelOpenWorkbook();
-            if (xlWorkbook == null)
+            if (xlWorkbook != null)
             {
-                return null;
-            }
+                sheetNames = new List<string>();
 
-            int SheetCount = xlWorkbook.Sheets.Count;
-            for (int i = 1; i <= SheetCount; ++i)
-            {
-                string sheetname = xlWorkbook.Sheets[i].Name;
-                sheetNames.Add(sheetname);
+                int SheetCount = xlWorkbook.Sheets.Count;
+                for (int i = 1; i <= SheetCount; ++i)
+                {
+                    string sheetname = xlWorkbook.Sheets[i].Name;
+                    sheetNames.Add(sheetname);
+                }
             }
 
             return sheetNames;
@@ -101,6 +98,7 @@ namespace TenantRosterAutomation
 
         public DataTable GetWorkSheetContents()
         {
+            StartExcelOpenWorkbook();
             int headerRow = 1;
             int firstColumn = 1;
             DataTable workSheetContents = ReadExcelIntoDatatble(headerRow, firstColumn);
@@ -148,22 +146,18 @@ namespace TenantRosterAutomation
 
         private void StartExcelOpenWorkbook()
         {
-            if (xlApp != null && xlWorkbook != null)
+            if (xlApp != null)
             {
                 return;
             }
 
-            if (xlApp == null)
-            {
-                xlApp = new Excel.Application();
-                xlApp.Visible = false;
-                xlApp.DisplayAlerts = false;
-            }
+            CheckExcelWorkBookOpen testOpen = new CheckExcelWorkBookOpen();
+            testOpen.TestAndThrowIfOpen(WorkbookName);
+            xlApp = new Excel.Application();
+            xlApp.Visible = false;
+            xlApp.DisplayAlerts = false;
 
-            if (xlWorkbook == null)
-            {
-                xlWorkbook = xlApp.Workbooks.Open(WorkbookName);
-            }
+            xlWorkbook = xlApp.Workbooks.Open(WorkbookName);
         }
 
         private void OpenTenantRosterWorkSheet()
@@ -172,7 +166,6 @@ namespace TenantRosterAutomation
             {
                 if (!string.IsNullOrEmpty(tenantRosterName))
                 {
-                    StartExcelOpenWorkbook();
                     List<string> sheetNames = GetWorkSheetNames();
                     bool exists = sheetNames.Any(x => x.Contains(tenantRosterName));
                     if (!exists)
@@ -186,14 +179,11 @@ namespace TenantRosterAutomation
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-#if DEBUG
-                string eMsg = "Function ExcelInterface.OpenTenantRosterWorkSheet() failed: "
-                    + e.Message;
-                MessageBox.Show(eMsg);
-#endif
-                throw;
+                string eMsg = "Function ExcelInterface.OpenTenantRosterWorkSheet() failed! ";
+                ExcelFileException efe = new ExcelFileException(eMsg, ex);
+                throw efe;
             }
         }
 
@@ -203,7 +193,6 @@ namespace TenantRosterAutomation
         {
             try
             {
-                StartExcelOpenWorkbook();
                 OpenTenantRosterWorkSheet();
                 if (tenantRoster == null)
                 {
@@ -220,9 +209,9 @@ namespace TenantRosterAutomation
             }
             catch (Exception ex)
             {
-                string eMsg = "In ExcelInterface::ReadExcelToDatatble error: " + ex.Message;
-                MessageBox.Show(ex.Message);
-                return null;
+                string eMsg = "In ExcelInterface::ReadExcelToDatatble error! ";
+                ExcelFileException efe = new ExcelFileException(eMsg, ex);
+                throw efe;
             }
         }
 
@@ -278,11 +267,9 @@ namespace TenantRosterAutomation
             }
             catch (Exception ex)
             {
-#if DEBUG
-                MessageBox.Show("Exception in ExcelInterface::getRowNumberForSave(): " +
-                    ex.Message);
-#endif
-                throw;
+                ExcelFileException efe = new ExcelFileException(
+                    "Exception in ExcelInterface::getRowNumberForSave(): ", ex);
+                throw efe;
             }
 
             return currentRow;
@@ -316,11 +303,9 @@ namespace TenantRosterAutomation
             }
             catch (Exception ex)
             {
-#if DEBUG
-                MessageBox.Show("Exception in ExcelInterface::GetUnitColumn(): " +
-                    ex.Message);
-#endif
-                throw;
+                ExcelFileException efe = new ExcelFileException(
+                    "Exception in ExcelInterface::GetUnitColumn()!", ex);
+                throw efe;
             }
 
             return UnitColumn;
@@ -356,11 +341,9 @@ namespace TenantRosterAutomation
             }
             catch (Exception ex)
             {
-#if DEBUG
-                MessageBox.Show("Exception in ExcelInterface::GetColumnNames(): " +
-                    ex.Message);
-#endif
-                throw;
+                ExcelFileException efe = new ExcelFileException(
+                    "Exception in ExcelInterface::GetColumnNames()!", ex);
+                throw efe;
             }
 
             return columnNames;

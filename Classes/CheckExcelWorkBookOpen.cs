@@ -3,10 +3,10 @@ using Excel = Microsoft.Office.Interop.Excel;
 
 namespace TenantRosterAutomation
 {
-    public static class ExcelWorkBookAlreadyOpen
+    public class CheckExcelWorkBookOpen
     {
         // Check if there is any instance of excel open using the workbook.
-        public static bool TestIfOpen(string workBook)
+        public static bool IsOpen(string workBook)
         {
             Excel.Application TestOnly = null;
             bool isOpened = true;
@@ -34,16 +34,25 @@ namespace TenantRosterAutomation
         }
 
         // Common error message to use when the excel file is op in another app.
-        public static string ReportOpen()
+        public string ReportOpen()
         {
             string alreadyOpen = "The excel workbook " +
                 Globals.Preferences.ExcelWorkBookFullFileSpec +
                     " is alread open in another application. \n" +
                     "Please save your changes in the other application and close the " +
-                    " workbook and then try this operation again or restart this application.";
+                    "workbook and then try this operation again or restart this application.";
 
             return alreadyOpen;
         }
 
+        public void TestAndThrowIfOpen(string workBook)
+        {
+            if (IsOpen(workBook))
+            {
+                AlreadyOpenInExcelException alreadOpen =
+                    new AlreadyOpenInExcelException(ReportOpen());
+                throw alreadOpen;
+            }
+        }
     }
 }
