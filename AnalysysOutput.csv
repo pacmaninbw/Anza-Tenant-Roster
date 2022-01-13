@@ -1,0 +1,491 @@
+Scope,Project,Namespace,Type,Member,Maintainability Index,Cyclomatic Complexity,Depth of Inheritance,Class Coupling,Lines of Source code,Lines of Executable code
+Assembly,TenantRosterAutomation (Release), , , ,76,435,7,130,3806,1548
+Namespace,TenantRosterAutomation (Release),TenantRosterAutomation, , ,76,429,7,119,3707,1531
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,EditPreferencesDlg,InitializeComponent() : void,25,1,,13,217,156
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,AddOrEditResidentDlg,InitializeComponent() : void,25,1,,10,238,162
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PrintMailboxListsDlg,InitializeComponent() : void,32,1,,12,128,91
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,DeleteRenterDlg,InitializeComponent() : void,34,1,,12,118,81
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,RentRosterApp,InitializeComponent() : void,37,1,,9,94,63
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ApartmentNumberVerifier,InitializeComponent() : void,45,1,,10,55,33
+Type,TenantRosterAutomation (Release),TenantRosterAutomation,AddOrEditResidentDlg, ,51,15,7,20,349,199
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,TenantDataTable,"UdateTenantDataTable(int, Tenant) : bool",52,1,,4,31,20
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PrintMailboxListsDlg,printAndOrSaveMailList(int) : void,53,10,,7,30,17
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelInterface,SaveEdits(List<Apartment>) : void,53,3,,10,39,20
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,MSWordInterface,"CreateMailistPrintAndOrSave(string, MailboxData, bool, bool, bool, bool) : bool",53,2,,8,38,19
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,MSWordInterface,"AddTitleToMailBoxList(Document, int, bool) : void",54,2,,8,23,17
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ReportCurrentStatusWindow,InitializeComponent() : void,55,1,,8,33,17
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,GetPreferenceValues(string[]) : bool,56,10,,5,54,12
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PropertyComplex,CreateBuildingList(List<BuildingAndApartment>) : void,56,5,,4,32,15
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PropertyComplex,"VerifyApartmentNumber(string, int) : PropertyComplex.ApartmentNumberValid",56,5,,3,34,16
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,SavePreferencesToFile(string) : bool,57,4,,3,30,15
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelFileData,GetActiveWorkSheetContents(bool) : DataTable,57,3,,5,36,15
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,AddOrEditResidentDlg,"AddNewResident_Form_Load(object, EventArgs) : void",57,2,,5,18,13
+Type,TenantRosterAutomation (Release),TenantRosterAutomation,EditPreferencesDlg, ,59,30,7,25,412,213
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,MSWordInterface,"FillFloor1Stand2Nd(MailboxData, int, Table) : void",59,4,,5,24,12
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelInterface,OpenTenantRosterWorkSheet() : void,59,3,,11,26,12
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PropertyComplex,"PropertyComplex(string, DataTable)",59,2,,5,21,12
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,AddOrEditResidentDlg,"ANR_SaveNewTenant_BTN_Click(object, EventArgs) : void",59,1,,5,14,11
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelInterface,"UpdateColumnData(Apartment, List<string>) : void",59,1,,4,15,11
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,TenantDataTable,FillTenantFromDataRow(DataRow[]) : Tenant,59,1,,3,18,11
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelInterface,GetUnitColumn() : Range,60,3,,7,28,11
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,CheckExcelWorkBookOpen,IsOpen(string) : bool,60,2,,4,27,12
+Type,TenantRosterAutomation (Release),TenantRosterAutomation,PrintMailboxListsDlg, ,61,34,7,28,312,145
+Type,TenantRosterAutomation (Release),TenantRosterAutomation,DeleteRenterDlg, ,61,18,7,22,220,111
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelInterface,Dispose(bool) : void,61,6,,4,28,12
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PrintMailboxListsDlg,"PrintMailboxLists_Form_Load(object, EventArgs) : void",61,3,,10,20,10
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,RentRosterApp,"RentRosterApp_Load(object, EventArgs) : void",61,3,,5,20,10
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ReportCurrentStatusWindow,"Form_CurrentProgressStatus_Load(object, EventArgs) : void",61,1,,6,12,9
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ApartmentNumberVerifier,VerifyApartmentNumber() : void,62,6,,4,38,8
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Globals,AdvancedInitialization() : bool,62,6,,4,21,9
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,EditPreferencesDlg,"EditPreferencesDlg_Load(object, EventArgs) : void",62,4,,8,22,8
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,MSWordInterface,"CreateAndFormatTenatTable(int, int, Document, Application) : Table",62,2,,12,15,8
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,MSWordInterface,"AddTenantTableToMailBoxList(Document, MailboxData, Application) : void",62,2,,7,20,9
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelInterface,"ReadExcelIntoDatatble(int, int) : DataTable",62,2,,5,27,11
+Type,TenantRosterAutomation (Release),TenantRosterAutomation,RentRosterApp, ,63,16,7,22,221,103
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelInterface,"AddTenantDataToTenantTable(Range, DataTable, int, int) : void",63,3,,4,18,8
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelInterface,GetWorkSheetNames() : List<string>,63,3,,3,19,9
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,MSWordInterface,"FillThirdFloor(MailboxData, int, Application, Table) : void",63,2,,9,13,8
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelInterface,FindRowInWorkSheetForUpdate(int) : Range,63,2,,8,25,9
+Type,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelInterface, ,64,44,1,34,368,148
+Type,TenantRosterAutomation (Release),TenantRosterAutomation,MSWordInterface, ,64,25,1,33,226,105
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,EditPreferencesDlg,fillSheetSelectorListBox() : void,64,3,,5,19,8
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelFileData,SaveChanges(List<Apartment>) : void,64,3,,5,28,9
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelInterface,StartExcelOpenWorkbook() : void,64,2,,5,18,8
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelFileData,"ExcelFileData(string, string)",64,2,,4,16,9
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,TenantDataTable,GetTenant(int) : Tenant,64,2,,3,20,9
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PropertyComplex,CreateBuildAndApartmentFromDataRow(DataRow) : BuildingAndApartment,64,1,,3,17,8
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,DeleteRenterDlg,"DeleteRenter_Load(object, EventArgs) : void",65,3,,5,13,7
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PropertyComplex,CreateBuildingAndApartmentsList(DataTable) : List<BuildingAndApartment>,65,3,,5,17,8
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,ConvertandTestFileVersion(string) : void,65,3,,3,23,8
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelInterface,GetColumnNames() : List<string>,65,2,,6,21,8
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,AddOrEditResidentDlg,SetUpApartmentAddressLabel() : void,65,2,,5,16,7
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,DeleteRenterDlg,SetUpApartmentAddressLabel() : void,65,2,,5,16,7
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,EditPreferencesDlg,"findTenantRosterExcelFile(object, EventArgs) : void",65,2,,5,13,8
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PrintSavePreference,InitDictionaries() : void,65,1,,2,12,8
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Tenant,InitAllFields() : void,65,1,,0,12,9
+Type,TenantRosterAutomation (Release),TenantRosterAutomation,TenantDataTable, ,66,12,1,8,125,58
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,InitDictionaries() : void,66,3,,1,17,7
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,"CopyValues(UserPreferences, bool) : void",66,2,,1,11,7
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PrintMailboxListsDlg,"PML_SaveAndPrint_Button_Click(object, EventArgs) : void",67,3,,4,19,7
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Globals,CreateExcelDataFile() : ExcelFileData,67,2,,3,14,7
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,MSWordInterface,"FullFilePath(string, bool) : string",67,2,,1,14,7
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelFileData,GetWorkSheetCollection() : List<string>,68,2,,2,23,7
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,WritePreferencesToDisc(StreamWriter) : void,68,1,,3,10,5
+Type,TenantRosterAutomation (Release),TenantRosterAutomation,ReportCurrentStatusWindow, ,69,8,7,14,79,31
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,EditPreferencesDlg,"findDefaultFolderLocationExecute(object, EventArgs) : void",69,3,,5,13,5
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Globals,ReleaseAllModels(bool) : void,69,2,,4,10,6
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PropertyComplex,GetBuilding(string) : Building,69,2,,3,21,7
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,ReadPreferenceFile(string) : bool,69,2,,1,20,7
+Type,TenantRosterAutomation (Release),TenantRosterAutomation,ApartmentNumberVerifier, ,70,26,7,27,201,59
+Type,TenantRosterAutomation (Release),TenantRosterAutomation,CheckExcelWorkBookOpen, ,70,6,1,7,53,17
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,MailboxData,addApartmentData(Apartment) : void,70,4,,2,16,5
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,MSWordInterface,"PrintAndOrSave(Document, bool, bool, string) : object",70,3,,3,17,7
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,UserPreferences(string),70,3,,1,14,6
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelInterface,"CreateDataTableAddColumns(Range, int, int) : DataTable",70,2,,4,14,5
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PropertyComplex,FindBuildingByApartment(int) : string,71,3,,2,15,6
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,TenantDataTable,TenantDataTable(ExcelFileData),71,2,,4,11,5
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,TenantDataTable,SaveChanges() : bool,71,2,,3,12,6
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,MSWordInterface,"SaveFile(Document, string) : void",71,2,,2,16,5
+Type,TenantRosterAutomation (Release),TenantRosterAutomation,Program, ,71,1,1,8,34,6
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Program,Main() : void,71,1,,8,31,6
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,MSWordInterface,"FormatDocMargins(Document, Application) : void",71,1,,3,7,4
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,CommonInitialization() : void,71,1,,1,9,6
+Type,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences, ,72,49,1,8,305,100
+Type,TenantRosterAutomation (Release),TenantRosterAutomation,PropertyComplex, ,72,36,1,14,210,83
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelInterface,"GetColumnNumber(string, List<string>) : int",72,3,,1,15,6
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelInterface,"ExcelInterface(string, string)",72,2,,2,12,5
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Globals,ConstructComplexAndReport(TenantDataTable) : void,72,1,,4,9,5
+Type,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelFileData, ,73,22,1,7,138,47
+Type,TenantRosterAutomation (Release),TenantRosterAutomation,Globals, ,73,19,1,7,115,44
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PropertyComplex,GetMailBoxList(Building) : MailboxData,73,2,,4,11,5
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,CorrectForMuliWordNames(string[]) : string,73,2,,0,10,4
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Globals,InitializeAllModels() : bool,73,1,,1,10,5
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ApartmentNumberVerifier,ErrorActions(string) : void,74,1,,5,7,4
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,MailboxData,MailboxData(Building),74,1,,3,7,4
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Building,"Building(int, string, List<int>)",74,1,,1,7,4
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelInterface,GetWorkSheetContents() : DataTable,74,1,,1,9,5
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Globals,ReInitizeAllModels(UserPreferences) : bool,74,1,,1,11,5
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,RentRosterApp,InitializedNowResetButtons() : void,74,1,,1,7,4
+Type,TenantRosterAutomation (Release),TenantRosterAutomation.Properties,Resources, ,75,5,1,10,56,13
+Member,TenantRosterAutomation (Release),TenantRosterAutomation.Properties,Resources,ResourceManager : ResourceManager,75,2,,5,16,6
+Member,TenantRosterAutomation (Release),TenantRosterAutomation.Properties,Resources,ResourceManager.get() : ResourceManager,75,2,,3,9,4
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Tenant,MailboxListOccupantEntry() : string,75,2,,0,11,4
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,EditPreferencesDlg,"EP_SavePreferences_BTN_Click(object, EventArgs) : void",75,1,,4,10,5
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ApartmentNumberVerifier,ExecuteNextgAction(int) : void,76,5,,8,28,2
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PrintMailboxListsDlg,printAndOrSaveMailList(string) : void,76,2,,2,12,4
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,MSWordInterface,"MailBoxListEntry(List<Apartment>, int) : string",76,1,,3,7,3
+Type,TenantRosterAutomation (Release),TenantRosterAutomation,PrintSavePreference, ,77,4,1,2,49,13
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PrintMailboxListsDlg,"SelectBuilding2Print_listBox_SelectedIndexChanged(object, EventArgs) : void",77,2,,3,8,3
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,RentRosterApp,"RR_Quit_BTN_Click(object, EventArgs) : void",77,1,,5,13,5
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,MSWordInterface,"AssignCellValueAndFormat(Cell, string) : void",77,1,,4,6,3
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,DeleteRenterDlg,"DR_Renter2DeleteYes_RB_CheckedChanged(object, EventArgs) : void",77,1,,3,6,3
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,DeleteRenterDlg,"DR_Renter2DeleteNo_RB_CheckedChanged(object, EventArgs) : void",77,1,,3,6,3
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Building,"Building(int, string)",77,1,,1,6,3
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,TenantDataTable,DeleteTenant(int) : void,78,1,,3,6,3
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,AddOrEditResidentDlg,Dispose(bool) : void,79,3,,2,12,3
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ApartmentNumberVerifier,Dispose(bool) : void,79,3,,2,12,3
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,DeleteRenterDlg,Dispose(bool) : void,79,3,,2,12,3
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,EditPreferencesDlg,Dispose(bool) : void,79,3,,2,12,3
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PrintMailboxListsDlg,Dispose(bool) : void,79,3,,2,12,3
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,RentRosterApp,Dispose(bool) : void,79,3,,2,12,3
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ReportCurrentStatusWindow,Dispose(bool) : void,79,3,,2,12,3
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,CheckExcelWorkBookOpen,"TestAndThrowIfOpen(string, bool) : void",79,2,,1,9,3
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PropertyComplex,GetBuilding(int) : Building,79,1,,3,8,3
+Type,TenantRosterAutomation (Release),TenantRosterAutomation,BuildingAndApartment, ,79,1,1,0,16,3
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,BuildingAndApartment,"BuildingAndApartment(int, int, string)",79,1,,0,6,3
+Namespace,TenantRosterAutomation (Release),TenantRosterAutomation.Properties, , ,80,6,3,12,99,17
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,CheckExcelWorkBookOpen,ReportOpen(bool) : string,80,2,,2,12,2
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelFileData,AddOrChangeWorkSheets(List<string>) : void,80,2,,1,8,3
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,RentRosterApp,"AddNewResident_Button_Click(object, EventArgs) : void",80,1,,3,6,3
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,RentRosterApp,"DeleteRenter_Button_Click(object, EventArgs) : void",80,1,,3,6,3
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,EditPreferencesDlg,EditPreferencesDlg(),80,1,,2,6,3
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,EditPreferencesDlg,"EP_RentRosterSheetName_LISTBOX_SelectedIndexChanged(object, EventArgs) : void",81,1,,4,5,2
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,DeleteRenterDlg,DeleteRenterDlg(),81,1,,1,6,3
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Tenant,"Tenant(string, string)",81,1,,0,6,3
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Globals,SaveTenantData() : void,82,3,,1,7,2
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ApartmentNumberVerifier,"ApartmentNumberVerifier_Form_Load(object, EventArgs) : void",82,1,,4,5,2
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,TenantDataTable,"AddEditTenant(int, Tenant) : void",82,1,,3,5,2
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelInterface,"UpdateColumn(Range, string, string, List<string>) : void",82,1,,2,6,2
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,RentRosterApp,"RR_SAVEEDITS_BTN_Click(object, EventArgs) : void",83,1,,5,11,3
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Apartment,Apartment(int),83,1,,3,5,2
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Building,AddApartmentNumber(int) : void,85,2,,1,7,2
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Globals,SavePreferences() : void,85,2,,1,7,2
+Type,TenantRosterAutomation (Release),TenantRosterAutomation.Properties,Settings, ,85,1,3,4,15,4
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PrintSavePreference,ConvertPrintSaveToString(PrintSavePreference.PrintSave) : string,85,1,,2,8,2
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PrintSavePreference,ConvertStringToPrintSave(string) : PrintSavePreference.PrintSave,85,1,,2,8,2
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,SetPrintSave(PrintSavePreference.PrintSave) : void,85,1,,2,5,2
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Apartment,"Apartment(int, Tenant)",85,1,,1,5,2
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelInterface,GetExcelProcessID(Application) : int,85,1,,1,6,2
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,SetExcelWorkBookFullFileSpec(string) : void,85,1,,0,5,2
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,SetExcelWorkSheetName(string) : void,85,1,,0,5,2
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,SetDefaultSaveDirectory(string) : void,85,1,,0,5,2
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,fileValueIds : string[],85,0,,0,7,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PrintMailboxListsDlg,PrintSaveChange() : void,86,4,,2,17,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ApartmentNumberVerifier,"ANV_ApartmentNumber_TB_KeyDown(object, KeyEventArgs) : void",86,2,,2,7,2
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PrintMailboxListsDlg,PrintMailboxListsDlg(),86,1,,3,5,2
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelFileData,ChangeActiveWorkbook(string) : void,86,1,,0,5,2
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelFileData,ChangeActiveWorksheet(string) : void,86,1,,0,5,2
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,DeleteRenterDlg,"DR_DeleteRenter_BTN_Click(object, EventArgs) : void",88,1,,3,5,2
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,EditPreferencesDlg,"EP_Cancel_Button_Click(object, EventArgs) : void",88,1,,2,5,2
+Type,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelFileException, ,88,1,2,2,8,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,RentRosterApp,"PrintMailboxLists_Button_Click(object, EventArgs) : void",88,1,,2,5,2
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,RentRosterApp,"EditPreferences_BTN_Click(object, EventArgs) : void",88,1,,2,5,2
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ApartmentNumberVerifier,ApartmentNumberVerifier(),88,1,,1,5,2
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelFileException,"ExcelFileException(string, Exception)",88,1,,1,3,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,RentRosterApp,RentRosterApp(),88,1,,1,5,2
+Type,TenantRosterAutomation (Release),TenantRosterAutomation,MailboxData, ,89,14,1,3,40,10
+Type,TenantRosterAutomation (Release),TenantRosterAutomation,Building, ,89,13,1,1,47,13
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Tenant,mergedName() : string,89,2,,0,4,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,EditPreferencesDlg,"EP_FindRenterRoster_BTN_Click(object, EventArgs) : void",89,1,,1,5,2
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,EditPreferencesDlg,"EP_RentRosterLocation_TB_Click(object, EventArgs) : void",89,1,,1,5,2
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,UserPreferences(UserPreferences),89,1,,0,5,2
+Member,TenantRosterAutomation (Release),TenantRosterAutomation.Properties,Settings,defaultInstance : Settings,89,0,,1,1,1
+Type,TenantRosterAutomation (Release),TenantRosterAutomation,Tenant, ,90,25,1,0,55,18
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,EditPreferencesDlg,"EP_DefaultFileFolder_TB_TextChanged(object, EventArgs) : void",91,1,,3,4,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,EditPreferencesDlg,"EP_RentRosterLocation_TB_TextChanged(object, EventArgs) : void",91,1,,3,4,1
+Type,TenantRosterAutomation (Release),TenantRosterAutomation,Apartment, ,92,6,1,3,22,4
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Building,BuildingFromApartment(int) : string,92,2,,0,4,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,EditPreferencesDlg,"EP_PrintAndSave_RB_CheckedChanged(object, EventArgs) : void",93,1,,3,4,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,EditPreferencesDlg,"EP_SavelOnly_RB_CheckedChanged(object, EventArgs) : void",93,1,,3,4,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,EditPreferencesDlg,"EP_PrintOnly_RB_CheckedChanged(object, EventArgs) : void",93,1,,3,4,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ApartmentNumberVerifier,"ANV_ApartmentNumber_TB_TextChanged(object, EventArgs) : void",93,1,,2,4,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,RentRosterApp,"RentRosterApp_FormClosing(object, FormClosingEventArgs) : void",93,1,,2,6,2
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Building,IsApartmentInThisBuildin(int) : bool,93,1,,1,4,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelInterface,Dispose() : void,93,1,,1,5,2
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelInterface,"GetWindowThreadProcessId(int, int) : int",93,1,,1,2,2
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,MSWordInterface,MSWordInterface(UserPreferences),93,1,,1,4,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Globals,Save() : void,93,1,,0,5,2
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PropertyComplex,buildingList : List<Building>,93,0,,2,1,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,AddOrEditResidentDlg,components : IContainer,93,0,,1,1,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ApartmentNumberVerifier,components : IContainer,93,0,,1,1,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,DeleteRenterDlg,components : IContainer,93,0,,1,1,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,EditPreferencesDlg,components : IContainer,93,0,,1,1,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,MSWordInterface,oMissing : object,93,0,,1,1,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PrintMailboxListsDlg,components : IContainer,93,0,,1,1,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,RentRosterApp,components : IContainer,93,0,,1,1,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ReportCurrentStatusWindow,components : IContainer,93,0,,1,1,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Globals,preferencesFileName : string,93,0,,0,1,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,MSWordInterface,oEndOfDoc : object,93,0,,0,1,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PrintMailboxListsDlg,addDateToFileName : bool,93,0,,0,1,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PrintMailboxListsDlg,addDateToTitle : bool,93,0,,0,1,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,fileVersion : int,93,0,,0,1,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,fileVersionId : int,93,0,,0,1,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,printSaveOptionId : int,93,0,,0,1,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,defaultSaveDirId : int,93,0,,0,1,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,rentRosterFileId : int,93,0,,0,1,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,rentRosterSheetNameId : int,93,0,,0,1,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PrintMailboxListsDlg,"PML_PrintOnly_RB_CheckedChanged(object, EventArgs) : void",96,1,,2,4,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PrintMailboxListsDlg,"PML_SavelOnly_RB_CheckedChanged(object, EventArgs) : void",96,1,,2,4,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PrintMailboxListsDlg,"PML_PrintAndSave_RB_CheckedChanged(object, EventArgs) : void",96,1,,2,4,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,SetValuesToUndefinedState() : void,96,1,,1,4,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation.Properties,Resources,Culture.set(CultureInfo) : void,96,1,,1,4,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,MailboxData,MailboxData(int),96,1,,0,4,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,EditPreferencesDlg,"EP_DefaultFileFolder_TB_Click(object, EventArgs) : void",97,1,,1,4,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,EditPreferencesDlg,"EP_BrowseFolderLocation_BTN_Click(object, EventArgs) : void",97,1,,1,4,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation.Properties,Resources,Culture : CultureInfo,98,2,,3,16,4
+Member,TenantRosterAutomation (Release),TenantRosterAutomation.Properties,Resources,Resources(),98,1,,1,4,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,MailboxData,FirstFloor : List<Apartment>,100,2,,2,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,MailboxData,SecondFloor : List<Apartment>,100,2,,2,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,MailboxData,ThirdFloor : List<Apartment>,100,2,,2,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PropertyComplex,Buildings : List<Building>,100,2,,2,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,PrintSaveOptions : PrintSavePreference.PrintSave,100,2,,2,5,2
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,AddOrEditResidentDlg,CurrentTenant : Tenant,100,2,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Apartment,Tenant : Tenant,100,2,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ApartmentNumberVerifier,TenantData : Tenant,100,2,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ApartmentNumberVerifier,NextAction : ApartmentNumberVerifier.NextActionEnum,100,2,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,DeleteRenterDlg,CurrentTenant : Tenant,100,2,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PropertyComplex,BuildingAddressList : List<string>,100,2,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PropertyComplex,StreetNumbers : List<int>,100,2,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,AddOrEditResidentDlg,ApartmentNumber : int,100,2,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Apartment,ApartmentNumber : int,100,2,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Building,AddressStreetNumber : int,100,2,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Building,FullStreetAddress : string,100,2,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,DeleteRenterDlg,ApartmentNumber : int,100,2,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelFileData,ActiveWorkbookFullFileSpec : string,100,2,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelFileData,ActiveWorkSheet : string,100,2,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelFileData,WorkbookRead : bool,100,2,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelFileData,WorkbookOpen : bool,100,2,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelInterface,ExcelProcessId : int,100,2,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,MailboxData,AddressStreetNumber : int,100,2,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PropertyComplex,MinApartmentNumber : int,100,2,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PropertyComplex,MaxApartmentNumber : int,100,2,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ReportCurrentStatusWindow,MessageText : string,100,2,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Tenant,LastName : string,100,2,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Tenant,FirstName : string,100,2,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Tenant,CoTenantLastName : string,100,2,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Tenant,CoTenantFirstName : string,100,2,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Tenant,Email : string,100,2,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Tenant,HomePhone : string,100,2,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Tenant,RentersInsurancePolicy : string,100,2,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Tenant,LeaseStart : string,100,2,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Tenant,LeaseEnd : string,100,2,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,ExcelWorkBookFullFileSpec : string,100,2,,0,5,2
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,ExcelWorkSheetName : string,100,2,,0,5,2
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,DefaultSaveDirectory : string,100,2,,0,5,2
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,PreferenceValuesChanged : bool,100,2,,0,1,0
+Type,TenantRosterAutomation (Release),TenantRosterAutomation,AlreadyOpenInExcelException, ,100,1,2,2,8,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,MailboxData,FirstFloor.get() : List<Apartment>,100,1,,2,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,MailboxData,FirstFloor.set(List<Apartment>) : void,100,1,,2,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,MailboxData,SecondFloor.get() : List<Apartment>,100,1,,2,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,MailboxData,SecondFloor.set(List<Apartment>) : void,100,1,,2,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,MailboxData,ThirdFloor.get() : List<Apartment>,100,1,,2,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,MailboxData,ThirdFloor.set(List<Apartment>) : void,100,1,,2,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PropertyComplex,Buildings.get() : List<Building>,100,1,,2,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PropertyComplex,Buildings.set(List<Building>) : void,100,1,,2,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,AddOrEditResidentDlg,CurrentTenant.get() : Tenant,100,1,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,AddOrEditResidentDlg,CurrentTenant.set(Tenant) : void,100,1,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,AddOrEditResidentDlg,"ANR_Cancel_BTN_Click(object, EventArgs) : void",100,1,,1,4,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,AlreadyOpenInExcelException,AlreadyOpenInExcelException(string),100,1,,1,3,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Apartment,Tenant.get() : Tenant,100,1,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Apartment,Tenant.set(Tenant) : void,100,1,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ApartmentNumberVerifier,TenantData.get() : Tenant,100,1,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ApartmentNumberVerifier,TenantData.set(Tenant) : void,100,1,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ApartmentNumberVerifier,NextAction.get() : ApartmentNumberVerifier.NextActionEnum,100,1,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ApartmentNumberVerifier,NextAction.set(ApartmentNumberVerifier.NextActionEnum) : void,100,1,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ApartmentNumberVerifier,"APV_FindApartment_BTN_Click(object, EventArgs) : void",100,1,,1,4,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Building,ApartmentNumbers : List<int>,100,1,,1,1,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Building,ApartmentNumbers.get() : List<int>,100,1,,1,1,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Building,SortApartMentNumbers() : void,100,1,,1,4,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,DeleteRenterDlg,CurrentTenant.get() : Tenant,100,1,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,DeleteRenterDlg,CurrentTenant.set(Tenant) : void,100,1,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,DeleteRenterDlg,"DR_Cancel_BTN_Click(object, EventArgs) : void",100,1,,1,4,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,EditPreferencesDlg,"EP_SheetName_TB_Click(object, EventArgs) : void",100,1,,1,4,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PrintMailboxListsDlg,"AddDateToFileName_CB_CheckedChanged(object, EventArgs) : void",100,1,,1,4,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PrintMailboxListsDlg,"AddDateUnderAddress_CB_CheckedChanged(object, EventArgs) : void",100,1,,1,4,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PropertyComplex,BuildingAddressList.get() : List<string>,100,1,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PropertyComplex,BuildingAddressList.set(List<string>) : void,100,1,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PropertyComplex,StreetNumbers.get() : List<int>,100,1,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PropertyComplex,StreetNumbers.set(List<int>) : void,100,1,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PropertyComplex,AllApartmentNumbers : List<int>,100,1,,1,1,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PropertyComplex,AllApartmentNumbers.get() : List<int>,100,1,,1,1,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,TenantDataTable,TenantRoster : DataTable,100,1,,1,1,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,TenantDataTable,TenantRoster.get() : DataTable,100,1,,1,1,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,PrintSaveOptions.get() : PrintSavePreference.PrintSave,100,1,,1,1,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,PrintSaveOptions.set(PrintSavePreference.PrintSave) : void,100,1,,1,1,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation.Properties,Resources,Culture.get() : CultureInfo,100,1,,1,4,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,AddOrEditResidentDlg,ApartmentNumber.get() : int,100,1,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,AddOrEditResidentDlg,ApartmentNumber.set(int) : void,100,1,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,AddOrEditResidentDlg,AddOrEditResidentDlg(),100,1,,0,4,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Apartment,ApartmentNumber.get() : int,100,1,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Apartment,ApartmentNumber.set(int) : void,100,1,,0,1,0
+Type,TenantRosterAutomation (Release),TenantRosterAutomation,ApartmentNumberVerifier.NextActionEnum, ,100,1,1,0,6,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Building,AddressStreetNumber.get() : int,100,1,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Building,AddressStreetNumber.set(int) : void,100,1,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Building,FullStreetAddress.get() : string,100,1,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Building,FullStreetAddress.set(string) : void,100,1,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,DeleteRenterDlg,ApartmentNumber.get() : int,100,1,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,DeleteRenterDlg,ApartmentNumber.set(int) : void,100,1,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelFileData,ActiveWorkbookFullFileSpec.get() : string,100,1,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelFileData,ActiveWorkbookFullFileSpec.set(string) : void,100,1,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelFileData,ActiveWorkSheet.get() : string,100,1,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelFileData,ActiveWorkSheet.set(string) : void,100,1,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelFileData,WorkbookRead.get() : bool,100,1,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelFileData,WorkbookRead.set(bool) : void,100,1,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelFileData,WorkbookOpen.get() : bool,100,1,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelFileData,WorkbookOpen.set(bool) : void,100,1,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelInterface,ExcelProcessId.get() : int,100,1,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelInterface,ExcelProcessId.set(int) : void,100,1,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,MailboxData,AddressStreetNumber.get() : int,100,1,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,MailboxData,AddressStreetNumber.set(int) : void,100,1,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PrintSavePreference,PrintSavePreference(),100,1,,0,4,1
+Type,TenantRosterAutomation (Release),TenantRosterAutomation,PrintSavePreference.PrintSave, ,100,1,1,0,6,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PropertyComplex,PropertyName : string,100,1,,0,1,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PropertyComplex,PropertyName.get() : string,100,1,,0,1,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PropertyComplex,MinApartmentNumber.get() : int,100,1,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PropertyComplex,MinApartmentNumber.set(int) : void,100,1,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PropertyComplex,MaxApartmentNumber.get() : int,100,1,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PropertyComplex,MaxApartmentNumber.set(int) : void,100,1,,0,1,0
+Type,TenantRosterAutomation (Release),TenantRosterAutomation,PropertyComplex.ApartmentNumberValid, ,100,1,1,0,7,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ReportCurrentStatusWindow,MessageText.get() : string,100,1,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ReportCurrentStatusWindow,MessageText.set(string) : void,100,1,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ReportCurrentStatusWindow,ReportCurrentStatusWindow(),100,1,,0,4,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Tenant,LastName.get() : string,100,1,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Tenant,LastName.set(string) : void,100,1,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Tenant,FirstName.get() : string,100,1,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Tenant,FirstName.set(string) : void,100,1,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Tenant,CoTenantLastName.get() : string,100,1,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Tenant,CoTenantLastName.set(string) : void,100,1,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Tenant,CoTenantFirstName.get() : string,100,1,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Tenant,CoTenantFirstName.set(string) : void,100,1,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Tenant,Email.get() : string,100,1,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Tenant,Email.set(string) : void,100,1,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Tenant,HomePhone.get() : string,100,1,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Tenant,HomePhone.set(string) : void,100,1,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Tenant,RentersInsurancePolicy.get() : string,100,1,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Tenant,RentersInsurancePolicy.set(string) : void,100,1,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Tenant,LeaseStart.get() : string,100,1,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Tenant,LeaseStart.set(string) : void,100,1,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Tenant,LeaseEnd.get() : string,100,1,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Tenant,LeaseEnd.set(string) : void,100,1,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Tenant,Tenant(),100,1,,0,4,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,TenantDataTable,DataChanged : bool,100,1,,0,1,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,TenantDataTable,DataChanged.get() : bool,100,1,,0,1,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,HavePreferenceData : bool,100,1,,0,1,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,HavePreferenceData.get() : bool,100,1,,0,1,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,ExcelWorkBookFullFileSpec.get() : string,100,1,,0,1,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,ExcelWorkBookFullFileSpec.set(string) : void,100,1,,0,1,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,ExcelWorkSheetName.get() : string,100,1,,0,1,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,ExcelWorkSheetName.set(string) : void,100,1,,0,1,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,DefaultSaveDirectory.get() : string,100,1,,0,1,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,DefaultSaveDirectory.set(string) : void,100,1,,0,1,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,PreferenceValuesChanged.get() : bool,100,1,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,PreferenceValuesChanged.set(bool) : void,100,1,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,UserPreferences(),100,1,,0,4,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation.Properties,Settings,Default : Settings,100,1,,0,7,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation.Properties,Settings,Default.get() : Settings,100,1,,0,4,1
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PrintSavePreference,"PrintSaveToStringDic : Dictionary<PrintSavePreference.PrintSave, string>",100,0,,2,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PrintSavePreference,"StringToPrintSaveDic : Dictionary<string, PrintSavePreference.PrintSave>",100,0,,2,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,TenantDataTable,tenantUpdates : List<Apartment>,100,0,,2,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,AddOrEditResidentDlg,ANR_ApartmentNumber_Label : Label,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,AddOrEditResidentDlg,ANR_RenterLastName_Label : Label,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,AddOrEditResidentDlg,ANR_TenantLastName_TB : TextBox,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,AddOrEditResidentDlg,ANR_AlternateContact_Lab : Label,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,AddOrEditResidentDlg,ANR_HomePhone_LAB : Label,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,AddOrEditResidentDlg,ANR_RenterInsurancePolicy_LAB : Label,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,AddOrEditResidentDlg,ANR_MoveInDate_LAB : Label,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,AddOrEditResidentDlg,ANR_SaveNewTenant_BTN : Button,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,AddOrEditResidentDlg,ANR_CoTenantLastName_TB : TextBox,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,AddOrEditResidentDlg,ANR_CoTenantLastName_LAB : Label,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,AddOrEditResidentDlg,ANR_AlternateContact_TB : TextBox,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,AddOrEditResidentDlg,ANR_HomePhone_TB : TextBox,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,AddOrEditResidentDlg,ANR_RenterInsurance_TB : TextBox,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,AddOrEditResidentDlg,ANR_MoveInDate_TB : TextBox,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,AddOrEditResidentDlg,ANR_Cancel_BTN : Button,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,AddOrEditResidentDlg,ANR_TenantFirstName_LAB : Label,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,AddOrEditResidentDlg,ANR_TenantFirstName_TB : TextBox,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,AddOrEditResidentDlg,ANR_AdditionalOccupantFirstName_LAB : Label,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,AddOrEditResidentDlg,ANR_AdditionalOccupantFirstName_TB : TextBox,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,AddOrEditResidentDlg,ANR_LeaseEnd_LAB : Label,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,AddOrEditResidentDlg,ANR_LeaseEnd_TB : TextBox,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ApartmentNumberVerifier,ANV_FindApartment_BTN : Button,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ApartmentNumberVerifier,ANV_ApartmentNumber_TB : TextBox,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ApartmentNumberVerifier,ANV_ApartmentNumber_LAB : Label,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Building,aptNumbers : List<int>,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,DeleteRenterDlg,DR_AptNumber_LAB : Label,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,DeleteRenterDlg,DR_Renter2Delete_LAB : Label,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,DeleteRenterDlg,DR_TenantName_TB : TextBox,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,DeleteRenterDlg,DR_RenterToDeleteYN_GB : GroupBox,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,DeleteRenterDlg,DR_Renter2DeleteNo_RB : RadioButton,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,DeleteRenterDlg,DR_Renter2DeleteYes_RB : RadioButton,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,DeleteRenterDlg,DR_DeleteRenter_BTN : Button,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,DeleteRenterDlg,DR_Cancel_BTN : Button,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,EditPreferencesDlg,localPreferences : UserPreferences,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,EditPreferencesDlg,EP_PrintSave_GB : GroupBox,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,EditPreferencesDlg,EP_SavelOnly_RB : RadioButton,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,EditPreferencesDlg,EP_PrintAndSave_RB : RadioButton,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,EditPreferencesDlg,EP_PrintOnly_RB : RadioButton,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,EditPreferencesDlg,EP_SavePreferences_BTN : Button,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,EditPreferencesDlg,EP_RentRosterFile_GB : GroupBox,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,EditPreferencesDlg,EP_RentRosterSheetName_LISTBOX : ListBox,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,EditPreferencesDlg,EP_SheetName_TB : TextBox,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,EditPreferencesDlg,EP_SpreadSheetName_LAB : Label,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,EditPreferencesDlg,EP_FindTenantRoster_BTN : Button,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,EditPreferencesDlg,EP_RentRosterLocation_TB : TextBox,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,EditPreferencesDlg,EP_RentRosterLocation_Lab : Label,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,EditPreferencesDlg,EP_OutputFolder_GB : GroupBox,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,EditPreferencesDlg,EP_BrowseFolderLocation_BTN : Button,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,EditPreferencesDlg,EP_DefaultFileFolder_TB : TextBox,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,EditPreferencesDlg,EP_Cancel_BTN : Button,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelFileData,worksheetContents : DataTable,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelFileData,WorkSheets : List<string>,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelInterface,xlApp : Application,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelInterface,xlWorkbook : Workbook,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelInterface,tenantRoster : Worksheet,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Globals,TenantRoster : TenantDataTable,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Globals,Complex : PropertyComplex,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Globals,Preferences : UserPreferences,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,Globals,ExcelFile : ExcelFileData,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PrintMailboxListsDlg,printSave : PrintSavePreference.PrintSave,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PrintMailboxListsDlg,wordInteropMethods : MSWordInterface,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PrintMailboxListsDlg,SelectBuilding2Print_listBox : ListBox,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PrintMailboxListsDlg,AddDateToFileName_CB : CheckBox,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PrintMailboxListsDlg,AddDateUnderAddress_CB : CheckBox,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PrintMailboxListsDlg,PML_SaveAndPrint_Button : Button,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PrintMailboxListsDlg,PML_PrintOnly_RB : RadioButton,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PrintMailboxListsDlg,PML_PrintSave_GB : GroupBox,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PrintMailboxListsDlg,PML_SavelOnly_RB : RadioButton,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PrintMailboxListsDlg,PML_PrintAndSave_RB : RadioButton,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PropertyComplex,allApartmentNumbers : List<int>,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,RentRosterApp,PrintMailboxLists_Button : Button,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,RentRosterApp,AddNewResident_Button : Button,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,RentRosterApp,DeleteRenter_Button : Button,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,RentRosterApp,EditPreferences_BTN : Button,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,RentRosterApp,RR_Quit_BTN : Button,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,RentRosterApp,RR_SAVEEDITS_BTN : Button,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ReportCurrentStatusWindow,CPS_Message_TB : TextBox,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,TenantDataTable,tenantData : DataTable,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,TenantDataTable,ExcelFile : ExcelFileData,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,printSaveValue : PrintSavePreference.PrintSave,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,printSavePreference : PrintSavePreference,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,"FieldNameByIndex : Dictionary<int, string>",100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,"IndexFromFieldName : Dictionary<string, int>",100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation.Properties,Resources,resourceMan : ResourceManager,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation.Properties,Resources,resourceCulture : CultureInfo,100,0,,1,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ApartmentNumberVerifier,ApartmentNumber : int,100,0,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ApartmentNumberVerifier.NextActionEnum,ADD : ApartmentNumberVerifier.NextActionEnum,100,0,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ApartmentNumberVerifier.NextActionEnum,DELETE : ApartmentNumberVerifier.NextActionEnum,100,0,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ApartmentNumberVerifier.NextActionEnum,EDIT : ApartmentNumberVerifier.NextActionEnum,100,0,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,BuildingAndApartment,building : int,100,0,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,BuildingAndApartment,apartment : int,100,0,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,BuildingAndApartment,fullStreetAddress : string,100,0,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelInterface,disposed : bool,100,0,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelInterface,tenantRosterName : string,100,0,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,ExcelInterface,WorkbookName : string,100,0,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,MSWordInterface,defaultSaveFolder : string,100,0,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PrintMailboxListsDlg,selectedBuildings : string,100,0,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PrintSavePreference.PrintSave,PrintOnly : PrintSavePreference.PrintSave,100,0,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PrintSavePreference.PrintSave,PrintAndSave : PrintSavePreference.PrintSave,100,0,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PrintSavePreference.PrintSave,SaveOnly : PrintSavePreference.PrintSave,100,0,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PropertyComplex,propertyName : string,100,0,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PropertyComplex.ApartmentNumberValid,APARTMENT_NUMBER_OUT_OF_RANGE : PropertyComplex.ApartmentNumberValid,100,0,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PropertyComplex.ApartmentNumberValid,APARTMENT_NUMBER_NONNUMERIC : PropertyComplex.ApartmentNumberValid,100,0,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PropertyComplex.ApartmentNumberValid,APARTMENT_NUMBER_NOT_FOUND : PropertyComplex.ApartmentNumberValid,100,0,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,PropertyComplex.ApartmentNumberValid,APARTMENT_NUMBER_VALID : PropertyComplex.ApartmentNumberValid,100,0,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,RentRosterApp,globalsInitialized : bool,100,0,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,TenantDataTable,dataChanged : bool,100,0,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,preferenceFileExists : bool,100,0,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,preferenceFileRead : bool,100,0,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,preferencesFileName : string,100,0,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,workBookFullFileSpec : string,100,0,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,workSheetName : string,100,0,,0,1,0
+Member,TenantRosterAutomation (Release),TenantRosterAutomation,UserPreferences,defaultSaveFolder : string,100,0,,0,1,0
