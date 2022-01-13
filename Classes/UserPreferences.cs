@@ -252,6 +252,13 @@ namespace TenantRosterAutomation
             for (int i = 0; i < lineCount; ++i)
             {
                 string[] nameAndValue = lines[i].Split(' ');
+                // The first value in the line is the field index, if there
+                // is no second value then the preference is not specified
+                if (nameAndValue.Length < 2)
+                {
+                    return false;
+                }
+
                 int fieldIndex;
                 IndexFromFieldName.TryGetValue(nameAndValue[0], out fieldIndex);
                 switch (fieldIndex)
@@ -301,6 +308,13 @@ namespace TenantRosterAutomation
 
         private string CorrectForMuliWordNames(string[] lineValues)
         {
+            // The first value in the line is the field index, if there
+            // is no second value then the preference is not specified
+            if (lineValues.Length < 2)
+            {
+                return "";
+            }
+
             string wholeName = lineValues[1];
             for (int i = 2; i < lineValues.Length; i++)
             {

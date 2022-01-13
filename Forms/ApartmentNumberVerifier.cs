@@ -89,7 +89,6 @@ namespace TenantRosterAutomation
                 hasErrors = true;
             }
 
-
             return hasErrors;
         }
 
