@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace TenantRosterAutomation
 {
     // Perhaps this class and file should be renamed to GlobalModels

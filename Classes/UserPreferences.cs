@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 
-
 namespace TenantRosterAutomation
 {
     // Reads and writes the user preferences file. Stores the user
