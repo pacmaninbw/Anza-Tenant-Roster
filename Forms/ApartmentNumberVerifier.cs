@@ -55,11 +55,9 @@ namespace TenantRosterAutomation
             ActiveControl = ANV_ApartmentNumber_TB;
         }
 
-        private void VerifyApartmentNumber()
+        private bool ReportErrors(int aptNumber, PropertyComplex.ApartmentNumberValid validApartmentId)
         {
-            int aptNumber = 0;
-            PropertyComplex.ApartmentNumberValid validApartmentId =
-                Globals.Complex.VerifyApartmentNumber(ANV_ApartmentNumber_TB.Text, out aptNumber);
+            bool hasErrors = false;
             string errorMessage = null;
 
             switch (validApartmentId)
@@ -88,6 +86,21 @@ namespace TenantRosterAutomation
             if (!string.IsNullOrEmpty(errorMessage))
             {
                 ErrorActions(errorMessage);
+                hasErrors = true;
+            }
+
+
+            return hasErrors;
+        }
+
+        private void VerifyApartmentNumber()
+        {
+            int aptNumber = 0;
+            PropertyComplex.ApartmentNumberValid validApartmentId =
+                Globals.Complex.VerifyApartmentNumber(ANV_ApartmentNumber_TB.Text, out aptNumber);
+
+            if (ReportErrors(aptNumber, validApartmentId))
+            {
                 return;
             }
 
