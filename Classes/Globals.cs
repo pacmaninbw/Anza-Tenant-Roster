@@ -112,7 +112,7 @@ namespace TenantRosterAutomation
             if (!string.IsNullOrEmpty(Preferences.ExcelWorkBookFullFileSpec))
             {
                 CheckExcelWorkBookOpen testOpen = new CheckExcelWorkBookOpen();
-                testOpen.TestAndThrowIfOpen(Preferences.ExcelWorkBookFullFileSpec);
+                testOpen.TestAndThrowIfOpen(Preferences.ExcelWorkBookFullFileSpec, true);
                 testOpen = null;
                 excelFile = new ExcelFileData(Preferences.ExcelWorkBookFullFileSpec,
                     Preferences.ExcelWorkSheetName);

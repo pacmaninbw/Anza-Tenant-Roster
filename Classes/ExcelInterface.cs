@@ -132,6 +132,8 @@ namespace TenantRosterAutomation
                     {
                         xlApp.Quit();
                         xlApp = null;
+                        // Ensure that Excel exits after this class is disposed.
+                        // In some cases orphaned Excel proceses remain.
                         Process xlProcess = Process.GetProcessById(ExcelProcessId);
                         if (xlProcess != null)
                         {
@@ -141,22 +143,6 @@ namespace TenantRosterAutomation
                 }
                 disposed = true;
             }
-        }
-
-        // Updates a row of data in the excel file
-        private void UpdateColumnData(Apartment rowEdit, List<string> columnNames)
-        {
-            Tenant tenant = rowEdit.Tenant;
-            Excel.Range currentRow = FindRowInWorkSheetForUpdate(rowEdit.ApartmentNumber);
-            UpdateColumn(currentRow, "Last", tenant.LastName, columnNames);
-            UpdateColumn(currentRow, "First", tenant.FirstName, columnNames);
-            UpdateColumn(currentRow, "Add OCC First", tenant.CoTenantFirstName, columnNames);
-            UpdateColumn(currentRow, "Add OCC Last", tenant.CoTenantLastName, columnNames);
-            UpdateColumn(currentRow, "Ph #", tenant.HomePhone, columnNames);
-            UpdateColumn(currentRow, "Renters Ins", tenant.RentersInsurancePolicy, columnNames);
-            UpdateColumn(currentRow, "Lease Start", tenant.LeaseStart, columnNames);
-            UpdateColumn(currentRow, "Lease End", tenant.LeaseEnd, columnNames);
-            UpdateColumn(currentRow, "Email", tenant.Email, columnNames);
         }
 
         [DllImport("user32.dll")]
@@ -176,14 +162,31 @@ namespace TenantRosterAutomation
             }
 
             CheckExcelWorkBookOpen testOpen = new CheckExcelWorkBookOpen();
-            testOpen.TestAndThrowIfOpen(WorkbookName);
+            testOpen.TestAndThrowIfOpen(WorkbookName, false);
             xlApp = new Excel.Application();
             xlApp.Visible = false;
             xlApp.DisplayAlerts = false;
 
             xlWorkbook = xlApp.Workbooks.Open(WorkbookName);
 
+            // Retain the process ID so that the process can be killed later
             ExcelProcessId = GetExcelProcessID(xlApp);
+        }
+
+        // Updates a row of data in the excel file
+        private void UpdateColumnData(Apartment rowEdit, List<string> columnNames)
+        {
+            Tenant tenant = rowEdit.Tenant;
+            Excel.Range currentRow = FindRowInWorkSheetForUpdate(rowEdit.ApartmentNumber);
+            UpdateColumn(currentRow, "Last", tenant.LastName, columnNames);
+            UpdateColumn(currentRow, "First", tenant.FirstName, columnNames);
+            UpdateColumn(currentRow, "Add OCC First", tenant.CoTenantFirstName, columnNames);
+            UpdateColumn(currentRow, "Add OCC Last", tenant.CoTenantLastName, columnNames);
+            UpdateColumn(currentRow, "Ph #", tenant.HomePhone, columnNames);
+            UpdateColumn(currentRow, "Renters Ins", tenant.RentersInsurancePolicy, columnNames);
+            UpdateColumn(currentRow, "Lease Start", tenant.LeaseStart, columnNames);
+            UpdateColumn(currentRow, "Lease End", tenant.LeaseEnd, columnNames);
+            UpdateColumn(currentRow, "Email", tenant.Email, columnNames);
         }
 
         private void OpenTenantRosterWorkSheet()
@@ -374,6 +377,5 @@ namespace TenantRosterAutomation
 
             return columnNames;
         }
-
     }
 }

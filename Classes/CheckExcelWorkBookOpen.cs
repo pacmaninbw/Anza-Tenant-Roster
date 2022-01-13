@@ -16,7 +16,8 @@ namespace TenantRosterAutomation
             // Both of these exceptions indicate that the workbook isn't open.
             try
             {
-                TestOnly = (Excel.Application)System.Runtime.InteropServices.Marshal.GetActiveObject("Excel.Application");
+                TestOnly = (Excel.Application)System.Runtime.InteropServices.Marshal.GetActiveObject(
+                    "Excel.Application");
                 int lastSlash = workBook.LastIndexOf('\\');
                 string fileNameOnly = workBook.Substring(lastSlash + 1);
                 TestOnly.Workbooks.get_Item(fileNameOnly);
@@ -34,23 +35,24 @@ namespace TenantRosterAutomation
         }
 
         // Common error message to use when the excel file is op in another app.
-        public string ReportOpen()
+        public string ReportOpen(bool atStartUp)
         {
             string alreadyOpen = "The excel workbook " +
                 Globals.Preferences.ExcelWorkBookFullFileSpec +
                     " is alread open in another application. \n" +
                     "Please save your changes in the other application and close the " +
-                    "workbook and then try this operation again or restart this application.";
+                    "workbook and then" +
+                    (atStartUp ? " try this operation again." : " restart this application.");
 
             return alreadyOpen;
         }
 
-        public void TestAndThrowIfOpen(string workBook)
+        public void TestAndThrowIfOpen(string workBook, bool atStartUp)
         {
             if (IsOpen(workBook))
             {
                 AlreadyOpenInExcelException alreadOpen =
-                    new AlreadyOpenInExcelException(ReportOpen());
+                    new AlreadyOpenInExcelException(ReportOpen(atStartUp));
                 throw alreadOpen;
             }
         }
