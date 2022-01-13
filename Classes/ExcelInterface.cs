@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Windows;
 using Excel = Microsoft.Office.Interop.Excel;
 
@@ -22,6 +24,8 @@ namespace TenantRosterAutomation
         private bool disposed;
         private string tenantRosterName;
         private string WorkbookName;
+
+        public int ExcelProcessId { get; private set; }
 
         public ExcelInterface(string workBookName, string workSheetName)
         {
@@ -44,10 +48,10 @@ namespace TenantRosterAutomation
 
         public void SaveEdits(List<Apartment> tenantUpdates)
         {
+            ReportCurrentStatusWindow SaveStatus = new ReportCurrentStatusWindow();
             string eSaveMsg = "Can't save edits to " + WorkbookName;
             try
             {
-                ReportCurrentStatusWindow SaveStatus = new ReportCurrentStatusWindow();
                 SaveStatus.MessageText = "Saving updated tenants and apartments to Excel.";
                 SaveStatus.Show();
                 StartExcelOpenWorkbook();
@@ -69,8 +73,14 @@ namespace TenantRosterAutomation
                 xlWorkbook.Save();
                 SaveStatus.Close();
             }
+            catch (AlreadyOpenInExcelException)
+            {
+                SaveStatus.Close();
+                throw;
+            }
             catch (Exception ex)
             {
+                SaveStatus.Close();
                 ExcelFileException efe = new ExcelFileException(eSaveMsg, ex);
                 throw efe;
             }
@@ -122,6 +132,11 @@ namespace TenantRosterAutomation
                     {
                         xlApp.Quit();
                         xlApp = null;
+                        Process xlProcess = Process.GetProcessById(ExcelProcessId);
+                        if (xlProcess != null)
+                        {
+                            xlProcess.Kill();
+                        }
                     }
                 }
                 disposed = true;
@@ -144,6 +159,15 @@ namespace TenantRosterAutomation
             UpdateColumn(currentRow, "Email", tenant.Email, columnNames);
         }
 
+        [DllImport("user32.dll")]
+        static extern int GetWindowThreadProcessId(int hWnd, out int lpdwProcessId);
+        private int GetExcelProcessID(Excel.Application excelApp)
+        {
+            int processId;
+            GetWindowThreadProcessId(excelApp.Hwnd, out processId);
+            return processId;
+        }
+
         private void StartExcelOpenWorkbook()
         {
             if (xlApp != null)
@@ -158,6 +182,8 @@ namespace TenantRosterAutomation
             xlApp.DisplayAlerts = false;
 
             xlWorkbook = xlApp.Workbooks.Open(WorkbookName);
+
+            ExcelProcessId = GetExcelProcessID(xlApp);
         }
 
         private void OpenTenantRosterWorkSheet()

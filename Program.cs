@@ -1,10 +1,16 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace TenantRosterAutomation
 {
     static class Program
     {
+#if DEBUG
+        [DllImport("kernel32.dll")]
+        static extern bool AttachConsole(int dwProcessId);
+        private const int ATTACH_PARENT_PROCESS = -1;
+#endif
 
         /// <summary>
         /// The main entry point for the application.
@@ -12,6 +18,10 @@ namespace TenantRosterAutomation
         [STAThread]
         static void Main()
         {
+#if DEBUG
+            AttachConsole(ATTACH_PARENT_PROCESS);
+            Console.WriteLine("\nStarting TenantRosterAutomation Application");
+#endif
             try
             {
                 Application.EnableVisualStyles();

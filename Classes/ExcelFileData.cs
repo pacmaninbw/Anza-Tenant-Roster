@@ -63,6 +63,7 @@ namespace TenantRosterAutomation
                     try
                     {
                         WorkSheets = excelInterface.GetWorkSheetNames();
+                        excelInterface.Dispose();
                     }
                     catch (Exception)
                     {
@@ -93,6 +94,7 @@ namespace TenantRosterAutomation
                     try
                     {
                         excelInterface.SaveEdits(tenantEdits);
+                        excelInterface.Dispose();
                     }
                     catch (Exception)
                     {
@@ -124,9 +126,11 @@ namespace TenantRosterAutomation
                     try
                     {
                         worksheetContents = excelInterface.GetWorkSheetContents();
+                        excelInterface.Dispose();
                     }
                     catch (Exception)
                     {
+                        statusReport.Close();
                         excelInterface.Dispose();
                         throw;
                     }
