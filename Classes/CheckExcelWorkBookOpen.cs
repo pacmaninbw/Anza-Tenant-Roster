@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using Excel = Microsoft.Office.Interop.Excel;
 
 namespace TenantRosterAutomation
@@ -16,8 +17,7 @@ namespace TenantRosterAutomation
             // Both of these exceptions indicate that the workbook isn't open.
             try
             {
-                TestOnly = (Excel.Application)System.Runtime.InteropServices.Marshal.GetActiveObject(
-                    "Excel.Application");
+                TestOnly = (Excel.Application)Marshal.GetActiveObject("Excel.Application");
                 int lastSlash = workBook.LastIndexOf('\\');
                 string fileNameOnly = workBook.Substring(lastSlash + 1);
                 TestOnly.Workbooks.get_Item(fileNameOnly);
