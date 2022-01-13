@@ -50,6 +50,7 @@ namespace TenantRosterAutomation
         private void ErrorActions(string errorMessage)
         {
             ANV_ApartmentNumber_TB.BackColor = Color.Yellow;
+            ANV_ApartmentNumber_TB.Text = "";
             MessageBox.Show(errorMessage);
             ActiveControl = ANV_ApartmentNumber_TB;
         }
@@ -59,27 +60,43 @@ namespace TenantRosterAutomation
             int aptNumber = 0;
             PropertyComplex.ApartmentNumberValid validApartmentId =
                 Globals.Complex.VerifyApartmentNumber(ANV_ApartmentNumber_TB.Text, out aptNumber);
+            string errorMessage = null;
 
             switch (validApartmentId)
             {
                 case PropertyComplex.ApartmentNumberValid.APARTMENT_NUMBER_NONNUMERIC:
-                    ErrorActions("Please enter a number in the box.");
-                    return;
+                    errorMessage = "Please enter a number in the box.";
+                    break;
 
                 case PropertyComplex.ApartmentNumberValid.APARTMENT_NUMBER_OUT_OF_RANGE:
                     int minAptNo = Globals.Complex.MinApartmentNumber;
                     int maxAptNo = Globals.Complex.MaxApartmentNumber;
-                    string msg = "The apartment is out of range[" + minAptNo.ToString() +
+                    errorMessage = "The apartment number: " + aptNumber.ToString() +
+                        " is out of range[" + minAptNo.ToString() +
                         ", " + maxAptNo.ToString() + "] please enter a valid apartment number.";
-                    ErrorActions(msg);
-                    return;
+                    break;
 
                 case PropertyComplex.ApartmentNumberValid.APARTMENT_NUMBER_NOT_FOUND:
-                    ErrorActions("The number entered: " + aptNumber +
-                        " was not found in the list of apartments.");
-                    return;
+                    errorMessage = "The number entered: " + aptNumber +
+                        " was not found in the list of apartments.";
+                    break;
+
+                default:
+                    break;
             }
 
+            if (!string.IsNullOrEmpty(errorMessage))
+            {
+                ErrorActions(errorMessage);
+                return;
+            }
+
+            ExecuteNextgAction(aptNumber);
+            Close();
+        }
+
+        private void ExecuteNextgAction(int aptNumber)
+        {
             TenantData = Globals.TenantRoster.GetTenant(aptNumber);
 
             switch (NextAction)
@@ -105,7 +122,6 @@ namespace TenantRosterAutomation
                         " this action is not implemented.");
                     break;
             }
-            Close();
         }
     }
 }

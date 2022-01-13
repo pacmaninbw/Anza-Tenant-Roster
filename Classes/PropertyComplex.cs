@@ -103,15 +103,18 @@ namespace TenantRosterAutomation
 
             int aptNumber = 0;
             apartmentNumber = aptNumber;
-            bool IsNumeric;
-            if (!string.IsNullOrEmpty(aptNumberString))
-            {
-                IsNumeric = int.TryParse(aptNumberString, out aptNumber);
-            }
-            else
+
+            if (string.IsNullOrEmpty(aptNumberString))
             {
                 return ApartmentNumberValid.APARTMENT_NUMBER_NONNUMERIC;
             }
+
+            bool IsNumeric = int.TryParse(aptNumberString, out aptNumber);
+            if (!IsNumeric)
+            {
+                return ApartmentNumberValid.APARTMENT_NUMBER_NONNUMERIC;
+            }
+
             // 1/9/2022 Bugfix, some error messages contained the wrong value
             // for the apartment number.
             apartmentNumber = aptNumber;
