@@ -11,14 +11,6 @@ namespace TenantRosterAutomation
         public string FullStreetAddress { get; private set; }
         public List<int> ApartmentNumbers { get { return aptNumbers; } }
 
-        public Building(int addressStreetNumber, string StreetName, List<int> apartmentNumbers)
-        {
-            AddressStreetNumber = addressStreetNumber;
-            FullStreetAddress = addressStreetNumber.ToString() + " " + StreetName;
-            aptNumbers = apartmentNumbers;
-            aptNumbers.Sort();
-        }
-
         public Building(int addressStreetNumber, string StreetName)
         {
             AddressStreetNumber = addressStreetNumber;
@@ -49,5 +41,4 @@ namespace TenantRosterAutomation
             return (IsApartmentInThisBuildin(apartmentNumber)) ? FullStreetAddress : null;
         }
     }
-
 }

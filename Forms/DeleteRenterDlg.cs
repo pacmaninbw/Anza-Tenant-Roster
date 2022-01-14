@@ -53,8 +53,6 @@ namespace TenantRosterAutomation
             DR_AptNumber_LAB.Font = new Font("Arial", 12, FontStyle.Bold);
         }
 
-
-
         private void DR_Renter2DeleteYes_RB_CheckedChanged(object sender, EventArgs e)
         {
             DR_DeleteRenter_BTN.Enabled = true;

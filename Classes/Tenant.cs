@@ -18,13 +18,6 @@
             InitAllFields();
         }
 
-        public Tenant(string lastName, string homePhone)
-        {
-            InitAllFields();
-            LastName = lastName;
-            HomePhone = homePhone;
-        }
-
         public string MailboxListOccupantEntry()
         {
             string fullTenantNameString = LastName;

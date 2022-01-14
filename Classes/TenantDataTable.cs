@@ -22,11 +22,7 @@ namespace TenantRosterAutomation
         public TenantDataTable(ExcelFileData excelFile)
         {
             ExcelFile = excelFile;
-            if (string.IsNullOrEmpty(ExcelFile.ActiveWorkSheet))
-            {
-
-            }
-            tenantData = excelFile.GetActiveWorkSheetContents(false);
+            tenantData = excelFile.GetActiveWorkSheetContents();
             dataChanged = false;
             tenantUpdates = new List<Apartment>();
         }

@@ -105,7 +105,7 @@ namespace TenantRosterAutomation
             }
         }
 
-        public DataTable GetActiveWorkSheetContents(bool checkIfOPen)
+        public DataTable GetActiveWorkSheetContents()
         {
             if (worksheetContents == null)
             {

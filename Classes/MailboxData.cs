@@ -12,11 +12,6 @@ namespace TenantRosterAutomation
         public List<Apartment> SecondFloor { get; private set; }
         public List<Apartment> ThirdFloor { get; private set; }
 
-        public MailboxData(int addressStreetNumber)
-        {
-            AddressStreetNumber = addressStreetNumber;
-        }
-
         public MailboxData(Building building)
         {
             AddressStreetNumber = building.AddressStreetNumber;

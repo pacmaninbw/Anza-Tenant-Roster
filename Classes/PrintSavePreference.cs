@@ -49,6 +49,5 @@ namespace TenantRosterAutomation
             StringToPrintSaveDic.Add("Print_and_Save", PrintSave.PrintAndSave);
             StringToPrintSaveDic.Add("Save_Only", PrintSave.SaveOnly);
         }
-
     }
 }

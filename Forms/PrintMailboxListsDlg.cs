@@ -154,6 +154,5 @@ namespace TenantRosterAutomation
 
             psStatus.Close();
         }
-
     }
 }

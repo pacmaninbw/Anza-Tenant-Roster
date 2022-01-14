@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Windows;
 
 namespace TenantRosterAutomation
 {
@@ -57,28 +56,6 @@ namespace TenantRosterAutomation
             building = buildingList.Find(x => x.AddressStreetNumber == streetNumber);
 
             return building;
-        }
-
-        public Building GetBuilding(string streetNumber)
-        {
-            int iStreetNumber = 0;
-
-            try
-            {
-                if (Int32.TryParse(streetNumber, out iStreetNumber))
-                {
-                    return GetBuilding(iStreetNumber);
-                }
-                else
-                {
-                    MessageBox.Show("Non Numeric string passed into Building::GetBuilding().");
-                    return null;
-                }
-            }
-            catch (Exception)
-            {
-                return null;
-            }
         }
 
         public string FindBuildingByApartment(int apartmentNumber)
@@ -215,7 +192,5 @@ namespace TenantRosterAutomation
                 apartmentNumber, streetAddress);
             return currentApt;
         }
-
-
     }
 }

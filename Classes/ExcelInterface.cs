@@ -56,8 +56,6 @@ namespace TenantRosterAutomation
                 SaveStatus.Show();
                 StartExcelOpenWorkbook();
                 OpenTenantRosterWorkSheet();
-                xlApp.Visible = false;
-                xlApp.DisplayAlerts = false;
 
                 if (tenantRoster == null)
                 {

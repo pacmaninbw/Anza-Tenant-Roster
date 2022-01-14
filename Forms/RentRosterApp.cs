@@ -13,14 +13,6 @@ namespace TenantRosterAutomation
             InitializeComponent();
         }
 
-        public void InitializedNowResetButtons()
-        {
-            globalsInitialized = true;
-            PrintMailboxLists_Button.Enabled = false;
-            AddNewResident_Button.Enabled = false;
-            DeleteRenter_Button.Enabled = false;
-        }
-
         private void RentRosterApp_Load(object sender, EventArgs e)
         {
             RR_Quit_BTN.BackColor = Color.Red;

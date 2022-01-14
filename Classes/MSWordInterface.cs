@@ -66,6 +66,7 @@ namespace TenantRosterAutomation
             {
                 wordDoc.PrintOut();
             }
+
             if (save)
             {
                 SaveFile(wordDoc, fullFilePathName);
@@ -74,6 +75,7 @@ namespace TenantRosterAutomation
             {
                 DoNotSaveChanges = Word.WdSaveOptions.wdDoNotSaveChanges;
             }
+            
             return DoNotSaveChanges;
         }
 
