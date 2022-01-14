@@ -6,4 +6,6 @@ The tenant roster is a Microsoft Excel spreadsheet. I initially started and comp
 
 Testing is currently completely manual. There are no unit tests written yet.
 
-The code is now pending code review on https://codereview.stackexchange.com.
+The code is now pending code review on [Code Review](https://codereview.stackexchange.com/questions/272954/follow-up-refactored-c-tool-to-generate-ms-word-document-mailbox-list-from-ms).
+
+The final step will be to package this program so that the apartment management office can install it.
