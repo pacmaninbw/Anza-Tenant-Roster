@@ -39,7 +39,7 @@ namespace TenantRosterAutomation
             // 
             // PrintMailboxLists_Button
             // 
-            this.PrintMailboxLists_Button.Location = new System.Drawing.Point(35, 25);
+            this.PrintMailboxLists_Button.Location = new System.Drawing.Point(43, 25);
             this.PrintMailboxLists_Button.Name = "PrintMailboxLists_Button";
             this.PrintMailboxLists_Button.Size = new System.Drawing.Size(134, 23);
             this.PrintMailboxLists_Button.TabIndex = 0;
@@ -49,7 +49,7 @@ namespace TenantRosterAutomation
             // 
             // AddNewResident_Button
             // 
-            this.AddNewResident_Button.Location = new System.Drawing.Point(35, 54);
+            this.AddNewResident_Button.Location = new System.Drawing.Point(43, 54);
             this.AddNewResident_Button.Name = "AddNewResident_Button";
             this.AddNewResident_Button.Size = new System.Drawing.Size(134, 23);
             this.AddNewResident_Button.TabIndex = 1;
@@ -59,7 +59,7 @@ namespace TenantRosterAutomation
             // 
             // DeleteRenter_Button
             // 
-            this.DeleteRenter_Button.Location = new System.Drawing.Point(35, 83);
+            this.DeleteRenter_Button.Location = new System.Drawing.Point(43, 83);
             this.DeleteRenter_Button.Name = "DeleteRenter_Button";
             this.DeleteRenter_Button.Size = new System.Drawing.Size(134, 23);
             this.DeleteRenter_Button.TabIndex = 2;
@@ -69,7 +69,7 @@ namespace TenantRosterAutomation
             // 
             // EditPreferences_BTN
             // 
-            this.EditPreferences_BTN.Location = new System.Drawing.Point(35, 141);
+            this.EditPreferences_BTN.Location = new System.Drawing.Point(43, 141);
             this.EditPreferences_BTN.Name = "EditPreferences_BTN";
             this.EditPreferences_BTN.Size = new System.Drawing.Size(134, 23);
             this.EditPreferences_BTN.TabIndex = 4;
@@ -79,7 +79,7 @@ namespace TenantRosterAutomation
             // 
             // RR_Quit_BTN
             // 
-            this.RR_Quit_BTN.Location = new System.Drawing.Point(35, 170);
+            this.RR_Quit_BTN.Location = new System.Drawing.Point(43, 170);
             this.RR_Quit_BTN.Name = "RR_Quit_BTN";
             this.RR_Quit_BTN.Size = new System.Drawing.Size(134, 23);
             this.RR_Quit_BTN.TabIndex = 5;
@@ -89,7 +89,7 @@ namespace TenantRosterAutomation
             // 
             // RR_SAVEEDITS_BTN
             // 
-            this.RR_SAVEEDITS_BTN.Location = new System.Drawing.Point(35, 112);
+            this.RR_SAVEEDITS_BTN.Location = new System.Drawing.Point(43, 112);
             this.RR_SAVEEDITS_BTN.Name = "RR_SAVEEDITS_BTN";
             this.RR_SAVEEDITS_BTN.Size = new System.Drawing.Size(134, 23);
             this.RR_SAVEEDITS_BTN.TabIndex = 3;
@@ -101,16 +101,18 @@ namespace TenantRosterAutomation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(208, 221);
+            this.ClientSize = new System.Drawing.Size(226, 221);
+            this.ControlBox = false;
             this.Controls.Add(this.RR_SAVEEDITS_BTN);
             this.Controls.Add(this.RR_Quit_BTN);
             this.Controls.Add(this.EditPreferences_BTN);
             this.Controls.Add(this.DeleteRenter_Button);
             this.Controls.Add(this.AddNewResident_Button);
             this.Controls.Add(this.PrintMailboxLists_Button);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "RentRosterApp";
-            this.Text = "Anza Victoria Rent Roster Control Panel";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RentRosterApp_FormClosing);
+            this.Text = "Anza Victoria Tenant Roster Control Panel";
             this.Load += new System.EventHandler(this.RentRosterApp_Load);
             this.ResumeLayout(false);
 

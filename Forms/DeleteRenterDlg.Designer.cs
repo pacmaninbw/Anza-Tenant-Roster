@@ -119,18 +119,19 @@ namespace TenantRosterAutomation
             this.DR_Cancel_BTN.UseVisualStyleBackColor = true;
             this.DR_Cancel_BTN.Click += new System.EventHandler(this.DR_Cancel_BTN_Click);
             // 
-            // Form_DeleteRenter
+            // DeleteRenterDlg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(448, 160);
+            this.ControlBox = false;
             this.Controls.Add(this.DR_Cancel_BTN);
             this.Controls.Add(this.DR_DeleteRenter_BTN);
             this.Controls.Add(this.DR_RenterToDeleteYN_GB);
             this.Controls.Add(this.DR_TenantName_TB);
             this.Controls.Add(this.DR_Renter2Delete_LAB);
             this.Controls.Add(this.DR_AptNumber_LAB);
-            this.Name = "Form_DeleteRenter";
+            this.Name = "DeleteRenterDlg";
             this.Text = "Delete Renter";
             this.Load += new System.EventHandler(this.DeleteRenter_Load);
             this.DR_RenterToDeleteYN_GB.ResumeLayout(false);

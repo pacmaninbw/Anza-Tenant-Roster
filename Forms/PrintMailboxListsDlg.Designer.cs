@@ -130,7 +130,7 @@ namespace TenantRosterAutomation
             this.PML_PrintAndSave_RB.UseVisualStyleBackColor = true;
             this.PML_PrintAndSave_RB.CheckedChanged += new System.EventHandler(this.PML_PrintAndSave_RB_CheckedChanged);
             // 
-            // Form_PrintMailboxLists
+            // PrintMailboxListsDlg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -140,7 +140,9 @@ namespace TenantRosterAutomation
             this.Controls.Add(this.AddDateUnderAddress_CB);
             this.Controls.Add(this.AddDateToFileName_CB);
             this.Controls.Add(this.SelectBuilding2Print_listBox);
-            this.Name = "Form_PrintMailboxLists";
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "PrintMailboxListsDlg";
             this.Text = "Print Mailbox List(s)";
             this.Load += new System.EventHandler(this.PrintMailboxLists_Form_Load);
             this.PML_PrintSave_GB.ResumeLayout(false);

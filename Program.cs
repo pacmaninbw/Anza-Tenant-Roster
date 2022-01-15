@@ -27,12 +27,10 @@ namespace TenantRosterAutomation
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new RentRosterApp());
             }
-            catch (PreferenceFileException pfe)
+            catch (PreferenceFileException pfE)
             {
-                string title = pfe.Message;
-                string eMsg = pfe.InnerException.Message + "\n" + 
-                    pfe.InnerException.ToString();
-                MessageBox.Show(eMsg, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // These should all have been handled in RentRosterApp(), but report it
+                pfE.PfeReporter();
             }
             catch (AlreadyOpenInExcelException e)
             {

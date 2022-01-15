@@ -41,13 +41,16 @@ namespace TenantRosterAutomation
             this.CPS_Message_TB.Size = new System.Drawing.Size(531, 255);
             this.CPS_Message_TB.TabIndex = 0;
             // 
-            // Form_CurrentProgressStatus
+            // ReportCurrentStatusWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(606, 349);
+            this.ControlBox = false;
             this.Controls.Add(this.CPS_Message_TB);
-            this.Name = "Form_CurrentProgressStatus";
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "ReportCurrentStatusWindow";
             this.Text = "Please Wait";
             this.Load += new System.EventHandler(this.Form_CurrentProgressStatus_Load);
             this.ResumeLayout(false);

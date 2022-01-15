@@ -221,11 +221,14 @@ namespace TenantRosterAutomation
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(628, 530);
+            this.ControlBox = false;
             this.Controls.Add(this.EP_Cancel_BTN);
             this.Controls.Add(this.EP_OutputFolder_GB);
             this.Controls.Add(this.EP_RentRosterFile_GB);
             this.Controls.Add(this.EP_SavePreferences_BTN);
             this.Controls.Add(this.EP_PrintSave_GB);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "EditPreferencesDlg";
             this.Text = "Edit Preferences";
             this.Load += new System.EventHandler(this.EditPreferencesDlg_Load);

@@ -300,7 +300,7 @@ namespace TenantRosterAutomation
                     default:
                         PreferenceFileException unknownField = new
                             PreferenceFileException(
-                            "Reading preference file: Unknown field identity", PFEType.PFE_UNKNOWN_FIELD);
+                            "Reading preference file: Unknown field identity", PFEType.PFE_VERSION_ID_NEW);
                         throw unknownField;
                 }
             }

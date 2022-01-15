@@ -226,11 +226,12 @@ namespace TenantRosterAutomation
             this.ANR_LeaseEnd_TB.Size = new System.Drawing.Size(100, 20);
             this.ANR_LeaseEnd_TB.TabIndex = 9;
             // 
-            // Form_AddOrEditResident
+            // AddOrEditResidentDlg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(404, 312);
+            this.ControlBox = false;
             this.Controls.Add(this.ANR_LeaseEnd_TB);
             this.Controls.Add(this.ANR_LeaseEnd_LAB);
             this.Controls.Add(this.ANR_AdditionalOccupantFirstName_TB);
@@ -252,7 +253,9 @@ namespace TenantRosterAutomation
             this.Controls.Add(this.ANR_TenantLastName_TB);
             this.Controls.Add(this.ANR_RenterLastName_Label);
             this.Controls.Add(this.ANR_ApartmentNumber_Label);
-            this.Name = "Form_AddOrEditResident";
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "AddOrEditResidentDlg";
             this.Text = "Add or Edit Tenant";
             this.Load += new System.EventHandler(this.AddNewResident_Form_Load);
             this.ResumeLayout(false);

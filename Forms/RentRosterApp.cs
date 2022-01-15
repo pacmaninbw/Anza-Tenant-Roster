@@ -16,34 +16,31 @@ namespace TenantRosterAutomation
             try
             {
                 globalsInitialized = Globals.InitializeAllModels();
+                statusReport.Close();
+                InitializeComponent();
             }
             catch (PreferenceFileException pfE)
             {
+                statusReport.Close();
                 switch (pfE.PFEType)
                 {
+                    // This error is recoverable by editing the preferences and
+                    // then saving the preferenecs again.
                     case PFEType.PFE_VERSION_ID_OLD:
-                        MessageBox.Show(pfE.Message, "Preference File Out of Date: ",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        pfE.PfeReporter();
                         break;
 
+                    // nonrecoverale errors
                     default:
-                        // Since we want to rethrow the exception repackage all the inner
-                        // data
-                        PreferenceFileException fileVersion = new PreferenceFileException(
-                            "Preference File Error: " + pfE.Message, pfE.PFEType,
-                            pfE.InnerException);
-                        throw;
-                }
+                        pfE.PfeReporter();
+                        Close();
+                        break;                }
             }
             catch (Exception)
             {
                 statusReport.Close();
                 throw;
             }
-
-            statusReport.Close();
-
-            InitializeComponent();
         }
 
         private void RentRosterApp_Load(object sender, EventArgs e)
@@ -98,19 +95,35 @@ namespace TenantRosterAutomation
         private void EditPreferences_BTN_Click(object sender, EventArgs e)
         {
             EditPreferencesDlg preferences_dlg = new EditPreferencesDlg();
-            preferences_dlg.Show();
+            try {
+                preferences_dlg.Show();
+            }
+            catch (PreferenceFileException pfE)
+            {
+                preferences_dlg.Close();
+                pfE.PfeReporter();
+                Close();
+            }
         }
 
         private void RR_Quit_BTN_Click(object sender, EventArgs e)
         {
+            ReportCurrentStatusWindow SaveStatus = new ReportCurrentStatusWindow();
+            SaveStatus.MessageText = "Saving updated tenants and apartments to" +
+                " Excel. Exiting Application";
+            SaveStatus.Show();
+
             try
             {
                 Globals.Save();
+                SaveStatus.Close();
                 Globals.ReleaseAllModels();
                 Close();
             }
             catch (AlreadyOpenInExcelException ao)
             {
+                SaveStatus.Close();
+                // Recoverable error if the excel file is closed.
                 MessageBox.Show(ao.Message, "Excel File Already Open: ", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -129,20 +142,10 @@ namespace TenantRosterAutomation
             catch (AlreadyOpenInExcelException ao)
             {
                 SaveStatus.Close();
+                // Recoverable error if the excel file is closed.
                 MessageBox.Show(ao.Message, "Excel File Already Open: ",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void RentRosterApp_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            // Save all changes before quiting.
-            ReportCurrentStatusWindow SaveStatus = new ReportCurrentStatusWindow();
-            SaveStatus.MessageText = "Saving updated tenants and apartments to Excel.";
-            SaveStatus.Show();
-            Globals.Save();
-            Globals.ReleaseAllModels();
-            SaveStatus.Close();
         }
     }
 }

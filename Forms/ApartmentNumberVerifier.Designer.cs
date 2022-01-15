@@ -61,15 +61,18 @@ namespace TenantRosterAutomation
             this.ANV_ApartmentNumber_LAB.TabIndex = 2;
             this.ANV_ApartmentNumber_LAB.Text = "Enter Apartment Number";
             // 
-            // Form_ApartmentNumberVerifier
+            // ApartmentNumberVerifier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(180, 100);
+            this.ControlBox = false;
             this.Controls.Add(this.ANV_ApartmentNumber_LAB);
             this.Controls.Add(this.ANV_ApartmentNumber_TB);
             this.Controls.Add(this.ANV_FindApartment_BTN);
-            this.Name = "Form_ApartmentNumberVerifier";
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "ApartmentNumberVerifier";
             this.Text = "Apartment Number";
             this.Load += new System.EventHandler(this.ApartmentNumberVerifier_Form_Load);
             this.ResumeLayout(false);
