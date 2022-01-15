@@ -27,13 +27,22 @@ namespace TenantRosterAutomation
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new RentRosterApp());
             }
+            catch (PreferenceFileException pfe)
+            {
+                string title = pfe.Message;
+                string eMsg = pfe.InnerException.Message + "\n" + 
+                    pfe.InnerException.ToString();
+                MessageBox.Show(eMsg, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             catch (AlreadyOpenInExcelException e)
             {
-                MessageBox.Show(e.Message);
+                MessageBox.Show(e.Message, "Excel File Already Open:",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception e)
             {
-                MessageBox.Show("An unexpected error occurred: " + e.ToString());
+                MessageBox.Show("An unexpected error occurred: " + e.ToString(),
+                    "Unexpected Error: ", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

@@ -31,27 +31,6 @@ namespace TenantRosterAutomation
             WorkbookRead = false;
         }
 
-        public void AddOrChangeWorkSheets(List<string> workSheets)
-        {
-            if (WorkSheets != null)
-            {
-                WorkSheets = null;
-            }
-            WorkSheets = workSheets;
-        }
-
-        public void ChangeActiveWorkbook(string fullFileSpec)
-        {
-            ActiveWorkbookFullFileSpec = null;
-            ActiveWorkbookFullFileSpec = fullFileSpec;
-        }
-
-        public void ChangeActiveWorksheet(string newActiveWorkSheet)
-        {
-            ActiveWorkSheet = null;
-            ActiveWorkSheet = newActiveWorkSheet;
-        }
-
         public List<string> GetWorkSheetCollection()
         {
             if (WorkSheets == null)
@@ -63,7 +42,6 @@ namespace TenantRosterAutomation
                     try
                     {
                         WorkSheets = excelInterface.GetWorkSheetNames();
-                        excelInterface.Dispose();
                     }
                     catch (Exception)
                     {
@@ -94,7 +72,6 @@ namespace TenantRosterAutomation
                     try
                     {
                         excelInterface.SaveEdits(tenantEdits);
-                        excelInterface.Dispose();
                     }
                     catch (Exception)
                     {
@@ -119,23 +96,16 @@ namespace TenantRosterAutomation
                 using (ExcelInterface excelInterface = new ExcelInterface(
                     ActiveWorkbookFullFileSpec, ActiveWorkSheet))
                 {
-                    ReportCurrentStatusWindow statusReport = new ReportCurrentStatusWindow();
-                    statusReport.MessageText =
-                        "Starting Excel and Loading Tenant Data From Excel.";
-                    statusReport.Show();
                     try
                     {
                         worksheetContents = excelInterface.GetWorkSheetContents();
-                        excelInterface.Dispose();
                     }
                     catch (Exception)
                     {
-                        statusReport.Close();
                         excelInterface.Dispose();
                         throw;
                     }
 
-                    statusReport.Close();
                 }
             }
 

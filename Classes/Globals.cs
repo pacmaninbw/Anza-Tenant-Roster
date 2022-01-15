@@ -82,23 +82,14 @@ namespace TenantRosterAutomation
                     TenantRoster = new TenantDataTable(ExcelFile);
                     if (TenantRoster != null && TenantRoster.TenantRoster != null)
                     {
-                        ConstructComplexAndReport(TenantRoster);
+                        Complex = new PropertyComplex("Anza Victoria Apartments, LLC",
+                            TenantRoster.TenantRoster);
                     }
                     everthingInitialized = true;
                 }
             }
 
             return everthingInitialized;
-        }
-
-        private static void ConstructComplexAndReport(TenantDataTable TenantRoster)
-        {
-            ReportCurrentStatusWindow statusReport = new ReportCurrentStatusWindow();
-            statusReport.MessageText = "Constructing Apartment Complex Data.";
-            statusReport.Show();
-            Complex = new PropertyComplex("Anza Victoria Apartments, LLC",
-                TenantRoster.TenantRoster);
-            statusReport.Close();
         }
 
         private static ExcelFileData CreateExcelDataFile()

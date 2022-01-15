@@ -20,43 +20,32 @@ namespace TenantRosterAutomation
             defaultSaveFolder = inPreferences.DefaultSaveDirectory;
         }
 
-        public bool CreateMailistPrintAndOrSave(string documentName, MailboxData mailboxdata,
+        public void CreateMailistPrintAndOrSave(string documentName, MailboxData mailboxdata,
                 bool addDateToDocName, bool addDateToTitle, bool save, bool print
             )
         {
-            bool docGenerated = true;
             if (string.IsNullOrEmpty(documentName))
             {
-                return false;
+                return;
             }
 
             string fullFilePathName = FullFilePath(documentName, addDateToDocName);
 
             Word.Application wordApp = new Word.Application();
 
-            try
-            {
-                Word.Document wordDoc = new Word.Document();
-                wordApp.Visible = false;
-                wordDoc = wordApp.Documents.Add(ref oMissing, ref oMissing, ref oMissing, ref oMissing);
+            Word.Document wordDoc = new Word.Document();
+            wordApp.Visible = false;
+            wordDoc = wordApp.Documents.Add(ref oMissing, ref oMissing, ref oMissing, ref oMissing);
 
-                FormatDocMargins(ref wordDoc, wordApp);
-                AddTitleToMailBoxList(ref wordDoc, mailboxdata.AddressStreetNumber, addDateToTitle);
-                AddTenantTableToMailBoxList(ref wordDoc, mailboxdata, wordApp);
+            FormatDocMargins(ref wordDoc, wordApp);
+            AddTitleToMailBoxList(ref wordDoc, mailboxdata.AddressStreetNumber, addDateToTitle);
+            AddTenantTableToMailBoxList(ref wordDoc, mailboxdata, wordApp);
 
-                object DoNotSaveChanges = PrintAndOrSave(wordDoc, save, print, fullFilePathName);
-                wordDoc.Close(ref DoNotSaveChanges, ref oMissing, ref oMissing);
-            }
-            catch (Exception e)
-            {
-                string eMsg = "An error occurred while generating the Word Document for "
-                    + documentName + " : " + e.Message;
-                docGenerated = false;
-                MessageBox.Show(eMsg);
-            }
+            object DoNotSaveChanges = PrintAndOrSave(wordDoc, save, print, fullFilePathName);
+
+            wordDoc.Close(ref DoNotSaveChanges, ref oMissing, ref oMissing);
+
             wordApp.Quit();
-
-            return docGenerated;
         }
 
         private object PrintAndOrSave(Word.Document wordDoc, bool save, bool print, string fullFilePathName)

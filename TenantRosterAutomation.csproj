@@ -70,12 +70,15 @@
   <ItemGroup>
     <Compile Include="Classes\AlreadyOpenInExcelException.cs" />
     <Compile Include="Classes\BuildingAndApartment.cs" />
+    <Compile Include="Classes\ExcelFileCantOpenException.cs" />
     <Compile Include="Classes\ExcelFileData.cs" />
     <Compile Include="Classes\ExcelFileException.cs" />
     <Compile Include="Classes\CheckExcelWorkBookOpen.cs" />
     <Compile Include="Classes\Globals.cs" />
+    <Compile Include="Classes\PreferenceFileException.cs" />
     <Compile Include="Classes\PrintSavePreference.cs" />
     <Compile Include="Classes\TenantDataTable.cs" />
+    <Compile Include="Classes\WordException.cs" />
     <Compile Include="Forms\AddOrEditResidentDlg.cs">
       <SubType>Form</SubType>
     </Compile>

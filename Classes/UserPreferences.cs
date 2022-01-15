@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Windows.Forms;
 
 namespace TenantRosterAutomation
 {
@@ -95,10 +94,12 @@ namespace TenantRosterAutomation
 
                 return true;
             }
-            catch (IOException)
+            catch (IOException exio)
             {
-                MessageBox.Show("Unable to write to preferences file: " + preferencesFileName);
-                return false;
+                PreferenceFileException PFIESave = new PreferenceFileException(
+                    "Unable to write to preferences file: " + preferencesFileName,
+                    PFEType.PFE_CANT_SAVE, exio);
+                throw PFIESave;
             }
         }
 
@@ -207,18 +208,27 @@ namespace TenantRosterAutomation
                 {
                     if (testFileVersion < fileVersion)
                     {
-                        MessageBox.Show("Preference file version " + fileInput + " out of date, please edit preferences to add new field values.");
+                        PreferenceFileException fileVersion = new PreferenceFileException(
+                            "Preference file version " + fileInput +
+                            " out of date, please edit preferences to add new field values.",
+                            PFEType.PFE_VERSION_ID_OLD);
+                        throw fileVersion;
                     }
                     else
                     {
-                        MessageBox.Show("This version of the Tenant Roster tool does not support all the features of the tool that generated the file.");
+                        PreferenceFileException fileVersion = new PreferenceFileException(
+                            "This version of the Tenant Roster tool does not support" +
+                            " all the features of the tool that generated the file.",
+                            PFEType.PFE_VERSION_ID_NEW);
+                        throw fileVersion;
                     }
                 }
             }
             catch (FormatException e)
             {
                 string eMsg = "Reading preferences File Version failed: " + e.Message;
-                MessageBox.Show(eMsg);
+                PreferenceFileException fileVersion = new PreferenceFileException(eMsg, 
+                    PFEType.PFE_VERSION_FORMAT, e);
             }
         }
 
@@ -288,8 +298,10 @@ namespace TenantRosterAutomation
                         break;
 
                     default:
-                        MessageBox.Show("Reading preference file: Unknown field identity");
-                        return false;
+                        PreferenceFileException unknownField = new
+                            PreferenceFileException(
+                            "Reading preference file: Unknown field identity", PFEType.PFE_UNKNOWN_FIELD);
+                        throw unknownField;
                 }
             }
 

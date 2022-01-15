@@ -5,7 +5,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Windows;
 using Excel = Microsoft.Office.Interop.Excel;
 
 namespace TenantRosterAutomation
@@ -48,20 +47,18 @@ namespace TenantRosterAutomation
 
         public void SaveEdits(List<Apartment> tenantUpdates)
         {
-            ReportCurrentStatusWindow SaveStatus = new ReportCurrentStatusWindow();
             string eSaveMsg = "Can't save edits to " + WorkbookName;
             try
             {
-                SaveStatus.MessageText = "Saving updated tenants and apartments to Excel.";
-                SaveStatus.Show();
                 StartExcelOpenWorkbook();
                 OpenTenantRosterWorkSheet();
 
                 if (tenantRoster == null)
                 {
-                    MessageBox.Show(eSaveMsg + " can't open the excel worksheet "
-                        + tenantRosterName + " to save changes");
-                    return;
+                    eSaveMsg += " can't open the excel worksheet "
+                        + tenantRosterName + " to save changes";
+                    ExcelFileCantOpenException ExFCOE = new
+                        ExcelFileCantOpenException(eSaveMsg);
                 }
                 List<string> columnNames = GetColumnNames();
                 foreach (Apartment edit in tenantUpdates)
@@ -69,16 +66,17 @@ namespace TenantRosterAutomation
                     UpdateColumnData(edit, columnNames);
                 }
                 xlWorkbook.Save();
-                SaveStatus.Close();
             }
             catch (AlreadyOpenInExcelException)
             {
-                SaveStatus.Close();
+                throw;
+            }
+            catch (ExcelFileException)
+            {
                 throw;
             }
             catch (Exception ex)
             {
-                SaveStatus.Close();
                 ExcelFileException efe = new ExcelFileException(eSaveMsg, ex);
                 throw efe;
             }
@@ -197,14 +195,17 @@ namespace TenantRosterAutomation
                     bool exists = sheetNames.Any(x => x.Contains(tenantRosterName));
                     if (!exists)
                     {
-                        MessageBox.Show("The workbook " + WorkbookName + " does not contain the worksheet " + tenantRosterName);
-                        tenantRoster = null;
+                        ExcelFileException CantFind = new ExcelFileException(
+                            "The workbook " + WorkbookName +
+                            " does not contain the worksheet " + tenantRosterName);
+                        throw CantFind;
                     }
-                    else
-                    {
-                        tenantRoster = xlWorkbook.Worksheets[tenantRosterName];
-                    }
+                    tenantRoster = xlWorkbook.Worksheets[tenantRosterName];
                 }
+            }
+            catch (ExcelFileException)
+            {
+                throw;
             }
             catch (Exception ex)
             {

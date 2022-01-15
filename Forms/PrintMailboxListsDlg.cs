@@ -147,8 +147,19 @@ namespace TenantRosterAutomation
                 MailboxData mailboxList = Globals.Complex.GetMailBoxList(building);
                 if (mailboxList != null)
                 {
-                    wordInteropMethods.CreateMailistPrintAndOrSave(documentName,
-                        mailboxList, addDateToFileName, addDateToTitle, save, print);
+                    try
+                    {
+                        wordInteropMethods.CreateMailistPrintAndOrSave(documentName,
+                            mailboxList, addDateToFileName, addDateToTitle, save, print);
+                    }
+                    catch (Exception e)
+                    {
+                        psStatus.Close();
+                        string eMsg = "An error occurred while generating the Word Document for "
+                            + documentName + " : " + e.Message;
+                        WordException wordException = new WordException(eMsg, e);
+                        throw wordException;
+                    }
                 }
             }
 

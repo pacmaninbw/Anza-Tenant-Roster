@@ -51,7 +51,8 @@ namespace TenantRosterAutomation
         {
             ANV_ApartmentNumber_TB.BackColor = Color.Yellow;
             ANV_ApartmentNumber_TB.Text = "";
-            MessageBox.Show(errorMessage);
+            MessageBox.Show(errorMessage, "Error in Apartment Number:",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
             ActiveControl = ANV_ApartmentNumber_TB;
         }
 
@@ -131,7 +132,8 @@ namespace TenantRosterAutomation
                 default:
                     MessageBox.Show("Programmer error: NextAction = " +
                         NextAction.ToString() +
-                        " this action is not implemented.");
+                        " this action is not implemented.",
+                        "Unknown Next Action : ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
             }
         }
