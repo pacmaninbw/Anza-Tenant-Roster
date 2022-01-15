@@ -37,6 +37,7 @@ namespace TenantRosterAutomation
         {
             ANV_FindApartment_BTN.Enabled = false;
             ANV_ApartmentNumber_TB.KeyDown += new KeyEventHandler(ANV_ApartmentNumber_TB_KeyDown);
+            ANV_Cancel_BTN.BackColor = Color.Red;
         }
 
         private void ANV_ApartmentNumber_TB_KeyDown(object sender, KeyEventArgs e)
@@ -136,6 +137,11 @@ namespace TenantRosterAutomation
                         "Unknown Next Action : ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     break;
             }
+        }
+
+        private void ANV_Cancel_BTN_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

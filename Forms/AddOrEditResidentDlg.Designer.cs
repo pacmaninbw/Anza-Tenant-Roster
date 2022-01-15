@@ -76,6 +76,7 @@ namespace TenantRosterAutomation
             this.ANR_TenantLastName_TB.Name = "ANR_TenantLastName_TB";
             this.ANR_TenantLastName_TB.Size = new System.Drawing.Size(200, 20);
             this.ANR_TenantLastName_TB.TabIndex = 2;
+            this.ANR_TenantLastName_TB.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Generic_TB_KeyDown_Enter);
             // 
             // ANR_AlternateContact_Lab
             // 
@@ -130,6 +131,7 @@ namespace TenantRosterAutomation
             this.ANR_CoTenantLastName_TB.Name = "ANR_CoTenantLastName_TB";
             this.ANR_CoTenantLastName_TB.Size = new System.Drawing.Size(200, 20);
             this.ANR_CoTenantLastName_TB.TabIndex = 3;
+            this.ANR_CoTenantLastName_TB.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Generic_TB_KeyDown_Enter);
             // 
             // ANR_CoTenantLastName_LAB
             // 
@@ -146,6 +148,7 @@ namespace TenantRosterAutomation
             this.ANR_AlternateContact_TB.Name = "ANR_AlternateContact_TB";
             this.ANR_AlternateContact_TB.Size = new System.Drawing.Size(200, 20);
             this.ANR_AlternateContact_TB.TabIndex = 6;
+            this.ANR_AlternateContact_TB.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Generic_TB_KeyDown_Enter);
             // 
             // ANR_HomePhone_TB
             // 
@@ -153,6 +156,7 @@ namespace TenantRosterAutomation
             this.ANR_HomePhone_TB.Name = "ANR_HomePhone_TB";
             this.ANR_HomePhone_TB.Size = new System.Drawing.Size(100, 20);
             this.ANR_HomePhone_TB.TabIndex = 5;
+            this.ANR_HomePhone_TB.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Generic_TB_KeyDown_Enter);
             // 
             // ANR_RenterInsurance_TB
             // 
@@ -160,6 +164,7 @@ namespace TenantRosterAutomation
             this.ANR_RenterInsurance_TB.Name = "ANR_RenterInsurance_TB";
             this.ANR_RenterInsurance_TB.Size = new System.Drawing.Size(100, 20);
             this.ANR_RenterInsurance_TB.TabIndex = 7;
+            this.ANR_RenterInsurance_TB.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Generic_TB_KeyDown_Enter);
             // 
             // ANR_MoveInDate_TB
             // 
@@ -167,6 +172,7 @@ namespace TenantRosterAutomation
             this.ANR_MoveInDate_TB.Name = "ANR_MoveInDate_TB";
             this.ANR_MoveInDate_TB.Size = new System.Drawing.Size(100, 20);
             this.ANR_MoveInDate_TB.TabIndex = 8;
+            this.ANR_MoveInDate_TB.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Generic_TB_KeyDown_Enter);
             // 
             // ANR_Cancel_BTN
             // 
@@ -193,6 +199,7 @@ namespace TenantRosterAutomation
             this.ANR_TenantFirstName_TB.Name = "ANR_TenantFirstName_TB";
             this.ANR_TenantFirstName_TB.Size = new System.Drawing.Size(200, 20);
             this.ANR_TenantFirstName_TB.TabIndex = 1;
+            this.ANR_TenantFirstName_TB.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Generic_TB_KeyDown_Enter);
             // 
             // ANR_AdditionalOccupantFirstName_LAB
             // 
@@ -209,6 +216,7 @@ namespace TenantRosterAutomation
             this.ANR_AdditionalOccupantFirstName_TB.Name = "ANR_AdditionalOccupantFirstName_TB";
             this.ANR_AdditionalOccupantFirstName_TB.Size = new System.Drawing.Size(200, 20);
             this.ANR_AdditionalOccupantFirstName_TB.TabIndex = 4;
+            this.ANR_AdditionalOccupantFirstName_TB.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Generic_TB_KeyDown_Enter);
             // 
             // ANR_LeaseEnd_LAB
             // 
@@ -225,6 +233,7 @@ namespace TenantRosterAutomation
             this.ANR_LeaseEnd_TB.Name = "ANR_LeaseEnd_TB";
             this.ANR_LeaseEnd_TB.Size = new System.Drawing.Size(100, 20);
             this.ANR_LeaseEnd_TB.TabIndex = 9;
+            this.ANR_LeaseEnd_TB.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Generic_TB_KeyDown_Enter);
             // 
             // AddOrEditResidentDlg
             // 

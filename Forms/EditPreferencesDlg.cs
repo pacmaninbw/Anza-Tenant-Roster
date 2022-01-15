@@ -160,5 +160,15 @@ namespace TenantRosterAutomation
             DialogResult = DialogResult.Cancel;
             Close();
         }
+
+        private void Generic_TB_KeyDown_Enter(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                SelectNextControl(ActiveControl, true, true, true, true);
+            }
+        }
+
     }
 }

@@ -37,6 +37,7 @@ namespace TenantRosterAutomation
             this.PML_PrintSave_GB = new System.Windows.Forms.GroupBox();
             this.PML_SavelOnly_RB = new System.Windows.Forms.RadioButton();
             this.PML_PrintAndSave_RB = new System.Windows.Forms.RadioButton();
+            this.PML_Cancel_BTN = new System.Windows.Forms.Button();
             this.PML_PrintSave_GB.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,7 +74,7 @@ namespace TenantRosterAutomation
             // 
             // PML_SaveAndPrint_Button
             // 
-            this.PML_SaveAndPrint_Button.Location = new System.Drawing.Point(151, 164);
+            this.PML_SaveAndPrint_Button.Location = new System.Drawing.Point(67, 163);
             this.PML_SaveAndPrint_Button.Name = "PML_SaveAndPrint_Button";
             this.PML_SaveAndPrint_Button.Size = new System.Drawing.Size(120, 23);
             this.PML_SaveAndPrint_Button.TabIndex = 2;
@@ -130,11 +131,22 @@ namespace TenantRosterAutomation
             this.PML_PrintAndSave_RB.UseVisualStyleBackColor = true;
             this.PML_PrintAndSave_RB.CheckedChanged += new System.EventHandler(this.PML_PrintAndSave_RB_CheckedChanged);
             // 
+            // PML_Cancel_BTN
+            // 
+            this.PML_Cancel_BTN.Location = new System.Drawing.Point(229, 163);
+            this.PML_Cancel_BTN.Name = "PML_Cancel_BTN";
+            this.PML_Cancel_BTN.Size = new System.Drawing.Size(120, 23);
+            this.PML_Cancel_BTN.TabIndex = 9;
+            this.PML_Cancel_BTN.Text = "Cancel";
+            this.PML_Cancel_BTN.UseVisualStyleBackColor = true;
+            this.PML_Cancel_BTN.Click += new System.EventHandler(this.PML_Cancel_BTN_Click);
+            // 
             // PrintMailboxListsDlg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(425, 210);
+            this.Controls.Add(this.PML_Cancel_BTN);
             this.Controls.Add(this.PML_PrintSave_GB);
             this.Controls.Add(this.PML_SaveAndPrint_Button);
             this.Controls.Add(this.AddDateUnderAddress_CB);
@@ -162,5 +174,6 @@ namespace TenantRosterAutomation
         private System.Windows.Forms.GroupBox PML_PrintSave_GB;
         private System.Windows.Forms.RadioButton PML_SavelOnly_RB;
         private System.Windows.Forms.RadioButton PML_PrintAndSave_RB;
+        private System.Windows.Forms.Button PML_Cancel_BTN;
     }
 }

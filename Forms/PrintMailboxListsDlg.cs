@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace TenantRosterAutomation
@@ -37,6 +38,7 @@ namespace TenantRosterAutomation
             AddDateToFileName_CB.Checked = addDateToFileName;
             AddDateUnderAddress_CB.Checked = addDateToTitle;
             PML_SaveAndPrint_Button.Enabled = false;
+            PML_Cancel_BTN.BackColor = Color.Red;
         }
 
         private void AddDateToFileName_CB_CheckedChanged(object sender, EventArgs e)
@@ -164,6 +166,11 @@ namespace TenantRosterAutomation
             }
 
             psStatus.Close();
+        }
+
+        private void PML_Cancel_BTN_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

@@ -102,7 +102,7 @@ namespace TenantRosterAutomation
             this.EP_SavePreferences_BTN.Location = new System.Drawing.Point(40, 450);
             this.EP_SavePreferences_BTN.Name = "EP_SavePreferences_BTN";
             this.EP_SavePreferences_BTN.Size = new System.Drawing.Size(120, 23);
-            this.EP_SavePreferences_BTN.TabIndex = 10;
+            this.EP_SavePreferences_BTN.TabIndex = 7;
             this.EP_SavePreferences_BTN.Text = "Save Preferences";
             this.EP_SavePreferences_BTN.UseVisualStyleBackColor = true;
             this.EP_SavePreferences_BTN.Click += new System.EventHandler(this.EP_SavePreferences_BTN_Click);
@@ -128,7 +128,7 @@ namespace TenantRosterAutomation
             this.EP_RentRosterSheetName_LISTBOX.Location = new System.Drawing.Point(339, 109);
             this.EP_RentRosterSheetName_LISTBOX.Name = "EP_RentRosterSheetName_LISTBOX";
             this.EP_RentRosterSheetName_LISTBOX.Size = new System.Drawing.Size(120, 95);
-            this.EP_RentRosterSheetName_LISTBOX.TabIndex = 9;
+            this.EP_RentRosterSheetName_LISTBOX.TabIndex = 6;
             this.EP_RentRosterSheetName_LISTBOX.SelectedIndexChanged += new System.EventHandler(this.EP_RentRosterSheetName_LISTBOX_SelectedIndexChanged);
             // 
             // EP_SheetName_TB
@@ -136,7 +136,8 @@ namespace TenantRosterAutomation
             this.EP_SheetName_TB.Location = new System.Drawing.Point(143, 118);
             this.EP_SheetName_TB.Name = "EP_SheetName_TB";
             this.EP_SheetName_TB.Size = new System.Drawing.Size(139, 20);
-            this.EP_SheetName_TB.TabIndex = 8;
+            this.EP_SheetName_TB.TabIndex = 13;
+            this.EP_SheetName_TB.TabStop = false;
             this.EP_SheetName_TB.Click += new System.EventHandler(this.EP_SheetName_TB_Click);
             // 
             // EP_SpreadSheetName_LAB
@@ -153,7 +154,8 @@ namespace TenantRosterAutomation
             this.EP_FindTenantRoster_BTN.Location = new System.Drawing.Point(7, 84);
             this.EP_FindTenantRoster_BTN.Name = "EP_FindTenantRoster_BTN";
             this.EP_FindTenantRoster_BTN.Size = new System.Drawing.Size(110, 23);
-            this.EP_FindTenantRoster_BTN.TabIndex = 7;
+            this.EP_FindTenantRoster_BTN.TabIndex = 12;
+            this.EP_FindTenantRoster_BTN.TabStop = false;
             this.EP_FindTenantRoster_BTN.Text = "Browse Folders";
             this.EP_FindTenantRoster_BTN.UseVisualStyleBackColor = true;
             this.EP_FindTenantRoster_BTN.Click += new System.EventHandler(this.EP_FindRenterRoster_BTN_Click);
@@ -163,9 +165,10 @@ namespace TenantRosterAutomation
             this.EP_RentRosterLocation_TB.Location = new System.Drawing.Point(35, 49);
             this.EP_RentRosterLocation_TB.Name = "EP_RentRosterLocation_TB";
             this.EP_RentRosterLocation_TB.Size = new System.Drawing.Size(450, 20);
-            this.EP_RentRosterLocation_TB.TabIndex = 6;
+            this.EP_RentRosterLocation_TB.TabIndex = 5;
             this.EP_RentRosterLocation_TB.Click += new System.EventHandler(this.EP_RentRosterLocation_TB_Click);
             this.EP_RentRosterLocation_TB.TextChanged += new System.EventHandler(this.EP_RentRosterLocation_TB_TextChanged);
+            this.EP_RentRosterLocation_TB.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Generic_TB_KeyDown_Enter);
             // 
             // EP_RentRosterLocation_Lab
             // 
@@ -192,7 +195,8 @@ namespace TenantRosterAutomation
             this.EP_BrowseFolderLocation_BTN.Location = new System.Drawing.Point(11, 71);
             this.EP_BrowseFolderLocation_BTN.Name = "EP_BrowseFolderLocation_BTN";
             this.EP_BrowseFolderLocation_BTN.Size = new System.Drawing.Size(110, 23);
-            this.EP_BrowseFolderLocation_BTN.TabIndex = 5;
+            this.EP_BrowseFolderLocation_BTN.TabIndex = 11;
+            this.EP_BrowseFolderLocation_BTN.TabStop = false;
             this.EP_BrowseFolderLocation_BTN.Text = "Browse Folders";
             this.EP_BrowseFolderLocation_BTN.UseVisualStyleBackColor = true;
             this.EP_BrowseFolderLocation_BTN.Click += new System.EventHandler(this.EP_BrowseFolderLocation_BTN_Click);
@@ -205,13 +209,14 @@ namespace TenantRosterAutomation
             this.EP_DefaultFileFolder_TB.TabIndex = 4;
             this.EP_DefaultFileFolder_TB.Click += new System.EventHandler(this.EP_DefaultFileFolder_TB_Click);
             this.EP_DefaultFileFolder_TB.TextChanged += new System.EventHandler(this.EP_DefaultFileFolder_TB_TextChanged);
+            this.EP_DefaultFileFolder_TB.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Generic_TB_KeyDown_Enter);
             // 
             // EP_Cancel_BTN
             // 
             this.EP_Cancel_BTN.Location = new System.Drawing.Point(238, 450);
             this.EP_Cancel_BTN.Name = "EP_Cancel_BTN";
             this.EP_Cancel_BTN.Size = new System.Drawing.Size(120, 23);
-            this.EP_Cancel_BTN.TabIndex = 20;
+            this.EP_Cancel_BTN.TabIndex = 8;
             this.EP_Cancel_BTN.Text = "Cancel";
             this.EP_Cancel_BTN.UseVisualStyleBackColor = true;
             this.EP_Cancel_BTN.Click += new System.EventHandler(this.EP_Cancel_Button_Click);

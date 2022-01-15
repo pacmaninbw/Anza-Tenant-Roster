@@ -32,6 +32,7 @@ namespace TenantRosterAutomation
             this.ANV_FindApartment_BTN = new System.Windows.Forms.Button();
             this.ANV_ApartmentNumber_TB = new System.Windows.Forms.TextBox();
             this.ANV_ApartmentNumber_LAB = new System.Windows.Forms.Label();
+            this.ANV_Cancel_BTN = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ANV_FindApartment_BTN
@@ -61,12 +62,23 @@ namespace TenantRosterAutomation
             this.ANV_ApartmentNumber_LAB.TabIndex = 2;
             this.ANV_ApartmentNumber_LAB.Text = "Enter Apartment Number";
             // 
+            // ANV_Cancel_BTN
+            // 
+            this.ANV_Cancel_BTN.Location = new System.Drawing.Point(42, 83);
+            this.ANV_Cancel_BTN.Name = "ANV_Cancel_BTN";
+            this.ANV_Cancel_BTN.Size = new System.Drawing.Size(100, 23);
+            this.ANV_Cancel_BTN.TabIndex = 3;
+            this.ANV_Cancel_BTN.Text = "Cancel";
+            this.ANV_Cancel_BTN.UseVisualStyleBackColor = true;
+            this.ANV_Cancel_BTN.Click += new System.EventHandler(this.ANV_Cancel_BTN_Click);
+            // 
             // ApartmentNumberVerifier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(180, 100);
+            this.ClientSize = new System.Drawing.Size(180, 116);
             this.ControlBox = false;
+            this.Controls.Add(this.ANV_Cancel_BTN);
             this.Controls.Add(this.ANV_ApartmentNumber_LAB);
             this.Controls.Add(this.ANV_ApartmentNumber_TB);
             this.Controls.Add(this.ANV_FindApartment_BTN);
@@ -85,5 +97,6 @@ namespace TenantRosterAutomation
         private System.Windows.Forms.Button ANV_FindApartment_BTN;
         private System.Windows.Forms.TextBox ANV_ApartmentNumber_TB;
         private System.Windows.Forms.Label ANV_ApartmentNumber_LAB;
+        private System.Windows.Forms.Button ANV_Cancel_BTN;
     }
 }
