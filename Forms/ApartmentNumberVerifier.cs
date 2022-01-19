@@ -44,8 +44,10 @@ namespace TenantRosterAutomation
         {
             if (e.KeyCode == Keys.Enter)
             {
-                VerifyApartmentNumber();
+                return;     // Issue #27 from Peter Csala Prefer early exit, performance
             }
+
+            VerifyApartmentNumber();
         }
 
         private void ErrorActions(string errorMessage)

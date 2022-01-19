@@ -163,12 +163,12 @@ namespace TenantRosterAutomation
 
         private void Generic_TB_KeyDown_Enter(object sender, KeyEventArgs e)
         {
-            if (e.KeyData == Keys.Enter)
+            if (e.KeyData != Keys.Enter)
             {
-                e.SuppressKeyPress = true;
-                SelectNextControl(ActiveControl, true, true, true, true);
+                return;    // Issue #27 from Peter Csala Prefer early exit, performance
             }
+            e.SuppressKeyPress = true;
+            SelectNextControl(ActiveControl, true, true, true, true);
         }
-
     }
 }
