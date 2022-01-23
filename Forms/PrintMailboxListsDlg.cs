@@ -59,7 +59,7 @@ namespace TenantRosterAutomation
 
                 foreach (int streetNumber in StreetNumbers)
                 {
-                    printAndOrSaveMailList(streetNumber);
+                    PrintAndOrSaveMailList(streetNumber);
                 }
             }
             else
@@ -76,7 +76,7 @@ namespace TenantRosterAutomation
             int iStreetNumber = 0;
             if (Int32.TryParse(streetAddress, out iStreetNumber))
             {
-                printAndOrSaveMailList(iStreetNumber);
+                PrintAndOrSaveMailList(iStreetNumber);
             }
             else
             {
@@ -126,7 +126,7 @@ namespace TenantRosterAutomation
             }
         }
 
-        private void printAndOrSaveMailList(int streetAddress)
+        private void PrintAndOrSaveMailList(int streetAddress)
         {
             bool save = ((printSave == PrintSavePreference.PrintSave.PrintAndSave) ? true :
                 (printSave == PrintSavePreference.PrintSave.SaveOnly) ? true : false);
