@@ -72,6 +72,7 @@
     <Compile Include="Classes\BuildingAndApartment.cs" />
     <Compile Include="Classes\ExcelFileCantOpenException.cs" />
     <Compile Include="Classes\ExcelFileData.cs" />
+    <Compile Include="Classes\ExcelFileDoesntExistException.cs" />
     <Compile Include="Classes\ExcelFileException.cs" />
     <Compile Include="Classes\CheckExcelWorkBookOpen.cs" />
     <Compile Include="Classes\Globals.cs" />
@@ -97,6 +98,9 @@
     <Compile Include="Classes\MailboxData.cs" />
     <Compile Include="Classes\PropertyComplex.cs" />
     <Compile Include="Classes\MSWordInterface.cs" />
+    <Compile Include="Forms\ExcelFileLocatorGroupBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Forms\ReportCurrentStatusWindow.cs">
       <SubType>Form</SubType>
     </Compile>
